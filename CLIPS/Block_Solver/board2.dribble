@@ -1,0 +1,153 @@
+TRUE
+CLIPS> (reset)
+CLIPS> (run)
+Welcome to the ECE 4420 Takehome 1 Block Puzzle Solver!
+This program will solve all five required boards sequentially.
+The cell containing the block in each printout is designated with a 'B'.
+
+Moved block to starting position row 6 col 6 on board 2.
+
+oExoxoxoxox
+xoxoxxxxxox
+xoooooxoxox
+xoooooooxox
+ooooooxoxox
+xoxooBoooox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxxxxxxxox
+xoxoooooxox
+xxxxxxxoxox
+
+Found a solution to board 2. Optimizing final path...
+Final path optimized on board 2. Beginning to move block...
+
+Moving block from row 6 col 6 to row 5 col 6.
+
+oExoxoxoxox
+xoxoxxxxxox
+xoooooxoxox
+xoooooooxox
+oooooBxoxox
+xoxooSoooox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxxxxxxxox
+xoxoooooxox
+xxxxxxxoxox
+
+Moving block from row 5 col 6 to row 4 col 6.
+
+oExoxoxoxox
+xoxoxxxxxox
+xoooooxoxox
+xooooBooxox
+ooooooxoxox
+xoxooSoooox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxxxxxxxox
+xoxoooooxox
+xxxxxxxoxox
+
+Moving block from row 4 col 6 to row 3 col 6.
+
+oExoxoxoxox
+xoxoxxxxxox
+xooooBxoxox
+xoooooooxox
+ooooooxoxox
+xoxooSoooox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxxxxxxxox
+xoxoooooxox
+xxxxxxxoxox
+
+Moving block from row 3 col 6 to row 3 col 5.
+
+oExoxoxoxox
+xoxoxxxxxox
+xoooBoxoxox
+xoooooooxox
+ooooooxoxox
+xoxooSoooox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxxxxxxxox
+xoxoooooxox
+xxxxxxxoxox
+
+Moving block from row 3 col 5 to row 3 col 4.
+
+oExoxoxoxox
+xoxoxxxxxox
+xooBooxoxox
+xoooooooxox
+ooooooxoxox
+xoxooSoooox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxxxxxxxox
+xoxoooooxox
+xxxxxxxoxox
+
+Moving block from row 3 col 4 to row 3 col 3.
+
+oExoxoxoxox
+xoxoxxxxxox
+xoBoooxoxox
+xoooooooxox
+ooooooxoxox
+xoxooSoooox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxxxxxxxox
+xoxoooooxox
+xxxxxxxoxox
+
+Moving block from row 3 col 3 to row 3 col 2.
+
+oExoxoxoxox
+xoxoxxxxxox
+xBooooxoxox
+xoooooooxox
+ooooooxoxox
+xoxooSoooox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxxxxxxxox
+xoxoooooxox
+xxxxxxxoxox
+
+Moving block from row 3 col 2 to row 2 col 2.
+
+oExoxoxoxox
+xBxoxxxxxox
+xoooooxoxox
+xoooooooxox
+ooooooxoxox
+xoxooSoooox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxxxxxxxox
+xoxoooooxox
+xxxxxxxoxox
+
+Moving block from row 2 col 2 to row 1 col 2.
+
+oBxoxoxoxox
+xoxoxxxxxox
+xoooooxoxox
+xoooooooxox
+ooooooxoxox
+xoxooSoooox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxxxxxxxox
+xoxoooooxox
+xxxxxxxoxox
+
+Board 2 has been solved.
+
+CLIPS> (dribble-off)

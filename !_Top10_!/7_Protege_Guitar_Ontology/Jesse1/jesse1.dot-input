@@ -1,0 +1,12 @@
+digraph "jesse1" {
+
+"Mammal" [shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", label="{Mammal|{has|String*}|{offspring|String}}"]
+"Life Form"->"Mammal" [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"Jesse" [shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", label="{Jesse|{owns|String}|{likes|String}|{age|Float}|{owner|String}}"]
+"Golden Retriever"->"Jesse" [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"Life Form" [shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", label="{Life Form|{produces|String}|{consumes|String*}}"]
+"Dog" [shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", label="{Dog|{has|String*}|{hates|String}}"]
+"Mammal"->"Dog" [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"Golden Retriever" [shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", label="{Golden Retriever|{has|String*}}"]
+"Dog"->"Golden Retriever" [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+}

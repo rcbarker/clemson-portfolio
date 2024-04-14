@@ -1,0 +1,738 @@
+; Mon Oct 26 19:11:19 EDT 2015
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot name_
+;+		(comment "A string used to list the name of an electric guitarist or signal chain. This is used as the label for all instances of electric guitarists or signal chains.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot number_of_channels
+;+		(comment "An integer slot describing the number of channels contained in an amplifier. To function, all amplifiers must have at least one channel, so this value must be at least one.\n\nDefinition: An amplifier channel is a section of an amplifier dedicated to producing either a clean or distorted sound. When an amp is switched on, only one channel can be active at a time.")
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_part_of_a
+;+		(comment "Slot used as a class relation to show what makes up a signal chain along with the \"contains a\" relation. Useful to show users how to build a signal chain out of an artist's gear.")
+		(type SYMBOL)
+;+		(allowed-parents Signal+Chain)
+;+		(cardinality 0 1)
+;+		(inverse-slot contains_a)
+		(create-accessor read-write))
+	(single-slot pedal_effects_loop
+;+		(comment "Boolean slot to represent if an effects unit has an effects loop built into it. \n\nDefinition: An effects loop is a dedicated and seperate signal chain that can be engaged and disengaged into the main signal chain or run in parallel with the main signal chain through the pedal. This is a rare capability and the jacks for it are typically found on the side of the equipped unit. An effects loop in a pedal is not the same thing an effects loop in an amplifier.")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot on_board_effects
+;+		(comment "A boolean slot to describe whether an amplifier is equipped with on-board effects.\n\nDefinition: Some amplifiers have built in processors with on-board effects. These can include but are not limited to reverberation, chorus, delay, and flange. Amplifiers with on-board effects are typically digital.")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot body_cutaway
+;+		(comment "Slot that describes the body cutaway, or shape, of an electric guitar's body as one of two symbols.\n\nSymbols:\n- Single: A single cut guitar only has one carved horn, such as a Telecaster or Les Paul shape.\n- Double: A double cut guitar has two horns, such as a Stratocaster.\n- Explorer: The guitar is a X shape, like a Gibson Explorer.")
+		(type SYMBOL)
+		(allowed-values Single Double Explorer)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot uses
+;+		(comment "Relation used to show which audio equipment is used by a particular electric guitarist. One half of linking famous artists to the musical equipment they use.")
+		(type INSTANCE)
+;+		(allowed-classes Audio+Equipment)
+;+		(inverse-slot used_by)
+		(create-accessor read-write))
+	(single-slot scale_length_%28inches%29
+;+		(comment "An integer value to represent the scale length of an electric guitar's neck in inches. All scale lengths must be positive numbers.\n\nDefinition: The scale length of an electric guitar is the maximum vibrating range of a string across its neck. Guitars with longer scale length are easier to play faster, but guitars with shorter scale length are easier to pitch-bend strings on.")
+		(type FLOAT)
+		(range 0.0 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot contains_a
+;+		(comment "Slot used as a class relation to show what makes up a signal chain along with the \"is part of a\" relation. Useful to show users how to build a signal chain out of an artist's gear.")
+		(type SYMBOL)
+;+		(allowed-parents Electric+Guitar Amplifier Effects+Pedal Guitar+Cable)
+;+		(cardinality 0 1)
+;+		(inverse-slot is_part_of_a)
+		(create-accessor read-write))
+	(single-slot cable
+;+		(comment "Slot to hold a cable in sample signal chains. All signal chains include cables, so this field is required.")
+		(type INSTANCE)
+;+		(allowed-classes Guitar+Cable)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot amplifier
+;+		(comment "Slot to hold an amplifier in sample signal chains. All signal chains include amplifiers, so this field is required.")
+		(type INSTANCE)
+;+		(allowed-classes Amplifier)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot guitar
+;+		(comment "Slot to hold a guitar in sample signal chains. All signal chains include guitars, so this field is required.")
+		(type INSTANCE)
+;+		(allowed-classes Electric+Guitar)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot primary_control
+;+		(comment "Slot that uses seven values to show the primary control knob of an effects unit.\n\nSymbol:\n- Rate: The pedal's primary control manipulates the rate of an effect in the signal chain.\n- Gain: The pedal's primary control manipulates a gain value in the signal chain.\n- Pitch: The pedal's primary control manipulates the pitch an effect in the signal chain.\n- Depth: The pedal's primary control manipulates the depth of an effect in the signal chain.\n- Echo: The pedal's primary control manipulates the timing of an echo signal in the signal chain.\n- Speed: The pedal's primary control manipulates the speed of an effect in the signal chain. Different from rate; see Phaser pedal documentation.\n- Range: The pedal's primary control manipulates the frequency range of an effect in the signal chain.")
+		(type SYMBOL)
+		(allowed-values Rate Gain Pitch Depth Echo Speed Range)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot effects_pedals
+;+		(comment "Slot to hold effects pedals in sample signal chains. Not all signal chains include effects pedals.")
+		(type INSTANCE)
+;+		(allowed-classes Effects+Pedal)
+		(create-accessor read-write))
+	(multislot unique_features
+;+		(comment "A string slot with multiple degrees of cardinality. This is used to list any miscallaneous features of audio equipment not described by the other slots, but is limited to five entries to reduce clutter.")
+		(type STRING)
+		(cardinality 0 5)
+		(create-accessor read-write))
+	(single-slot pickup_configuration
+;+		(comment "Slot representing the pickup configuration of an electric guitar with one of seven symbols.\n\nDefinition: A pickup is a magnetic coil mounted to the body of an electric guitar. These coils are sensitive to changes in frequency of the guitar string, and cause electrical changes in the signal chain to produce the sound of an electric guitar. They are mounted near the bridge, neck, or halfway in between (middle).\n\nDefinition: A single coil pickup a single line of magnetic coil under a string. It produces a brighter sound, but causes noise hum when it isn't played.\n\nDefinition: A humbucker pickup is two single coil pickups wired out of phase. It produces a more powerful sound and \"bucks\" (or cancels) the hum normally experienced by single coil pickups. It has stronger harmonic response.\n\nDefinition: A P90 is a classic single coil pickup designed by Gibson. P90s are less crisp than traditional single coils with extended midrange. These pickups coined the term \"soapbar pickups\".\n\nSymbols:\n- S: The guitar has one single coil pickup. \n- H: The guitar has one bridge humbucker.\n- SS: The guitar has bridge and neck single coil pickups.\n- HH: The guitar has a bridge and neck humbucker.\n- SSS: The guitar has bridge, middle, and neck single coil pickups.\n- HSS: The guitar has a bridge humbucker and middle and neck single coil pickups.\n- HSH: The guitar has bridge and neck humbuckers and a middle single coil pickup.\n- HHH: The guitar has bridge, middle, and neck humbucker pickups.\n- P90s: The guitar has classic P90 pickus.\n- Active: The guitar has humbuckers hooked into an active circuit. These are powered by a battery to produce even more gain on the guitar's sound and used by metal players.")
+		(type SYMBOL)
+		(allowed-values S H SS HH SSS HSS HSH HHH P90s Active)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot speaker_name
+;+		(comment "A slot used to specify the speaker's used in an amplifier's cabinet as a string. Not applicable to rack units.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot power_rating_%28watts%29
+;+		(comment "An integer slot used to show the power rating of an amplifier. All amplifiers are rated for at least one watt, so this value must be greater than or equal to one.")
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot mounting_type
+;+		(comment "Slot that describes the different types of digital amplifiers as one of two symbols. This is represented as a slot rather than a subclass heirarchy because there are a very small number of digital cabinet based amplifiers.\n\nSymbols:\n- Cabinet: Mounted inside a wooden cabinet like a traditional amplifier. Less expensive and produce a lower quality sound.\n- Rack: Mounted on an effects rack. More expensive and produce a higher quality sound.")
+		(type SYMBOL)
+		(allowed-values Cabinet Rack)
+		(default Rack)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot make_and_model
+;+		(comment "A string used to describe the model number and manufacturer of a piece of audio equipment. This is used as the label for all instances of audio equipment.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot body_wood
+;+		(comment "Slot that shows the wood used in an electric guitar's body. \n\nDefinition: The body of a guitar is the portion attached to the neck housing the bridge and pickups. The wood it is made of is greatly varied based on the manufacturer, so it is input as a string.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot year_began
+;+		(comment "Integer slot that describes the year an electric guitarist started playing professionally. Starts at 1950 and is capped at 2015. 1950 starts the first decade of guitarists considered by this ontology and the ontology unfornatunately cannot predict the future.")
+		(type INTEGER)
+		(range 1950 2015)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot signal_level
+;+		(comment "A two symbol slot used to represent the level a pedal is supposed to be in inside of the signal chain.\n\nSymbol:\n- Line level: The pedal is meant to be placed between an electric guitar and an amplifier in the signal chain.\n- Loop level: The pedal is meant to be placed \"in the loop\", or after an amplifier's pre-amplifier but before its power amplifier in the signal chain. There jacks on the back of most amplifiers to facilitate this.")
+		(type SYMBOL)
+		(allowed-values Line-Level Loop-Level)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot cabinet_type
+;+		(comment "Slot used to describe the cabinet type of a tube amplilfier with symbols.\n\nSymbols:\n- 1x12 Cabinet: A cabinet containing one, twelve inch diameter speaker for amplification.\n- 2x12 Cabinet: A cabinet containing two, twelve inch diameter speakers for amplification.\n- 4x12 Cabinet: A cabinet containing four, twelve inch diameter speakers for amplification.")
+		(type SYMBOL)
+		(allowed-values 1x12 2x12 4x12)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot fretboard_wood
+;+		(comment "Slot that describes the fretboard wood of a guitar as one of three symbols.\n\nSymbols:\n- Rosewood: A brown, tropical wood. One of the two most common fretboard woods.\n- Maple: A lighter wood native to Asia, but common around the world. The other of the two most common fretboard woods.\n- Ebony: A rich, almost-black wood typically used on more expensive instruments.")
+		(type SYMBOL)
+		(allowed-values Rosewood Maple Ebony)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot amplification_type
+;+		(comment "Slot to represent the method of amplification used by guitar amplifiers as one of three symbols.\n\nSymbols:\n- Valve: Vacuum Tube based amplifiers that work with true analog signal. These include most traditional amplifiers and are still the most popular type of amplifier today. \n- Solid State: Semiconductor-circuit based amplifiers that work with true analog signal. Solid state amplifiers are less expensive alternatives to tube amplifiers.\n- Digital: Amplifiers that use a digital processor to amplify guitar signal. These are either cabinet-based or rack-based.")
+		(type SYMBOL)
+		(allowed-values Valve Solid-State Digital)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot bridge_type
+;+		(comment "Slot that represents the bridge mounted to an electric guitar with symbols. The bridge is the piece of metal that meets the strings of a guitar at its body.\n\nSymbols:\n- Fixed: A non-moving bridge. This provides greater guitar tuning stability, but is not equipped with tremolo.\n- Standard floating: A whammy bar mounted to a bridge with springs floating it in a cavity in the back of the guitar. This is easy to use and provides tremolo, but sacrifices guitar tuning stability.\n- Bigsby: The first type of non-locking tremolo bridge that presses the bar to the strings rather than moving the bridge itself.\n- Floyd Rose: A locking variant of the standard floating bridge that includes bolts at the nut of a guitar (place where the strings meet the guitar's neck) . This provides greater tuning stability, but makes a guitar harder to restring.\n- Ibanez Edge: A series of modified Floyd Rose bridges that utilize an innovative knife edge design to increase tuning stability.")
+		(type SYMBOL)
+		(allowed-values Fixed Standard-Floating Floyd-Rose Bigsby Ibanez-Edge)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot band
+;+		(comment "Slot to store the most famous act a guitarist has played in. This does not list every act because guitarists often play a show or two with another act for fun.\n\nBecause all guitarists are either solo artists or in a band, this field is required.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot distortion_level
+;+		(comment "Slot used to show the distortion level of a drive pedal with symbols:\n\nSymbols:\n- Low: Typically associated with fuzz pedals.\n- Moderate: Typically associated with overdrive pedals.\n- High: Typically associated with distortion pedals.")
+		(type SYMBOL)
+		(allowed-values Low Moderate High)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot used_by
+;+		(comment "Relation used to show which electric guitarists use a particular piece of audio equipment. One half of linking famous artists to the musical equipment they use.")
+		(type INSTANCE)
+;+		(allowed-classes Electric+Guitarist)
+;+		(inverse-slot uses)
+		(create-accessor read-write)))
+
+(defclass Audio+Equipment "Top level class in heirachy for all of the music equipment represented. Includes electric guitars, amplifiers, and effects pedals. \n\nSlots at this level include one for the make and model of the equipment, one for model-specific features of the equipment, and a \"used by\" slot for relation with instances of the electric guitarists that use each piece of equipment. \n\nNote that \"used by\" is the inverse slot of the electric guitarist \"uses\" slot. These slots facilitate one of the primary purposes of the ontology (Linking famous artists to the musical equipment they use)."
+	(is-a USER)
+	(role abstract)
+	(single-slot make_and_model
+;+		(comment "A string used to describe the model number and manufacturer of a piece of audio equipment. This is used as the label for all instances of audio equipment.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot used_by
+;+		(comment "Relation used to show which electric guitarists use a particular piece of audio equipment. One half of linking famous artists to the musical equipment they use.")
+		(type INSTANCE)
+;+		(allowed-classes Electric+Guitarist)
+		(create-accessor read-write))
+	(multislot unique_features
+;+		(comment "A string slot with multiple degrees of cardinality. This is used to list any miscallaneous features of audio equipment not described by the other slots, but is limited to five entries to reduce clutter.")
+		(type STRING)
+		(cardinality 0 5)
+		(create-accessor read-write)))
+
+(defclass Electric+Guitar "Top level class in the heirachy of electric guitars represented in the ontology. The subclasses are broken up by bridge and tremolo type. The bridge of a guitar is the portion where the strings meet the body of the instrument.\n\nTop level guitar slots include one for the body cutaway of the instrument, one for the body wood of the instrument, one for the bridge type of the instrument, one for the fretboard wood of the instrument, one for the pickup configuration of the instrument, and one for the scale length on the instrument.\n\nThe \"is part of a\" relation is for the representation of the definition of a signal chain. Its inverse slot is the \"contains-a\" relation found in the Signal Chain class."
+	(is-a Audio+Equipment)
+	(role abstract)
+	(single-slot scale_length_%28inches%29
+;+		(comment "An integer value to represent the scale length of an electric guitar's neck in inches. All scale lengths must be positive numbers.\n\nDefinition: The scale length of an electric guitar is the maximum vibrating range of a string across its neck. Guitars with longer scale length are easier to play faster, but guitars with shorter scale length are easier to pitch-bend strings on.")
+		(type FLOAT)
+		(range 0.0 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot body_wood
+;+		(comment "Slot that shows the wood used in an electric guitar's body. \n\nDefinition: The body of a guitar is the portion attached to the neck housing the bridge and pickups. The wood it is made of is greatly varied based on the manufacturer, so it is input as a string.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_part_of_a
+;+		(comment "Slot used as a class relation to show what makes up a signal chain along with the \"contains a\" relation. Useful to show users how to build a signal chain out of an artist's gear.")
+		(type SYMBOL)
+;+		(allowed-parents Signal+Chain)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pickup_configuration
+;+		(comment "Slot representing the pickup configuration of an electric guitar with one of seven symbols.\n\nDefinition: A pickup is a magnetic coil mounted to the body of an electric guitar. These coils are sensitive to changes in frequency of the guitar string, and cause electrical changes in the signal chain to produce the sound of an electric guitar. They are mounted near the bridge, neck, or halfway in between (middle).\n\nDefinition: A single coil pickup a single line of magnetic coil under a string. It produces a brighter sound, but causes noise hum when it isn't played.\n\nDefinition: A humbucker pickup is two single coil pickups wired out of phase. It produces a more powerful sound and \"bucks\" (or cancels) the hum normally experienced by single coil pickups. It has stronger harmonic response.\n\nDefinition: A P90 is a classic single coil pickup designed by Gibson. P90s are less crisp than traditional single coils with extended midrange. These pickups coined the term \"soapbar pickups\".\n\nSymbols:\n- S: The guitar has one single coil pickup. \n- H: The guitar has one bridge humbucker.\n- SS: The guitar has bridge and neck single coil pickups.\n- HH: The guitar has a bridge and neck humbucker.\n- SSS: The guitar has bridge, middle, and neck single coil pickups.\n- HSS: The guitar has a bridge humbucker and middle and neck single coil pickups.\n- HSH: The guitar has bridge and neck humbuckers and a middle single coil pickup.\n- HHH: The guitar has bridge, middle, and neck humbucker pickups.\n- P90s: The guitar has classic P90 pickus.\n- Active: The guitar has humbuckers hooked into an active circuit. These are powered by a battery to produce even more gain on the guitar's sound and used by metal players.")
+		(type SYMBOL)
+		(allowed-values S H SS HH SSS HSS HSH HHH P90s Active)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot fretboard_wood
+;+		(comment "Slot that describes the fretboard wood of a guitar as one of three symbols.\n\nSymbols:\n- Rosewood: A brown, tropical wood. One of the two most common fretboard woods.\n- Maple: A lighter wood native to Asia, but common around the world. The other of the two most common fretboard woods.\n- Ebony: A rich, almost-black wood typically used on more expensive instruments.")
+		(type SYMBOL)
+		(allowed-values Rosewood Maple Ebony)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot body_cutaway
+;+		(comment "Slot that describes the body cutaway, or shape, of an electric guitar's body as one of two symbols.\n\nSymbols:\n- Single: A single cut guitar only has one carved horn, such as a Telecaster or Les Paul shape.\n- Double: A double cut guitar has two horns, such as a Stratocaster.\n- Explorer: The guitar is a X shape, like a Gibson Explorer.")
+		(type SYMBOL)
+		(allowed-values Single Double Explorer)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot bridge_type
+;+		(comment "Slot that represents the bridge mounted to an electric guitar with symbols. The bridge is the piece of metal that meets the strings of a guitar at its body.\n\nSymbols:\n- Fixed: A non-moving bridge. This provides greater guitar tuning stability, but is not equipped with tremolo.\n- Standard floating: A whammy bar mounted to a bridge with springs floating it in a cavity in the back of the guitar. This is easy to use and provides tremolo, but sacrifices guitar tuning stability.\n- Bigsby: The first type of non-locking tremolo bridge that presses the bar to the strings rather than moving the bridge itself.\n- Floyd Rose: A locking variant of the standard floating bridge that includes bolts at the nut of a guitar (place where the strings meet the guitar's neck) . This provides greater tuning stability, but makes a guitar harder to restring.\n- Ibanez Edge: A series of modified Floyd Rose bridges that utilize an innovative knife edge design to increase tuning stability.")
+		(type SYMBOL)
+		(allowed-values Fixed Standard-Floating Floyd-Rose Bigsby Ibanez-Edge)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Fixed+Bridge+Guitar "Subclass to represent all guitars with fixed bridges and no tremolo capabilities. The \"bridge_type\" slot of this class is overwritten here to \"fixed\" to reflect this."
+	(is-a Electric+Guitar)
+	(role concrete)
+	(single-slot bridge_type
+;+		(comment "Slot that represents the bridge mounted to an electric guitar with symbols. The bridge is the piece of metal that meets the strings of a guitar at its body.\n\nSymbols:\n- Fixed: A non-moving bridge. This provides greater guitar tuning stability, but is not equipped with tremolo.\n- Standard floating: A whammy bar mounted to a bridge with springs floating it in a cavity in the back of the guitar. This is easy to use and provides tremolo, but sacrifices guitar tuning stability.\n- Bigsby: The first type of non-locking tremolo bridge that presses the bar to the strings rather than moving the bridge itself.\n- Floyd Rose: A locking variant of the standard floating bridge that includes bolts at the nut of a guitar (place where the strings meet the guitar's neck) . This provides greater tuning stability, but makes a guitar harder to restring.\n- Ibanez Edge: A series of modified Floyd Rose bridges that utilize an innovative knife edge design to increase tuning stability.")
+		(type SYMBOL)
+		(allowed-values Fixed)
+;+		(value Fixed)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Floating+Bridge+Guitar "Subclass heirarchy to represent all tremolo-equipped guitars. The \"bridge_type\" slot of this class heirarchy is overwritten here to exclude \"fixed\" to reflect this. \n\nThe hierarchy is broken up by locking tremolo systems and non-locking tremolo systems. A locking tremolo system is one that includes bolts at the nut of a guitar's neck to prevent the strings from sliding while using the tremolo. A non-locking tremolo system does not include these bolts."
+	(is-a Electric+Guitar)
+	(role abstract)
+	(single-slot bridge_type
+;+		(comment "Slot that represents the bridge mounted to an electric guitar with symbols. The bridge is the piece of metal that meets the strings of a guitar at its body.\n\nSymbols:\n- Fixed: A non-moving bridge. This provides greater guitar tuning stability, but is not equipped with tremolo.\n- Standard floating: A whammy bar mounted to a bridge with springs floating it in a cavity in the back of the guitar. This is easy to use and provides tremolo, but sacrifices guitar tuning stability.\n- Bigsby: The first type of non-locking tremolo bridge that presses the bar to the strings rather than moving the bridge itself.\n- Floyd Rose: A locking variant of the standard floating bridge that includes bolts at the nut of a guitar (place where the strings meet the guitar's neck) . This provides greater tuning stability, but makes a guitar harder to restring.\n- Ibanez Edge: A series of modified Floyd Rose bridges that utilize an innovative knife edge design to increase tuning stability.")
+		(type SYMBOL)
+		(allowed-values Standard-Floating Ibanez-Edge Bigsby Floyd-Rose)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Locking+Bridge+Guitar "Subclass to represent all guitars with locking tremolo systems. The \"bridge type\" slot is overwritten here to default to a Floyd Rose, the most common locking tremolo, and only include options for other locking tremolo systems."
+	(is-a Floating+Bridge+Guitar)
+	(role concrete)
+	(single-slot bridge_type
+;+		(comment "Slot that represents the bridge mounted to an electric guitar with symbols. The bridge is the piece of metal that meets the strings of a guitar at its body.\n\nSymbols:\n- Fixed: A non-moving bridge. This provides greater guitar tuning stability, but is not equipped with tremolo.\n- Standard floating: A whammy bar mounted to a bridge with springs floating it in a cavity in the back of the guitar. This is easy to use and provides tremolo, but sacrifices guitar tuning stability.\n- Bigsby: The first type of non-locking tremolo bridge that presses the bar to the strings rather than moving the bridge itself.\n- Floyd Rose: A locking variant of the standard floating bridge that includes bolts at the nut of a guitar (place where the strings meet the guitar's neck) . This provides greater tuning stability, but makes a guitar harder to restring.\n- Ibanez Edge: A series of modified Floyd Rose bridges that utilize an innovative knife edge design to increase tuning stability.")
+		(type SYMBOL)
+		(allowed-values Floyd-Rose Ibanez-Edge)
+		(default Floyd-Rose)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Non-locking+Bridge+Guitar "Subclass to represent all guitars with non-locking tremolo systems. The \"bridge type\" slot is overwritten here to default to a standard floating whammy bar, the most common non-locking tremolo, and only include options for other non-locking tremolo systems."
+	(is-a Floating+Bridge+Guitar)
+	(role concrete)
+	(single-slot bridge_type
+;+		(comment "Slot that represents the bridge mounted to an electric guitar with symbols. The bridge is the piece of metal that meets the strings of a guitar at its body.\n\nSymbols:\n- Fixed: A non-moving bridge. This provides greater guitar tuning stability, but is not equipped with tremolo.\n- Standard floating: A whammy bar mounted to a bridge with springs floating it in a cavity in the back of the guitar. This is easy to use and provides tremolo, but sacrifices guitar tuning stability.\n- Bigsby: The first type of non-locking tremolo bridge that presses the bar to the strings rather than moving the bridge itself.\n- Floyd Rose: A locking variant of the standard floating bridge that includes bolts at the nut of a guitar (place where the strings meet the guitar's neck) . This provides greater tuning stability, but makes a guitar harder to restring.\n- Ibanez Edge: A series of modified Floyd Rose bridges that utilize an innovative knife edge design to increase tuning stability.")
+		(type SYMBOL)
+		(allowed-values Standard-Floating Bigsby)
+		(default Standard-Floating)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Effects+Pedal "Top level class in the heirachy of effects pedals. Contains any and all effects units represented in the ontology. The subclasses are divided by effect type.\n\nCommon slots include the primary control of the unit, whether the unit has a built in effects loop, and the signal level of the unit.\n\nThe \"is part of a\" relation is for the representation of the definition of a signal chain. Its inverse slot is the \"contains-a\" relation found in the Signal Chain class."
+	(is-a Audio+Equipment)
+	(role abstract)
+	(single-slot pedal_effects_loop
+;+		(comment "Boolean slot to represent if an effects unit has an effects loop built into it. \n\nDefinition: An effects loop is a dedicated and seperate signal chain that can be engaged and disengaged into the main signal chain or run in parallel with the main signal chain through the pedal. This is a rare capability and the jacks for it are typically found on the side of the equipped unit. An effects loop in a pedal is not the same thing an effects loop in an amplifier.")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot primary_control
+;+		(comment "Slot that uses seven values to show the primary control knob of an effects unit.\n\nSymbol:\n- Rate: The pedal's primary control manipulates the rate of an effect in the signal chain.\n- Gain: The pedal's primary control manipulates a gain value in the signal chain.\n- Pitch: The pedal's primary control manipulates the pitch an effect in the signal chain.\n- Depth: The pedal's primary control manipulates the depth of an effect in the signal chain.\n- Echo: The pedal's primary control manipulates the timing of an echo signal in the signal chain.\n- Speed: The pedal's primary control manipulates the speed of an effect in the signal chain. Different from rate; see Phaser pedal documentation.\n- Range: The pedal's primary control manipulates the frequency range of an effect in the signal chain.")
+		(type SYMBOL)
+		(allowed-values Rate Gain Pitch Depth Echo Speed Range)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot signal_level
+;+		(comment "A two symbol slot used to represent the level a pedal is supposed to be in inside of the signal chain.\n\nSymbol:\n- Line level: The pedal is meant to be placed between an electric guitar and an amplifier in the signal chain.\n- Loop level: The pedal is meant to be placed \"in the loop\", or after an amplifier's pre-amplifier but before its power amplifier in the signal chain. There jacks on the back of most amplifiers to facilitate this.")
+		(type SYMBOL)
+		(allowed-values Line-Level Loop-Level)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_part_of_a
+;+		(comment "Slot used as a class relation to show what makes up a signal chain along with the \"contains a\" relation. Useful to show users how to build a signal chain out of an artist's gear.")
+		(type SYMBOL)
+;+		(allowed-parents Signal+Chain)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Drive+Pedal "Subclass heirachy of all drive pedals represented in the ontology. Drive pedals add distortion to an amplifier. They are grouped into distortion, overdrive, and fuzz pedals.\n\nThe primary control of a drive pedal is the gain control of its distortion. They contain an extra slot to represent the level of distortion they can produce, which varies based on design. \n\nAll distortion pedals are line level and can damage an amplifier if used in its effects loop."
+	(is-a Effects+Pedal)
+	(role abstract)
+	(single-slot distortion_level
+;+		(comment "Slot used to show the distortion level of a drive pedal with symbols:\n\nSymbols:\n- Low: Typically associated with fuzz pedals.\n- Moderate: Typically associated with overdrive pedals.\n- High: Typically associated with distortion pedals.")
+		(type SYMBOL)
+		(allowed-values Low Moderate High)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot primary_control
+;+		(comment "Slot that uses seven values to show the primary control knob of an effects unit.\n\nSymbol:\n- Rate: The pedal's primary control manipulates the rate of an effect in the signal chain.\n- Gain: The pedal's primary control manipulates a gain value in the signal chain.\n- Pitch: The pedal's primary control manipulates the pitch an effect in the signal chain.\n- Depth: The pedal's primary control manipulates the depth of an effect in the signal chain.\n- Echo: The pedal's primary control manipulates the timing of an echo signal in the signal chain.\n- Speed: The pedal's primary control manipulates the speed of an effect in the signal chain. Different from rate; see Phaser pedal documentation.\n- Range: The pedal's primary control manipulates the frequency range of an effect in the signal chain.")
+		(type SYMBOL)
+		(allowed-values Rate Gain Pitch Depth Echo Speed Range)
+;+		(value Gain)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot signal_level
+;+		(comment "A two symbol slot used to represent the level a pedal is supposed to be in inside of the signal chain.\n\nSymbol:\n- Line level: The pedal is meant to be placed between an electric guitar and an amplifier in the signal chain.\n- Loop level: The pedal is meant to be placed \"in the loop\", or after an amplifier's pre-amplifier but before its power amplifier in the signal chain. There jacks on the back of most amplifiers to facilitate this.")
+		(type SYMBOL)
+		(allowed-values Line-Level Loop-Level)
+;+		(value Line-Level)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Distortion+Pedal "Subclass representing a distortion pedal. These are typically hi-gain pedals designed for classic or heavy rock."
+	(is-a Drive+Pedal)
+	(role concrete)
+	(single-slot distortion_level
+;+		(comment "Slot used to show the distortion level of a drive pedal with symbols:\n\nSymbols:\n- Low: Typically associated with fuzz pedals.\n- Moderate: Typically associated with overdrive pedals.\n- High: Typically associated with distortion pedals.")
+		(type SYMBOL)
+		(allowed-values Low Moderate High)
+		(default High)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Overdrive+Pedal "Subclass representing an overdrive pedal. These are jack of all trade distortion pedals meant to be used on top of an ampilfier's natural distortion."
+	(is-a Drive+Pedal)
+	(role concrete)
+	(single-slot distortion_level
+;+		(comment "Slot used to show the distortion level of a drive pedal with symbols:\n\nSymbols:\n- Low: Typically associated with fuzz pedals.\n- Moderate: Typically associated with overdrive pedals.\n- High: Typically associated with distortion pedals.")
+		(type SYMBOL)
+		(allowed-values Low Moderate High)
+		(default Moderate)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Fuzz+Pedal "Subclass representing a fuzz pedal. These are typically low gain pedals with broken-up distortion designed to capture a Jimmi-Hendrix like sound."
+	(is-a Drive+Pedal)
+	(role concrete)
+	(single-slot distortion_level
+;+		(comment "Slot used to show the distortion level of a drive pedal with symbols:\n\nSymbols:\n- Low: Typically associated with fuzz pedals.\n- Moderate: Typically associated with overdrive pedals.\n- High: Typically associated with distortion pedals.")
+		(type SYMBOL)
+		(allowed-values Low Moderate High)
+		(default Low)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Modulation+Pedal "Subclass heirachy of all modulation pedals represented in the ontology. These pedals manipulate things like the rate, pitch, depth, and speed of your tone. They are classified by the different effects they produce.\n\nModulation pedals are typically meant to be placed in an effects loop, but can be integrated into a signal chain at line level."
+	(is-a Effects+Pedal)
+	(role abstract)
+	(single-slot primary_control
+;+		(comment "Slot that uses seven values to show the primary control knob of an effects unit.\n\nSymbol:\n- Rate: The pedal's primary control manipulates the rate of an effect in the signal chain.\n- Gain: The pedal's primary control manipulates a gain value in the signal chain.\n- Pitch: The pedal's primary control manipulates the pitch an effect in the signal chain.\n- Depth: The pedal's primary control manipulates the depth of an effect in the signal chain.\n- Echo: The pedal's primary control manipulates the timing of an echo signal in the signal chain.\n- Speed: The pedal's primary control manipulates the speed of an effect in the signal chain. Different from rate; see Phaser pedal documentation.\n- Range: The pedal's primary control manipulates the frequency range of an effect in the signal chain.")
+		(type SYMBOL)
+		(allowed-values Rate Pitch Depth Speed)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot signal_level
+;+		(comment "A two symbol slot used to represent the level a pedal is supposed to be in inside of the signal chain.\n\nSymbol:\n- Line level: The pedal is meant to be placed between an electric guitar and an amplifier in the signal chain.\n- Loop level: The pedal is meant to be placed \"in the loop\", or after an amplifier's pre-amplifier but before its power amplifier in the signal chain. There jacks on the back of most amplifiers to facilitate this.")
+		(type SYMBOL)
+		(allowed-values Line-Level Loop-Level)
+		(default Loop-Level)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Chorus+Pedal "Subclass for all represented chorus pedals. A chorus pedal is a loop level pedal that manipulates the pitch of a guitar to make it sound like multiple instruments.\n\nThe primary control of a chorus pedal manipulates the pitch of the modified signal."
+	(is-a Modulation+Pedal)
+	(role concrete)
+	(single-slot primary_control
+;+		(comment "Slot that uses seven values to show the primary control knob of an effects unit.\n\nSymbol:\n- Rate: The pedal's primary control manipulates the rate of an effect in the signal chain.\n- Gain: The pedal's primary control manipulates a gain value in the signal chain.\n- Pitch: The pedal's primary control manipulates the pitch an effect in the signal chain.\n- Depth: The pedal's primary control manipulates the depth of an effect in the signal chain.\n- Echo: The pedal's primary control manipulates the timing of an echo signal in the signal chain.\n- Speed: The pedal's primary control manipulates the speed of an effect in the signal chain. Different from rate; see Phaser pedal documentation.\n- Range: The pedal's primary control manipulates the frequency range of an effect in the signal chain.")
+		(type SYMBOL)
+		(allowed-values Rate Pitch Depth Speed)
+		(default Pitch)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Phaser+Pedal "Subclass for all represented phaser pedals. A phaser pedal is a loop level pedal that introduces a swirl-like sound into a signal chain.\n\nThe primary control of a phaser pedal manipulates the speed of the swirl."
+	(is-a Modulation+Pedal)
+	(role concrete)
+	(single-slot primary_control
+;+		(comment "Slot that uses seven values to show the primary control knob of an effects unit.\n\nSymbol:\n- Rate: The pedal's primary control manipulates the rate of an effect in the signal chain.\n- Gain: The pedal's primary control manipulates a gain value in the signal chain.\n- Pitch: The pedal's primary control manipulates the pitch an effect in the signal chain.\n- Depth: The pedal's primary control manipulates the depth of an effect in the signal chain.\n- Echo: The pedal's primary control manipulates the timing of an echo signal in the signal chain.\n- Speed: The pedal's primary control manipulates the speed of an effect in the signal chain. Different from rate; see Phaser pedal documentation.\n- Range: The pedal's primary control manipulates the frequency range of an effect in the signal chain.")
+		(type SYMBOL)
+		(allowed-values Rate Pitch Depth Speed)
+		(default Speed)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Flanger+Pedal "Subclass for all represented chorus pedals. A flanger pedal is a loop level pedal that creates a tape-echo like sound from the guitar signal chain of varying intensities.\n\nThe primary control of a flanger pedal manipulates the depth of the tape echo."
+	(is-a Modulation+Pedal)
+	(role concrete)
+	(single-slot primary_control
+;+		(comment "Slot that uses seven values to show the primary control knob of an effects unit.\n\nSymbol:\n- Rate: The pedal's primary control manipulates the rate of an effect in the signal chain.\n- Gain: The pedal's primary control manipulates a gain value in the signal chain.\n- Pitch: The pedal's primary control manipulates the pitch an effect in the signal chain.\n- Depth: The pedal's primary control manipulates the depth of an effect in the signal chain.\n- Echo: The pedal's primary control manipulates the timing of an echo signal in the signal chain.\n- Speed: The pedal's primary control manipulates the speed of an effect in the signal chain. Different from rate; see Phaser pedal documentation.\n- Range: The pedal's primary control manipulates the frequency range of an effect in the signal chain.")
+		(type SYMBOL)
+		(allowed-values Rate Pitch Depth Speed)
+		(default Depth)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Vibrato+Pedal "Subclass for all represented vibrato pedals. A vibrato pedal is a loop level pedal that flutters the pitch of a guitar to make a tremolo-like effect.\n\nThe primary control of a vibrato pedal manipulates the rate of the tremolo effect."
+	(is-a Modulation+Pedal)
+	(role concrete)
+	(single-slot primary_control
+;+		(comment "Slot that uses seven values to show the primary control knob of an effects unit.\n\nSymbol:\n- Rate: The pedal's primary control manipulates the rate of an effect in the signal chain.\n- Gain: The pedal's primary control manipulates a gain value in the signal chain.\n- Pitch: The pedal's primary control manipulates the pitch an effect in the signal chain.\n- Depth: The pedal's primary control manipulates the depth of an effect in the signal chain.\n- Echo: The pedal's primary control manipulates the timing of an echo signal in the signal chain.\n- Speed: The pedal's primary control manipulates the speed of an effect in the signal chain. Different from rate; see Phaser pedal documentation.\n- Range: The pedal's primary control manipulates the frequency range of an effect in the signal chain.")
+		(type SYMBOL)
+		(allowed-values Rate Pitch Depth Speed)
+		(default Rate)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Delay+Pedal "Subclass for all delay pedals. Delay pedals act like tape recorders and play back a delayed version of the signal going through an amplifier on top of its regular signal.\n\nThe primary control of a delay pedal is the echo level, or seperation of the regular and echoed back signals. Almost all delay pedals are used in the loop level, but can also be used at line level."
+	(is-a Effects+Pedal)
+	(role concrete)
+	(single-slot primary_control
+;+		(comment "Slot that uses seven values to show the primary control knob of an effects unit.\n\nSymbol:\n- Rate: The pedal's primary control manipulates the rate of an effect in the signal chain.\n- Gain: The pedal's primary control manipulates a gain value in the signal chain.\n- Pitch: The pedal's primary control manipulates the pitch an effect in the signal chain.\n- Depth: The pedal's primary control manipulates the depth of an effect in the signal chain.\n- Echo: The pedal's primary control manipulates the timing of an echo signal in the signal chain.\n- Speed: The pedal's primary control manipulates the speed of an effect in the signal chain. Different from rate; see Phaser pedal documentation.\n- Range: The pedal's primary control manipulates the frequency range of an effect in the signal chain.")
+		(type SYMBOL)
+		(allowed-values Rate Gain Pitch Depth Echo Speed Range)
+;+		(value Echo)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot signal_level
+;+		(comment "A two symbol slot used to represent the level a pedal is supposed to be in inside of the signal chain.\n\nSymbol:\n- Line level: The pedal is meant to be placed between an electric guitar and an amplifier in the signal chain.\n- Loop level: The pedal is meant to be placed \"in the loop\", or after an amplifier's pre-amplifier but before its power amplifier in the signal chain. There jacks on the back of most amplifiers to facilitate this.")
+		(type SYMBOL)
+		(allowed-values Line-Level Loop-Level)
+		(default Loop-Level)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Talkbox "Subclass for all talkboxes. A talkbox is an amplified speaker in a box with a tube leading up a mic stand. Guitar players insert this tube into their mouths to use their throats to manipulate their signal and produce effects that sound like words.\n\nThe primary control of a talkbox manipulates the gain of the speaker. Talkboxes are line level and cut off signal to an amplifier while activated to use the in-pedal speaker instead."
+	(is-a Effects+Pedal)
+	(role concrete)
+	(single-slot primary_control
+;+		(comment "Slot that uses seven values to show the primary control knob of an effects unit.\n\nSymbol:\n- Rate: The pedal's primary control manipulates the rate of an effect in the signal chain.\n- Gain: The pedal's primary control manipulates a gain value in the signal chain.\n- Pitch: The pedal's primary control manipulates the pitch an effect in the signal chain.\n- Depth: The pedal's primary control manipulates the depth of an effect in the signal chain.\n- Echo: The pedal's primary control manipulates the timing of an echo signal in the signal chain.\n- Speed: The pedal's primary control manipulates the speed of an effect in the signal chain. Different from rate; see Phaser pedal documentation.\n- Range: The pedal's primary control manipulates the frequency range of an effect in the signal chain.")
+		(type SYMBOL)
+		(allowed-values Rate Gain Pitch Depth Echo Speed Range)
+;+		(value Gain)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot signal_level
+;+		(comment "A two symbol slot used to represent the level a pedal is supposed to be in inside of the signal chain.\n\nSymbol:\n- Line level: The pedal is meant to be placed between an electric guitar and an amplifier in the signal chain.\n- Loop level: The pedal is meant to be placed \"in the loop\", or after an amplifier's pre-amplifier but before its power amplifier in the signal chain. There jacks on the back of most amplifiers to facilitate this.")
+		(type SYMBOL)
+		(allowed-values Line-Level Loop-Level)
+;+		(value Line-Level)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Wah+Pedal "Subclass for all wah pedals. A wah pedal is shaped like a gas pedal and depressing it manipulates the frequency of the signal passing through it.\n\nThe primary control of a wah pedal manipulates the frequency range filter of the wah. They are typically line level and are placed before any other pedal in the signal chain."
+	(is-a Effects+Pedal)
+	(role concrete)
+	(single-slot primary_control
+;+		(comment "Slot that uses seven values to show the primary control knob of an effects unit.\n\nSymbol:\n- Rate: The pedal's primary control manipulates the rate of an effect in the signal chain.\n- Gain: The pedal's primary control manipulates a gain value in the signal chain.\n- Pitch: The pedal's primary control manipulates the pitch an effect in the signal chain.\n- Depth: The pedal's primary control manipulates the depth of an effect in the signal chain.\n- Echo: The pedal's primary control manipulates the timing of an echo signal in the signal chain.\n- Speed: The pedal's primary control manipulates the speed of an effect in the signal chain. Different from rate; see Phaser pedal documentation.\n- Range: The pedal's primary control manipulates the frequency range of an effect in the signal chain.")
+		(type SYMBOL)
+		(allowed-values Rate Gain Pitch Depth Echo Speed Range)
+;+		(value Range)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot signal_level
+;+		(comment "A two symbol slot used to represent the level a pedal is supposed to be in inside of the signal chain.\n\nSymbol:\n- Line level: The pedal is meant to be placed between an electric guitar and an amplifier in the signal chain.\n- Loop level: The pedal is meant to be placed \"in the loop\", or after an amplifier's pre-amplifier but before its power amplifier in the signal chain. There jacks on the back of most amplifiers to facilitate this.")
+		(type SYMBOL)
+		(allowed-values Line-Level Loop-Level)
+;+		(value Line-Level)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Multi-Effects+Pedal "Subclass for all pedals capable of producing one or more effects. The \"unique features\" slot is used to list the effects the pedal is capable of producing.\n\nBecause a multi-effects pedal must be capable of producing at least two effects, the \"unique features\" slot for every instance of this class must have at least two entries."
+	(is-a Effects+Pedal)
+	(role concrete)
+	(multislot unique_features
+;+		(comment "A string slot with multiple degrees of cardinality. This is used to list any miscallaneous features of audio equipment not described by the other slots, but is limited to five entries to reduce clutter.")
+		(type STRING)
+		(cardinality 2 5)
+		(create-accessor read-write)))
+
+(defclass Amplifier "Top level class in the heirachy of amplifiers. The subclasses divide amplifiers based on amplification type and are either tube, digital, or solid state amplifiiers. \n\nThis class contains slots common to all amplifiers, including amplification type, the number of channels the amp has, whether the amp has onboard sound effects, the power rating for the amp, and the name of the speaker in the amp.\n\nThe \"is part of a\" relation is for the representation of the definition of a signal chain. Its inverse slot is the \"contains-a\" relation found in the Signal Chain class."
+	(is-a Audio+Equipment)
+	(role abstract)
+	(single-slot on_board_effects
+;+		(comment "A boolean slot to describe whether an amplifier is equipped with on-board effects.\n\nDefinition: Some amplifiers have built in processors with on-board effects. These can include but are not limited to reverberation, chorus, delay, and flange. Amplifiers with on-board effects are typically digital.")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_part_of_a
+;+		(comment "Slot used as a class relation to show what makes up a signal chain along with the \"contains a\" relation. Useful to show users how to build a signal chain out of an artist's gear.")
+		(type SYMBOL)
+;+		(allowed-parents Signal+Chain)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot speaker_name
+;+		(comment "A slot used to specify the speaker's used in an amplifier's cabinet as a string. Not applicable to rack units.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot number_of_channels
+;+		(comment "An integer slot describing the number of channels contained in an amplifier. To function, all amplifiers must have at least one channel, so this value must be at least one.\n\nDefinition: An amplifier channel is a section of an amplifier dedicated to producing either a clean or distorted sound. When an amp is switched on, only one channel can be active at a time.")
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot amplification_type
+;+		(comment "Slot to represent the method of amplification used by guitar amplifiers as one of three symbols.\n\nSymbols:\n- Valve: Vacuum Tube based amplifiers that work with true analog signal. These include most traditional amplifiers and are still the most popular type of amplifier today. \n- Solid State: Semiconductor-circuit based amplifiers that work with true analog signal. Solid state amplifiers are less expensive alternatives to tube amplifiers.\n- Digital: Amplifiers that use a digital processor to amplify guitar signal. These are either cabinet-based or rack-based.")
+		(type SYMBOL)
+		(allowed-values Valve Solid-State Digital)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot power_rating_%28watts%29
+;+		(comment "An integer slot used to show the power rating of an amplifier. All amplifiers are rated for at least one watt, so this value must be greater than or equal to one.")
+		(type INTEGER)
+		(range 1 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Tube+Amplifier "Class for all amplifiers utilizing vacuum tube amplification. \n\nBecause tube amps are seperated into heads and cabinets, this class contains an extra slot for cabinet type that the other amp classes do not share. Most artists use 4x12 cabinets.\n\nTube amplifiers do not typically contain effects units, so \"on board effects\" is set false."
+	(is-a Amplifier)
+	(role concrete)
+	(single-slot cabinet_type
+;+		(comment "Slot used to describe the cabinet type of a tube amplilfier with symbols.\n\nSymbols:\n- 1x12 Cabinet: A cabinet containing one, twelve inch diameter speaker for amplification.\n- 2x12 Cabinet: A cabinet containing two, twelve inch diameter speakers for amplification.\n- 4x12 Cabinet: A cabinet containing four, twelve inch diameter speakers for amplification.")
+		(type SYMBOL)
+		(allowed-values 1x12 2x12 4x12)
+		(default 4x12)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot on_board_effects
+;+		(comment "A boolean slot to describe whether an amplifier is equipped with on-board effects.\n\nDefinition: Some amplifiers have built in processors with on-board effects. These can include but are not limited to reverberation, chorus, delay, and flange. Amplifiers with on-board effects are typically digital.")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot amplification_type
+;+		(comment "Slot to represent the method of amplification used by guitar amplifiers as one of three symbols.\n\nSymbols:\n- Valve: Vacuum Tube based amplifiers that work with true analog signal. These include most traditional amplifiers and are still the most popular type of amplifier today. \n- Solid State: Semiconductor-circuit based amplifiers that work with true analog signal. Solid state amplifiers are less expensive alternatives to tube amplifiers.\n- Digital: Amplifiers that use a digital processor to amplify guitar signal. These are either cabinet-based or rack-based.")
+		(type SYMBOL)
+		(allowed-values Valve Solid-State Digital)
+;+		(value Valve)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Solid+State+Amplifier "Class for all amplifiers utilizing solid state amplification.\n\nSolid State amplifiers do not typically contain effects units, so \"on board effects\" is set false."
+	(is-a Amplifier)
+	(role concrete)
+	(single-slot on_board_effects
+;+		(comment "A boolean slot to describe whether an amplifier is equipped with on-board effects.\n\nDefinition: Some amplifiers have built in processors with on-board effects. These can include but are not limited to reverberation, chorus, delay, and flange. Amplifiers with on-board effects are typically digital.")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot amplification_type
+;+		(comment "Slot to represent the method of amplification used by guitar amplifiers as one of three symbols.\n\nSymbols:\n- Valve: Vacuum Tube based amplifiers that work with true analog signal. These include most traditional amplifiers and are still the most popular type of amplifier today. \n- Solid State: Semiconductor-circuit based amplifiers that work with true analog signal. Solid state amplifiers are less expensive alternatives to tube amplifiers.\n- Digital: Amplifiers that use a digital processor to amplify guitar signal. These are either cabinet-based or rack-based.")
+		(type SYMBOL)
+		(allowed-values Valve Solid-State Digital)
+;+		(value Solid-State)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Digital+Amplifier "Class for all amplifiers utilizing digital amplification.\n\nDigital amplifiers typically have built in effects similiar to effects pedals, so the default value for the \"on board effects\" slot is true. They also have an extra slot for thier mounting type, which is either cabinet or rack based."
+	(is-a Amplifier)
+	(role concrete)
+	(single-slot on_board_effects
+;+		(comment "A boolean slot to describe whether an amplifier is equipped with on-board effects.\n\nDefinition: Some amplifiers have built in processors with on-board effects. These can include but are not limited to reverberation, chorus, delay, and flange. Amplifiers with on-board effects are typically digital.")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot amplification_type
+;+		(comment "Slot to represent the method of amplification used by guitar amplifiers as one of three symbols.\n\nSymbols:\n- Valve: Vacuum Tube based amplifiers that work with true analog signal. These include most traditional amplifiers and are still the most popular type of amplifier today. \n- Solid State: Semiconductor-circuit based amplifiers that work with true analog signal. Solid state amplifiers are less expensive alternatives to tube amplifiers.\n- Digital: Amplifiers that use a digital processor to amplify guitar signal. These are either cabinet-based or rack-based.")
+		(type SYMBOL)
+		(allowed-values Valve Solid-State Digital)
+;+		(value Digital)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot mounting_type
+;+		(comment "Slot that describes the different types of digital amplifiers as one of two symbols. This is represented as a slot rather than a subclass heirarchy because there are a very small number of digital cabinet based amplifiers.\n\nSymbols:\n- Cabinet: Mounted inside a wooden cabinet like a traditional amplifier. Less expensive and produce a lower quality sound.\n- Rack: Mounted on an effects rack. More expensive and produce a higher quality sound.")
+		(type SYMBOL)
+		(allowed-values Cabinet Rack)
+		(default Rack)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Signal+Chain "Class to represent the definition of a signal chain through the \"contains-a\" and \"is-part-of-a\" inverse relations. The overall focus of this ontology is to show the different pieces of musical equipment that famous artists include in their signal chains, so the purpose of this class is to define the term signal chain itself.\n\nThe \"amplifier\", \"cable\", \"effects_pedals\", and  \"guitar\" classes are used for sample instances of signal chains to further illustrate this idea. Five sample signal chain instances are represented in this program.\n\nAmplifiers, guitars, and cabling are all required to make a signal chain. Signal chains can be constructed without effects pedals, but most include them."
+	(is-a USER)
+	(role concrete)
+	(single-slot amplifier
+;+		(comment "Slot to hold an amplifier in sample signal chains. All signal chains include amplifiers, so this field is required.")
+		(type INSTANCE)
+;+		(allowed-classes Amplifier)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot guitar
+;+		(comment "Slot to hold a guitar in sample signal chains. All signal chains include guitars, so this field is required.")
+		(type INSTANCE)
+;+		(allowed-classes Electric+Guitar)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot contains_a
+;+		(comment "Slot used as a class relation to show what makes up a signal chain along with the \"is part of a\" relation. Useful to show users how to build a signal chain out of an artist's gear.")
+		(type SYMBOL)
+;+		(allowed-parents Electric+Guitar Amplifier Effects+Pedal Guitar+Cable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot effects_pedals
+;+		(comment "Slot to hold effects pedals in sample signal chains. Not all signal chains include effects pedals.")
+		(type INSTANCE)
+;+		(allowed-classes Effects+Pedal)
+		(create-accessor read-write))
+	(single-slot name_
+;+		(comment "A string used to list the name of an electric guitarist or signal chain. This is used as the label for all instances of electric guitarists or signal chains.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot cable
+;+		(comment "Slot to hold a cable in sample signal chains. All signal chains include cables, so this field is required.")
+		(type INSTANCE)
+;+		(allowed-classes Guitar+Cable)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Electric+Guitarist "Top level class in heirachy for all of the electric guitarists represented. It is divided into subclasses by the decade each guitarist started playing. It starts at 1950 and goes by decade until 2000, at which point the guitarist is considered a \"modern guitarist\".\n\nSlots include the name of the guitarist, the year the guitarist began, and a \"uses\" slot to store every instance of equipment that the particular guitarist uses. \n\nNote that \"uses\" is the inverse slot of the audio equipment \"used by\" slot. These slots facilitate one of the primary purpose of the ontology (Linking famous artists to the musical equipment they use)."
+	(is-a USER)
+	(role abstract)
+	(multislot uses
+;+		(comment "Relation used to show which audio equipment is used by a particular electric guitarist. One half of linking famous artists to the musical equipment they use.")
+		(type INSTANCE)
+;+		(allowed-classes Audio+Equipment)
+		(create-accessor read-write))
+	(single-slot band
+;+		(comment "Slot to store the most famous act a guitarist has played in. This does not list every act because guitarists often play a show or two with another act for fun.\n\nBecause all guitarists are either solo artists or in a band, this field is required.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot name_
+;+		(comment "A string used to list the name of an electric guitarist or signal chain. This is used as the label for all instances of electric guitarists or signal chains.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot year_began
+;+		(comment "Integer slot that describes the year an electric guitarist started playing professionally. Starts at 1950 and is capped at 2015. 1950 starts the first decade of guitarists considered by this ontology and the ontology unfornatunately cannot predict the future.")
+		(type INTEGER)
+		(range 1950 2015)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass 60%27s+Guitarist "Class for any guitarist who began from 1960-1969. The \"year_began\" slot is restricted to reflect this."
+	(is-a Electric+Guitarist)
+	(role concrete)
+	(single-slot year_began
+;+		(comment "Integer slot that describes the year an electric guitarist started playing professionally. Starts at 1950 and is capped at 2015. 1950 starts the first decade of guitarists considered by this ontology and the ontology unfornatunately cannot predict the future.")
+		(type INTEGER)
+		(range 1960 1969)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass 70%27s+Guitarist "Class for any guitarist who began from 1970-1979. The \"year_began\" slot is restricted to reflect this."
+	(is-a Electric+Guitarist)
+	(role concrete)
+	(single-slot year_began
+;+		(comment "Integer slot that describes the year an electric guitarist started playing professionally. Starts at 1950 and is capped at 2015. 1950 starts the first decade of guitarists considered by this ontology and the ontology unfornatunately cannot predict the future.")
+		(type INTEGER)
+		(range 1970 1979)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass 80%27s+Guitarist "Class for any guitarist who began from 1980-1989. The \"year_began\" slot is restricted to reflect this."
+	(is-a Electric+Guitarist)
+	(role concrete)
+	(single-slot year_began
+;+		(comment "Integer slot that describes the year an electric guitarist started playing professionally. Starts at 1950 and is capped at 2015. 1950 starts the first decade of guitarists considered by this ontology and the ontology unfornatunately cannot predict the future.")
+		(type INTEGER)
+		(range 1980 1989)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Modern+Guitarist "Class for any guitarist who began from 1990 on. The \"year_began\" slot is restricted from 1990 to 2015 to reflect this."
+	(is-a Electric+Guitarist)
+	(role concrete)
+	(single-slot year_began
+;+		(comment "Integer slot that describes the year an electric guitarist started playing professionally. Starts at 1950 and is capped at 2015. 1950 starts the first decade of guitarists considered by this ontology and the ontology unfornatunately cannot predict the future.")
+		(type INTEGER)
+		(range 1990 2015)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass 50%27s+Guitarist "Class for any guitarist who began from 1950-1959. The \"year_began\" slot is restricted to reflect this."
+	(is-a Electric+Guitarist)
+	(role concrete)
+	(single-slot year_began
+;+		(comment "Integer slot that describes the year an electric guitarist started playing professionally. Starts at 1950 and is capped at 2015. 1950 starts the first decade of guitarists considered by this ontology and the ontology unfornatunately cannot predict the future.")
+		(type INTEGER)
+		(range 1950 1959)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Guitar+Cable "Class to represent any form of guitar cables. \n\nCables are necessary for constructing a signal chain, but science has not yet shown tonal difference between two quality, shiedled cables. For illustration, I will represent two instances of cables, but cables are not the focus of this ontology."
+	(is-a USER)
+	(role concrete)
+	(single-slot make_and_model
+;+		(comment "A string used to describe the model number and manufacturer of a piece of audio equipment. This is used as the label for all instances of audio equipment.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot is_part_of_a
+;+		(comment "Slot used as a class relation to show what makes up a signal chain along with the \"contains a\" relation. Useful to show users how to build a signal chain out of an artist's gear.")
+		(type SYMBOL)
+;+		(allowed-parents Signal+Chain)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

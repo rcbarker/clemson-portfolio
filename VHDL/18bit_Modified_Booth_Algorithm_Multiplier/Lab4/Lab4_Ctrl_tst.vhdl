@@ -1,0 +1,71 @@
+-- Ryan Barker --
+-- ECE 3270
+-- Dr. Smith
+-- Lab4_Ctrl_tst.vhdl
+--
+-- Purpose: Test driver for controller. Uses CTRL with Reg D and outputs each command signal so
+--          controller behavior may be observed.
+--
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+-- Declare Controller Test --
+ENTITY Lab4_Ctrl_tst IS 
+    GENERIC ( N : INTEGER := 18);
+    PORT (start     : IN std_logic;
+			 clk       : IN std_logic;
+			 mux_ctrl  : OUT std_logic_vector(2 DOWNTO 0);
+			 loadreg   : BUFFER std_logic;
+			 shiftreg  : OUT std_logic;
+			 count     : BUFFER std_logic;
+			 addreg    : OUT std_logic;
+			 busy      : OUT std_logic);
+END Lab4_Ctrl_tst;
+
+-- Architecture of Controller Test --
+ARCHITECTURE Lab4_Ctrl_tst_B OF Lab4_Ctrl_tst IS
+    -- Signal for Counter --
+	 SIGNAL regD_out      : std_logic_vector(3 DOWNTO 0);
+	 
+	 -- Map in CTRL and Reg D: 
+    COMPONENT Lab4_Ctrl
+        PORT (start     : IN std_logic;
+	           regB_bits : IN std_logic_vector(2 DOWNTO 0);
+			     count_val : IN std_logic_vector(3 DOWNTO 0);
+			     clk       : IN std_logic;
+			     mux_ctrl  : OUT std_logic_vector(2 DOWNTO 0);
+			     loadreg   : OUT std_logic;
+			     shiftreg  : OUT std_logic;
+		        count     : OUT std_logic;
+			     addreg    : OUT std_logic;
+			     busy      : OUT std_logic);
+        END COMPONENT;
+		  
+    COMPONENT Lab4_RegD
+        PORT (maxval  : IN std_logic_vector(3 DOWNTO 0);
+	           loadreg : IN std_logic;
+			     count   : IN std_logic;
+			     clk     : IN std_logic;
+			     output  : OUT std_logic_vector(3 DOWNTO 0));
+        END COMPONENT;
+BEGIN
+    Ctrl: Lab4_Ctrl
+        PORT MAP ( start => start,
+		             regB_bits => "111",
+						 count_val => regD_out,
+						 clk => clk,
+						 mux_ctrl => mux_ctrl,
+						 loadreg => loadreg,
+						 shiftreg => shiftreg,
+						 count => count,
+						 addreg => addreg,
+						 busy => busy );
+  
+    RegD: Lab4_RegD
+	     PORT MAP ( maxval => "1001",
+		             loadreg => loadreg,
+						 count => count,
+						 clk => clk,
+						 output => RegD_out );
+END Lab4_Ctrl_tst_B;

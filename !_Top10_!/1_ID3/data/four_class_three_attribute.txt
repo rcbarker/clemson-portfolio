@@ -1,0 +1,12 @@
+3 x1 x2 x3 2 no yes
+or 4 c0 c1 c2 c3
+8
+
+no no no c0
+no no yes c1
+no yes no c1
+no yes yes c1
+yes no no c1 
+yes no yes c2
+yes yes no c2 
+yes yes yes c3

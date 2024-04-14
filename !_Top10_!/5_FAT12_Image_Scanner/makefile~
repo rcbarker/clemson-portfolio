@@ -1,0 +1,12 @@
+CC=clang
+CFLAGS=-Wall -g
+
+BINS= imagescanner
+
+all: $(BINS)
+
+imagescanner: imagescanner.c recoveredlist.c
+	$(CC) $(CFLAGS) -o notjustcats imagescanner.c recoveredlist.c
+
+clean:
+	rm -f $(BINS) core

@@ -1,0 +1,8 @@
+libc6-dev-i386 is necessary to compile Intel i-386 assembly.
+
+
+
+It can be obtained on any Ubuntu Linux machine with the command:
+
+sudo apt-get install libc6-dev-i386
+

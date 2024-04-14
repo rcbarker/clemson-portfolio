@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+<title>signalchain Project: Electric Guitarist</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="htmlexport.css"/>
+</head>
+
+<body class="generalContent">
+<a name="top"></a>
+
+<!-- BEGIN HEADER -->
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td><img src="http://protege.stanford.edu/images/ProtegeLogo.gif" width="160" height="57" alt="protege logo"/></td>
+	</tr>
+</table><br>
+<!-- END HEADER -->
+
+<span class="pageTitle">Abstract Class: Electric Guitarist</span><br><br>
+<div class="classBorder">
+<span class="sectionTitle">Documentation:</span> Top level class in heirachy for all of the electric guitarists represented. It is divided into subclasses by the decade each guitarist started playing. It starts at 1950 and goes by decade until 2000, at which point the guitarist is considered a "modern guitarist".
+
+Slots include the name of the guitarist, the year the guitarist began, and a "uses" slot to store every instance of equipment that the particular guitarist uses. 
+
+Note that "uses" is the inverse slot of the audio equipment "used by" slot. These slots facilitate one of the primary purpose of the ontology (Linking famous artists to the musical equipment they use).<br><br>
+<span class="sectionTitle">Superclasses</span>
+<ul class="iconList">
+	<li class="abstractClass"><a href="_THING.html">:THING</a></li>
+</ul><br>
+<span class="sectionTitle">Subclasses</span>
+<ul class="iconList">
+	<li class="concreteClass"><a href="60's_Guitarist.html">60's Guitarist</a></li>
+	<li class="concreteClass"><a href="70's_Guitarist.html">70's Guitarist</a></li>
+	<li class="concreteClass"><a href="80's_Guitarist.html">80's Guitarist</a></li>
+	<li class="concreteClass"><a href="Modern_Guitarist.html">Modern Guitarist</a></li>
+	<li class="concreteClass"><a href="50's_Guitarist.html">50's Guitarist</a></li>
+</ul><br>
+<span class="sectionTitle">Types</span>
+<ul class="iconList">
+	<li class="metaclass"><a href="_STANDARD-CLASS.html">:STANDARD-CLASS</a></li>
+</ul><br>
+<table width="100%" border="1" cellpadding="3" cellspacing="0" class="mozillaTableHack">
+	<th align="left" bgcolor="#C4DAE5" colspan="5" class="mozillaTableHack">Template Slots</th>
+	<tr class="sectionTitle">
+		<td class="mozillaTableHack">&nbsp;</td>
+		<td class="mozillaTableHack">Slot Name</td>
+		<td class="mozillaTableHack">Documentation</td>
+		<td class="mozillaTableHack">Type</td>
+		<td class="mozillaTableHack">Cardinality</td>
+	</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_band.html">band</a></td>
+<td class="mozillaTableHack">Slot to store the most famous act a guitarist has played in. This does not list every act because guitarists often play a show or two with another act for fun.
+
+Because all guitarists are either solo artists or in a band, this field is required.</td>
+<td class="mozillaTableHack">String</td>
+<td class="mozillaTableHack">1:1</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_name.html">name</a></td>
+<td class="mozillaTableHack">A string used to list the name of an electric guitarist or signal chain. This is used as the label for all instances of electric guitarists or signal chains.</td>
+<td class="mozillaTableHack">String</td>
+<td class="mozillaTableHack">1:1</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_uses.html">uses</a></td>
+<td class="mozillaTableHack">Relation used to show which audio equipment is used by a particular electric guitarist. One half of linking famous artists to the musical equipment they use.</td>
+<td class="mozillaTableHack"><a href="Audio_Equipment.html">Audio Equipment</a></td>
+<td class="mozillaTableHack">0:*</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_year_began.html">year_began</a></td>
+<td class="mozillaTableHack">Integer slot that describes the year an electric guitarist started playing professionally. Starts at 1950 and is capped at 2015. 1950 starts the first decade of guitarists considered by this ontology and the ontology unfornatunately cannot predict the future.</td>
+<td class="mozillaTableHack">Integer</td>
+<td class="mozillaTableHack">1:1</td>
+</tr>
+</table><br>
+<table width="100%" border="1" cellpadding="3" cellspacing="0" class="mozillaTableHack">
+	<th align="left" bgcolor="#C4DAE5" colspan="3" class="mozillaTableHack">Own Slots</th>
+	<tr class="sectionTitle">
+		<td class="mozillaTableHack">&nbsp;</td>
+		<td class="mozillaTableHack">Slot Name</td>
+		<td class="mozillaTableHack">Value</td>
+	</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot__ROLE.html">:ROLE</a></td>
+<td class="mozillaTableHack">Abstract</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot__SLOT-CONSTRAINTS.html">:SLOT-CONSTRAINTS</a></td>
+<td class="mozillaTableHack">&nbsp;</td>
+</tr>
+</table>
+<br>
+&nbsp;&nbsp;<a href="#top"><span style="font-weight: bold;">^ back to top</span></a>
+</div><br>
+<span class="generalContentBold">Return to <a href="index.html" target="_self">Class Hierarchy</a></span><br><br>
+<span class="generalContentBold">Generated: 10/26/2015, 7:22:19 PM, Eastern Daylight Time</span><br><br>
+<!-- BEGIN FOOTER -->
+<span class="legal">Prot&eacute;g&eacute; is a trademark of Stanford University, Copyright (c) 1998-2011 Stanford University.</span><br><br>
+<!-- END FOOTER -->

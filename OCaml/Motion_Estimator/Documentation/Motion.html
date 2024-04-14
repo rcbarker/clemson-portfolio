@@ -1,0 +1,488 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="Up" href="index.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Motion" rel="Chapter" href="Motion.html"><title>Motion</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Motion.html">Motion</a></h1>
+
+<pre><span class="keyword">module</span> Motion: <code class="code">sig</code> <a href="Motion.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Source code: motion.caml     Written by: Ryan Barker<br>
+</div>
+<hr width="100%">
+
+<pre><span id="VALdiffImRow"><span class="keyword">val</span> diffImRow</span> : <code class="type">int list * int list -> int list</code></pre><div class="info ">
+Prototype:
+<p>
+
+diffImRow(image1Row,image2Row)
+<p>
+
+Inputs: 2 image rows
+<p>
+
+Returned Value: image2Row - image1Row
+<p>
+
+Side Effects: none
+<p>
+
+Signature: diffImRow: int list * int list -&gt; int list
+<p>
+
+Notes: Subtracts each row element by element.<br>
+</div>
+
+<pre><span id="VALdiffIm"><span class="keyword">val</span> diffIm</span> : <code class="type">int list list * int list list -> int list list</code></pre><div class="info ">
+Prototype:
+<p>
+
+diffIm(image1,image2)
+<p>
+
+Inputs: 2 images
+<p>
+
+Returned Value: image2 - image1
+<p>
+
+Side Effects: none
+<p>
+
+Signature: diffIm: int list list * int list list -&gt; int list list
+<p>
+
+Notes: Recursively calls diffImRow for each row in both images to subtract image1 from image2.<br>
+</div>
+
+<pre><span id="VALrow_is_zeroes"><span class="keyword">val</span> row_is_zeroes</span> : <code class="type">int list -> bool</code></pre><div class="info ">
+Prototype
+<p>
+
+row_is_zeroes(imRow)
+<p>
+
+Input: diffimage (difference image)
+<p>
+
+Returned Value: true or false
+<p>
+
+Side Effects: none
+<p>
+
+Signature: row_is_zeroes: int list -&gt; bool
+<p>
+
+Notes: Auxiliary function that checks if all members of a row in an image are zero. If so, 
+       returns true. Else, returns false. Called by noDiff.<br>
+</div>
+
+<pre><span id="VALnoDiff"><span class="keyword">val</span> noDiff</span> : <code class="type">int list list -> bool</code></pre><div class="info ">
+Prototype
+<p>
+
+noDiff(diffimage)
+<p>
+
+Input: diffimage (difference image)
+<p>
+
+Returned Value: true or false
+<p>
+
+Side Effects: none
+<p>
+
+Signature: noDiff: int list list -&gt; bool
+<p>
+
+Notes: Utilizes row_is_zeroes to recursively check if each row is all zeroes. If
+       every row is all zeroes, returns true. Else, returns false.<br>
+</div>
+
+<pre><span id="VALrow_to_string"><span class="keyword">val</span> row_to_string</span> : <code class="type">int list -> string</code></pre><div class="info ">
+Prototype:
+<p>
+
+row_to_string ([]) | (h::t)
+<p>
+
+Inputs: h::t (image row)
+<p>
+
+Returned Value: string
+<p>
+
+Side Effects: none
+<p>
+
+Signature: row_to_string : int list -&gt; string
+<p>
+
+Notes: Auxiliary function that recursively converts every member of an integer list into 
+       a single string and appends a new line at the end. Called by image_to_string.<br>
+</div>
+
+<pre><span id="VALimage_to_string"><span class="keyword">val</span> image_to_string</span> : <code class="type">int list list -> string</code></pre><div class="info ">
+Prototype:
+<p>
+
+image_to_string ([]) | (h::t)
+<p>
+
+Inputs: h::t (image)
+<p>
+
+Returned Value: string
+<p>
+
+Side Effects: none
+<p>
+
+Signature: image_to_string : int list list -&gt; string
+<p>
+
+Notes: Auxiliary function that recursively converts a list of integer lists to a string 
+       one row at a time by calling image_to_string. Called by pp_my_image.<br>
+</div>
+
+<pre><span id="VALpp_my_image"><span class="keyword">val</span> pp_my_image</span> : <code class="type">int list list -> unit</code></pre><div class="info ">
+Prototype:
+<p>
+
+pp_my_image s 
+<p>
+
+Inputs: s (image)
+<p>
+
+Returned Value: unit
+<p>
+
+Side Effects: printing
+<p>
+
+Signature: pp_my_image : int list list -&gt; unit
+<p>
+
+Notes: Prints the image s by using image_to_string to convert it into a string and passing
+       it to print_string.<br>
+</div>
+
+<pre><span id="VALrowmaskpos"><span class="keyword">val</span> rowmaskpos</span> : <code class="type">int list * int list -> int list</code></pre><div class="info ">
+Prototype:
+<p>
+
+rowmaskpos(image2row,diffrow)
+<p>
+
+Inputs: 1 row of image2 and corresponding row of difference image
+<p>
+
+Returned Value: masked row of image2
+<p>
+
+Side Effects: none
+<p>
+
+Signature: int list * int list -&gt; int list
+<p>
+
+Notes: Recursively masks each row of image2 by comparing each element to the element in
+       that position of the difference image. If diffrow(j) &gt; 0, then the 
+       maskedrow(j) = image2row(j). Otherwise, maskedrow(j) = 0.<br>
+</div>
+
+<pre><span id="VALmaskpos"><span class="keyword">val</span> maskpos</span> : <code class="type">int list list * int list list -> int list list</code></pre><div class="info ">
+Prototype:
+<p>
+
+maskpos(image2,diffimage)
+<p>
+
+Inputs: image2,diffimage
+<p>
+
+Returned Value: masked image2
+<p>
+
+Side Effects: none
+<p>
+
+Signature: int list list * int list list -&gt; int list list
+<p>
+
+Notes: Recursively uses rowmaskpos to mask image2 row-by-row. Masking specifications are in
+       rowmaskpos notes section.<br>
+</div>
+
+<pre><span id="VALrowmaskneg"><span class="keyword">val</span> rowmaskneg</span> : <code class="type">int list * int list -> int list</code></pre><div class="info ">
+Prototype:
+<p>
+
+rowmaskneg(image1row,diffrow)
+<p>
+
+Inputs: 1 row of image1 and corresponding row of difference image
+<p>
+
+Returned Value: masked row of image1
+<p>
+
+Side Effects: none
+<p>
+
+Signature: int list * int list -&gt; int list
+<p>
+
+Notes: Recursively masks each row of image1 by comparing each element to the element in
+       that position of the difference image. If diffrow(j) &lt; 0, then the 
+       maskedrow(j) = image1row(j). Otherwise, maskedrow(j) = 0.<br>
+</div>
+
+<pre><span id="VALmaskneg"><span class="keyword">val</span> maskneg</span> : <code class="type">int list list * int list list -> int list list</code></pre><div class="info ">
+Prototype:
+<p>
+
+maskneg(image1,diffimage)
+<p>
+
+Inputs: image1,diffimage
+<p>
+
+Returned Value: masked image1
+<p>
+
+Side Effects: none
+<p>
+
+Signature: int list list * int list list -&gt; int list list
+<p>
+
+Notes: Recursively uses rowmaskneg to mask image1 row-by-row. Masking specifications are in 
+       rowmaskneg notes section.<br>
+</div>
+
+<pre><span id="VALtupledifffloat"><span class="keyword">val</span> tupledifffloat</span> : <code class="type">(float * float) * (float * float) -> float * float</code></pre><div class="info ">
+Prototype:
+<p>
+
+tupledifffloat((i1,j1),(i2,j2))
+<p>
+
+Inputs: A tuple-of-tuples ((i1,j1),(i2,j2))
+        where (i1,j1) is masked centroid (row, col) location in masked image1
+        and (i2,j2) is masked centroid location in masked image2.
+<p>
+
+Returned Value: tuple ((i2-i1), (j2-j1))
+<p>
+
+Side Effects: none
+<p>
+
+Signature: (float * float) * (float * float) -&gt; float * float
+<p>
+
+Notes: All quantities are floats.<br>
+</div>
+
+<pre><span id="VALsumImRow"><span class="keyword">val</span> sumImRow</span> : <code class="type">int list -> int</code></pre><div class="info ">
+Prototype:
+<p>
+
+sumImRow(maskedrow)
+<p>
+
+Inputs: maskedrow (row of a masked Image)
+<p>
+
+Returns: integer sum of the (nonzero) elements.
+         Returns 0 if there are no nonzero elements in the row.
+<p>
+
+Signature: int list -&gt; int
+<p>
+
+Side effects: none
+<p>
+
+Notes: Recursively adds each element of masked row together.<br>
+</div>
+
+<pre><span id="VALsumImage"><span class="keyword">val</span> sumImage</span> : <code class="type">int list list -> int</code></pre><div class="info ">
+Prototype:
+<p>
+
+sumImage(maskedimage)
+<p>
+
+Returns: sum of the elements of a masked image
+<p>
+
+Signature: int list list -&gt; int
+<p>
+
+Side effects: none
+<p>
+
+Notes: Recursively uses sumImRow on each row of maskedIm to find total image sum.
+       Note this is not used (computed) if no image motion.<br>
+</div>
+
+<pre><span id="VALcentImRowbyRow"><span class="keyword">val</span> centImRowbyRow</span> : <code class="type">int list * int -> int</code></pre><div class="info ">
+Prototype:
+<p>
+
+centImRowbyRow(imagerow, j)
+<p>
+
+Returned Value: sum(j*f(i,j)) for imagerow
+<p>
+
+Side Effects: none
+<p>
+
+Signature: int list * int -&gt; int
+<p>
+
+Notes: Recursively computes sum(j * f(i,j)) for imagerow.<br>
+</div>
+
+<pre><span id="VALcentImRow"><span class="keyword">val</span> centImRow</span> : <code class="type">int list list * int -> int</code></pre><div class="info ">
+Prototype:
+<p>
+
+centImRow(image,start_j)
+<p>
+
+Returned Value: M(0,1) of input image
+<p>
+
+Side Effects: none
+<p>
+
+Signature: int list list * int -&gt; int
+<p>
+
+Notes: Recursively computes sum(j * f(i,j)) for image row-by-row.<br>
+</div>
+
+<pre><span id="VALcentImColbyRow"><span class="keyword">val</span> centImColbyRow</span> : <code class="type">int list * int -> int</code></pre><div class="info ">
+Prototype:
+<p>
+
+centImColbyRow(imagerow,i)
+<p>
+
+Inputs: imagerow (row to be summed)
+        i (row number of row)
+<p>
+
+Returned Value: Returned Value: sum(i*f(i,j)) for imagerow
+<p>
+
+Side Effects: none
+<p>
+
+Signature: int list * int -&gt; int 
+<p>
+
+Notes: Recursively computes sum(i * f(i,j)) for imagerow.<br>
+</div>
+
+<pre><span id="VALcentImCol"><span class="keyword">val</span> centImCol</span> : <code class="type">int list list * int -> int</code></pre><div class="info ">
+Prototype:
+<p>
+
+centImCol(image,start_i)
+<p>
+
+Returned Value: Returned Value: M(1,0) of input image
+<p>
+
+Side Effects: none
+<p>
+
+Signature: int list list * int -&gt; int 
+<p>
+
+Notes: Recursively computes sum(i * f(i,j)) for image row-by-row.<br>
+</div>
+
+<pre><span id="VALicent"><span class="keyword">val</span> icent</span> : <code class="type">int list list -> float</code></pre><div class="info ">
+Prototype:
+<p>
+
+icent(image)
+<p>
+
+Inputs: image
+<p>
+
+Returned Value: i-direction centroid of input image
+<p>
+
+Side Effects: none
+<p>
+
+Signature: int list list -&gt; float
+<p>
+
+Notes: Used with masked images in the overall algorithm.<br>
+</div>
+
+<pre><span id="VALjcent"><span class="keyword">val</span> jcent</span> : <code class="type">int list list -> float</code></pre><div class="info ">
+Prototype:
+<p>
+
+jcent(image)
+<p>
+
+Inputs: image
+<p>
+
+Returned Value: j-direction centroid of input image
+<p>
+
+Side Effects: none
+<p>
+
+Signature: int list list -&gt; float
+<p>
+
+Notes: Used with masked images in the overall algorithm.<br>
+</div>
+
+<pre><span id="VALmotion"><span class="keyword">val</span> motion</span> : <code class="type">int list list * int list list -> float * float</code></pre><div class="info ">
+Prototype:
+<p>
+
+motion(image1,image2)
+<p>
+
+Inputs: image1,image2
+<p>
+
+Returned Value: tuple of centroid differences indicating (rowmotion,columnmotion)
+<p>
+
+Side Effects: none
+<p>
+
+Signature: int list list * int list list -&gt; float * float
+<p>
+
+Notes: Uses difference of centroid (tuples) on 2 masked images to
+       estimate motion.<br>
+</div>
+</body></html>

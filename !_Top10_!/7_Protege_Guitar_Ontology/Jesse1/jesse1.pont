@@ -1,0 +1,148 @@
+; Thu Oct 29 13:04:15 EDT 2015
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot has
+;+		(comment "Slot to relate several classes to various attributes. Very general and should be more specific. Not practical for a real ontology. Edited at a class by class level to set the appropriate default values.")
+		(type STRING)
+;+		(value "warm blood" "four legs" "water dish" "excellent retrieving instinct" "large frame" "heavy fur coat")
+		(create-accessor read-write))
+	(single-slot likes
+;+		(comment "Slot to relate Jesse to what he likes; riding in cars.")
+		(type STRING)
+		(default "riding in cars")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot consumes
+;+		(comment "Slot to relate life forms to what they consume; food and oxygen.")
+		(type STRING)
+		(default "food" "oxygen")
+		(create-accessor read-write))
+	(single-slot owner
+;+		(comment "Slot to relate Jesse to his owner; Leslie Schalkoff.")
+		(type STRING)
+		(default "Leslie Schalkoff")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot hates
+;+		(comment "Slot to relate dogs to the things they hate; cats.")
+		(type STRING)
+		(default "cats")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot produces
+;+		(comment "Slot to relate life forms to what they produce; waste.")
+		(type STRING)
+		(default "waste")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot offspring
+;+		(comment "Slot to relate mammals to the way thier offspring are born; born live.")
+		(type STRING)
+		(default "born live")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot owns
+;+		(comment "Slot to relate Jesse to what he owns; a tennis ball.")
+		(type STRING)
+		(default "tennis ball")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot age
+;+		(comment "Slot to relate Jesse to his age; 3.5.")
+		(type FLOAT)
+		(range 0.0 %3FVARIABLE)
+		(default 3.5)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Life+Form "Class to represent a life form. Has subclass mammal."
+	(is-a USER)
+	(role abstract)
+	(single-slot produces
+;+		(comment "Slot to relate life forms to what they produce; waste.")
+		(type STRING)
+		(default "waste")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot consumes
+;+		(comment "Slot to relate life forms to what they consume; food and oxygen.")
+		(type STRING)
+		(default "food" "oxygen")
+		(create-accessor read-write)))
+
+(defclass Mammal "Class to represent mammals. Has super class life form and subclass dog."
+	(is-a Life+Form)
+	(role abstract)
+	(multislot has
+;+		(comment "Slot to relate several classes to various attributes. Very general and should be more specific. Not practical for a real ontology. Edited at a class by class level to set the appropriate default values.")
+		(type STRING)
+		(default "warm blood")
+;+		(value "warm blood" "four legs" "water dish" "excellent retrieving instinct" "large frame" "heavy fur coat")
+		(create-accessor read-write))
+	(single-slot offspring
+;+		(comment "Slot to relate mammals to the way thier offspring are born; born live.")
+		(type STRING)
+		(default "born live")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Dog "Class to represent dogs. Has superclass mammal and subclass golden retriever."
+	(is-a Mammal)
+	(role abstract)
+	(single-slot hates
+;+		(comment "Slot to relate dogs to the things they hate; cats.")
+		(type STRING)
+		(default "cats")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has
+;+		(comment "Slot to relate several classes to various attributes. Very general and should be more specific. Not practical for a real ontology. Edited at a class by class level to set the appropriate default values.")
+		(type STRING)
+		(default "four legs" "water dish")
+;+		(value "warm blood" "four legs" "water dish" "excellent retrieving instinct" "large frame" "heavy fur coat")
+		(create-accessor read-write)))
+
+(defclass Golden+Retriever "Class to represent golden retrievers. Has superclass dog and subclass Jesse."
+	(is-a Dog)
+	(role abstract)
+	(multislot has
+;+		(comment "Slot to relate several classes to various attributes. Very general and should be more specific. Not practical for a real ontology. Edited at a class by class level to set the appropriate default values.")
+		(type STRING)
+		(default "excellent retrieving skills" "large frame" "heavy fur coat")
+;+		(value "warm blood" "four legs" "water dish" "excellent retrieving instinct" "large frame" "heavy fur coat")
+		(create-accessor read-write)))
+
+(defclass Jesse "Class to represent Jesse. Has superclass golden retriever."
+	(is-a Golden+Retriever)
+	(role abstract)
+	(single-slot owns
+;+		(comment "Slot to relate Jesse to what he owns; a tennis ball.")
+		(type STRING)
+		(default "tennis ball")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot likes
+;+		(comment "Slot to relate Jesse to what he likes; riding in cars.")
+		(type STRING)
+		(default "riding in cars")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot age
+;+		(comment "Slot to relate Jesse to his age; 3.5.")
+		(type FLOAT)
+		(range 0.0 %3FVARIABLE)
+		(default 3.5)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot owner
+;+		(comment "Slot to relate Jesse to his owner; Leslie Schalkoff.")
+		(type STRING)
+		(default "Leslie Schalkoff")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

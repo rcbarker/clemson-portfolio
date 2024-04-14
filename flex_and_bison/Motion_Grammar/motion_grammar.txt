@@ -1,0 +1,22 @@
+Ryan Barker
+
+CPSC/ECE 3520 
+Spring 2015
+
+
+
+BNF form of the motion grammar implemented:
+
+<trajectory> ::= <motionlist> '\n'
+
+<motionlist> ::= <motion> | <motion> <motionlist>
+
+<motion> ::= <direction> | <direction> <number>
+
+<direction> ::= 'u' | 'd' | 'l' | 'r' | 'n'
+
+<number> ::= <digitseq>
+
+<digitseq> ::= <digit> | <digit> <digitseq>
+
+<digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9

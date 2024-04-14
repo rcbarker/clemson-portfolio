@@ -1,0 +1,89 @@
+-- Ryan Barker --
+-- ECE 3270
+-- Dr. Smith
+-- Lab1b.vhdl
+--
+-- Purpose: File contains code that will generate:
+--				- A five to one multiplexer (Mux5to1)
+--          - A three bit five to one multiplexer (Mux5to1_3Bit)
+-- 
+-- The top level entity (Lab1b) tests the 3 Bit 5 to 1 Multiplexer
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_arith.all;
+USE ieee.std_logic_unsigned.all;
+--USE ieee.numeric_std.all;
+
+-- Declare individual multiplexers --
+ENTITY Mux5to1 IS 
+   -- GENERIC ( WIDTH : INTEGER := 3);
+   PORT (u,v,w,x,y : IN std_logic;
+			s         : IN std_logic_vector(2 DOWNTO 0);
+         m         : OUT std_logic );
+END Mux5to1;
+
+-- Architecture of individual multiplexers: Behavioral --
+ARCHITECTURE Behavioral OF Mux5to1 IS
+BEGIN
+	Mux : PROCESS(u, v, w, x, y, s)
+	BEGIN
+		CASE s IS
+			WHEN "000" => m <= u;
+			WHEN "001" => m <= v;
+			WHEN "010" => m <= w;
+			WHEN "011" => m <= x;
+			WHEN "100" => m <= y;
+			WHEN OTHERS => m <= y;
+		END CASE;
+	END PROCESS Mux;
+END Behavioral;
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+-- Declare 3 Bit 5 to 1 Multiplexer --
+ENTITY Mux5to1_3Bit IS
+	GENERIC (WIDTH : INTEGER := 3);
+	PORT(u,v,w,x,y : IN std_logic_vector(WIDTH - 1 DOWNTO 0);
+		  s         : IN std_logic_vector(WIDTH - 1 DOWNTO 0);
+		  m         : OUT std_logic_vector(WIDTH - 1 DOWNTO 0));
+END Mux5to1_3Bit;
+
+-- Architecture of 3 Bit 5 to 1 Multiplexer: Structural --
+ARCHITECTURE Struct1 OF Mux5to1_3Bit IS
+COMPONENT Mux5to1
+	PORT(u,v,w,x,y : IN std_logic;
+	     s         : IN std_logic_vector(WIDTH - 1 DOWNTO 0);
+		  m         : OUT std_logic);
+END COMPONENT;
+	
+BEGIN
+	Gen_Mux : FOR i IN 0 to 2 GENERATE
+		MuxX : Mux5to1
+			PORT MAP(u=>u(i), v=>v(i), w=>w(i), x=>x(i), y=>y(i), s=>s, m=>m(i));
+	END GENERATE Gen_Mux;
+END Struct1;
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+-- Declare overall entity --
+ENTITY Lab1b IS
+	GENERIC (WIDTH : INTEGER := 3);
+	PORT(SW   : IN std_logic_vector(5*WIDTH + 2 DOWNTO 0);
+		  LEDR : OUT std_logic_vector(WIDTH - 1 DOWNTO 0));
+END Lab1b;
+
+-- Architecture of overall entity: Structural --
+ARCHITECTURE Struct2 OF Lab1b IS
+COMPONENT Mux5to1_3Bit
+	PORT(u,v,w,x,y : IN std_logic_vector(WIDTH - 1 DOWNTO 0);
+	     s         : IN std_logic_vector(WIDTH - 1 DOWNTO 0);
+		  m         : OUT std_logic_vector(WIDTH - 1 DOWNTO 0));
+END COMPONENT;
+	
+BEGIN
+	Lab1b : Mux5to1_3Bit 
+		PORT MAP(u=>SW(2 DOWNTO 0), v=>SW(5 DOWNTO 3), w=>SW(8 DOWNTO 6), x=>SW(11 DOWNTO 9), y=>SW(14 DOWNTO 12), s=>SW(17 DOWNTO 15), m=>LEDR(2 DOWNTO 0));
+END Struct2;

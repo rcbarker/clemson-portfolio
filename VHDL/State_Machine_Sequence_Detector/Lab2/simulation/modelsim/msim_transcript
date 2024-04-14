@@ -1,0 +1,60 @@
+# Reading F:/altera/14.1/modelsim_ase/tcl/vsim/pref.tcl
+# do Lab2_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim PE vmap 10.3c Lib Mapping Utility 2014.09 Sep 20 2014
+# vmap -modelsim_quiet work rtl_work 
+# Copying F:/altera/14.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied F:/altera/14.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vcom -93 -work work {F:/altera/14.1/Lab2/Lab2c.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 14:28:29 on Feb 23,2015
+# vcom -reportprogress 300 -93 -work work F:/altera/14.1/Lab2/Lab2c.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity FSM3
+# -- Compiling architecture Behavioral of FSM3
+# -- Compiling entity Lab2c
+# -- Compiling architecture Structural of Lab2c
+# End time: 14:28:30 on Feb 23,2015, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {F:/altera/14.1/Lab2/simulation/modelsim/Lab2c.vht}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 14:28:30 on Feb 23,2015
+# vcom -reportprogress 300 -93 -work work F:/altera/14.1/Lab2/simulation/modelsim/Lab2c.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab2c_vhd_tst
+# -- Compiling architecture Lab2c_arch of Lab2c_vhd_tst
+# End time: 14:28:32 on Feb 23,2015, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneive -L rtl_work -L work -voptargs="+acc"  Lab2c_vhd_tst
+# vsim -gui "+altera" -l msim_transcript -do "Lab2_run_msim_rtl_vhdl.do" 
+# Start time: 14:28:32 on Feb 23,2015
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.lab2c_vhd_tst(lab2c_arch)
+# Loading work.lab2c(structural)
+# Loading work.fsm3(behavioral)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# Break key hit
+# Break in Process clk at F:/altera/14.1/Lab2/simulation/modelsim/Lab2c.vht line 85
+# End time: 14:42:28 on Feb 23,2015, Elapsed time: 0:13:56
+# Errors: 0, Warnings: 0

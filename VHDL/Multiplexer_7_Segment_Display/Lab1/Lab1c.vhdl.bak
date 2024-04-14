@@ -1,0 +1,51 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+-- Components of main design --
+ENTITY Mux5to1 IS 
+   GENERIC ( WIDTH : INTEGER := 3);
+   PORT (u,v,w,x,y : IN std_logic;
+	      s         : IN std_logic_vector(WIDTH - 1 DOWNTO 0);
+         m         : OUT std_logic );
+END Mux5to1;
+
+-- Architecture of individual components: Behavioral --
+ARCHITECTURE Behavioral OF Mux5to1 IS
+BEGIN
+	Mux : PROCESS(u, v, w, x, y, s)
+	BEGIN
+		CASE s IS
+			WHEN "000" => m <= u;
+			WHEN "001" => m <= v;
+			WHEN "010" => m <= w;
+			WHEN "011" => m <= x;
+			WHEN "100" => m <= y;
+			WHEN OTHERS => m <= y;
+		END CASE;
+	END PROCESS Mux;
+END Behavioral;
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+-- Declare overall entity --
+ENTITY Lab1b IS
+	GENERIC (WIDTH : INTEGER := 3);
+	PORT(SW   : IN std_logic_vector(5*WIDTH + 2 DOWNTO 0);
+		  LEDR : OUT std_logic_vector(WIDTH - 1 DOWNTO 0));
+END Lab1b;
+
+-- Architecture of overall entity: Structural --
+ARCHITECTURE Structural OF Lab1b IS
+COMPONENT Mux5to1
+	PORT(u,v,w,x,y : IN std_logic;
+	     s         : IN std_logic_vector(WIDTH - 1 DOWNTO 0);
+		  m         : OUT std_logic);
+END COMPONENT;
+	
+BEGIN
+	Gen_Mux : FOR i IN 0 to 2 GENERATE
+		MuxX : Mux5to1
+			PORT MAP(u=>SW(i), v=>SW(i + 3), w=>SW(i + 2*3), x=>SW(i + 3*3), y=>SW(i + 4*3), s=>SW(17 DOWNTO 15), m=>LEDR(i));
+	END GENERATE Gen_Mux;
+END Structural;

@@ -1,0 +1,95 @@
+/* Test driver for graph.c */
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+
+#include "graph.h"
+
+int main(void)
+{   
+    /* Print Header */
+    printf("Please Note: This program uses random graphs for testing.\n");
+ 
+    /* Check if user would like to print details */
+    int print_graph, print_table;
+    char print_type = '\0';
+    int print_list = -1, safe_mode = -1, heap = -1;
+    printf("Run Djisktra's Algorithm with a heap (1 or 0)? ");
+    scanf("%d", &heap);
+    printf("Safe mode (1 or 0)? ");
+    scanf("%d", &safe_mode);
+    printf("Print Graph during execution (1 or 0)? ");
+    scanf("%d", &print_graph);
+    if(print_graph) {
+        printf("Print List (1 or 0)? ");
+        scanf("%d", &print_list);
+
+        if(print_list) print_type = 'L';
+        else print_type = 'M';
+    }
+    printf("Print Shortest Path Table during execution (1 or 0)? ");
+    scanf("%d", &print_table);
+
+    /* Get number of vertices for graph */
+    int num_vertices;
+    printf("Enter number of vertices for graph: ");
+    scanf("%d", &num_vertices);
+
+    /* Create graph */
+    graph_t *G = graph_construct(num_vertices);
+
+    /* Fill graph with psuedo-random edges. Make sure vertice 0 is poorly-connected 
+       for testing */
+    int src_vert, dest_vert;
+    int i;
+    for(i = 0; i < num_vertices*2; i++) {
+        src_vert = rand() % num_vertices;
+        dest_vert = rand() % num_vertices;
+
+        if(src_vert != dest_vert && src_vert != 0) 
+            graph_add_edge(G, src_vert, dest_vert, (rand() % 99) + 1, safe_mode);
+    }
+
+    /* Print filled graph if specified */
+    if(print_graph) graph_debug_print(G, print_type);
+
+    /* Print graph stats */
+    graph_stats(G);
+
+    /* Get starting node for Djikstra's Algorithm */
+    int start;
+    printf("Enter starting vertice: ");
+    scanf("%d", &start);
+    while(start >= num_vertices || start < 0) {
+        printf("\nInvalid staring vertice! Enter again: ");
+        scanf("%d", &start);
+    }
+
+    /* Run Djikstra's Algorithm and print resulting table */
+    dist_table_t *path_table = graph_shortest_path(G, start, heap);
+
+    /* Print shortest path table is specified */
+    if(print_table) graph_shortest_path_debug_print(path_table, num_vertices);
+
+    /* Prompt for destination */
+    int dest;
+    printf("Enter destination vertice: ");
+    scanf("%d", &dest);
+    while(dest >= num_vertices || dest < 0) {
+        printf("\nInvalid destination vertice! Enter again: ");
+        scanf("%d", &dest);
+    }
+
+    /* Print shortest path from source to destination */
+    graph_print_shortest_path(path_table, num_vertices, start, dest, 1);
+
+    /* Free table created by Djikstra's Algorithm */
+    free(path_table);
+
+    /* Free graph */
+    graph_destruct(G);
+
+    return 0;
+}

@@ -1,0 +1,13 @@
+4 note1 note2 note3 note4 7 1 3 b3 5 7 b7 *none*
+Chord 5 Maj Min Maj7 Dom7 Min7
+9
+
+1 3 5 *none* Maj
+3 5 1 *none* Maj
+5 1 3 *none* Maj
+1 b3 5 *none* Min
+b3 5 1 *none* Min
+5 1 b3 *none* Min
+1 3 5 7 Maj7
+1 3 5 b7 Dom7
+1 b3 5 b7 Min7

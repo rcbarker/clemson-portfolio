@@ -1,0 +1,195 @@
+; Thu Oct 29 13:19:51 EDT 2015
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot has-legs
+;+		(comment "Class to relate a dog to the number of legs they have; four.")
+		(type STRING)
+		(default "four")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+;+		(comment "Class to store a golden retriever's name. Initialized in instance.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot consumes
+;+		(comment "Class to relate life forms to the things they consume; food and oxygen.")
+		(type STRING)
+		(default "food" "oxygen")
+		(create-accessor read-write))
+	(single-slot has-dish
+;+		(comment "Class to relate a dog to the dish they possess; a water dish.")
+		(type STRING)
+		(default "water")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot blood-type
+;+		(comment "Slot to relate mammals to their blood type; warm.")
+		(type STRING)
+		(default "warm")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot frame-size
+;+		(comment "Class to relate golden retrievers to their frame size; large.")
+		(type STRING)
+		(default "large")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot retrieving-instinct
+;+		(comment "Class to relate golden retrievers to the level of their retrieving instinct; excellent.")
+		(type STRING)
+		(default "excellent")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot produces
+;+		(comment "Class to relate life forms to what they produce; waste.")
+		(type STRING)
+		(default "waste")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot age
+;+		(comment "Slot to relate dogs to their age. Initialized in an instance of a golden retriever. Age must be a positive number.")
+		(type FLOAT)
+		(range 0.0 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot coat-type
+;+		(comment "Class to relate golden retrievers to their coat type; heavy fur.")
+		(type STRING)
+		(default "heavy fur")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has-owner
+;+		(comment "Class to relate golden retrievers to their owners. Initialized in instance.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot likes
+;+		(comment "Class to relate golden retrievers to what they like. Initialized in instance.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot hates
+;+		(comment "Class to relate dogs to the things they hate; cats.")
+		(type STRING)
+		(default "cats")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot offspring
+;+		(comment "Class to relate mammals to the way their offspring are born; born live.")
+		(type STRING)
+		(default "born live")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot owns
+;+		(comment "Class to relate golden retrievers to what they own. Initialized in instance.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Life+Form "Class to represent a life form. It has subclass mammal."
+	(is-a USER)
+	(role abstract)
+	(single-slot produces
+;+		(comment "Class to relate life forms to what they produce; waste.")
+		(type STRING)
+		(default "waste")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot consumes
+;+		(comment "Class to relate life forms to the things they consume; food and oxygen.")
+		(type STRING)
+		(default "food" "oxygen")
+		(create-accessor read-write)))
+
+(defclass Mammal "Class to represent a mammal. It has subclass dog and superclass life form."
+	(is-a Life+Form)
+	(role abstract)
+	(single-slot blood-type
+;+		(comment "Slot to relate mammals to their blood type; warm.")
+		(type STRING)
+		(default "warm")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot offspring
+;+		(comment "Class to relate mammals to the way their offspring are born; born live.")
+		(type STRING)
+		(default "born live")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Dog+%28Canine%29 "Class to represent a dog. It has subclass golden retriever and superclass mammal."
+	(is-a Mammal)
+	(role abstract)
+	(single-slot has-legs
+;+		(comment "Class to relate a dog to the number of legs they have; four.")
+		(type STRING)
+		(default "four")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot hates
+;+		(comment "Class to relate dogs to the things they hate; cats.")
+		(type STRING)
+		(default "cats")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has-dish
+;+		(comment "Class to relate a dog to the dish they possess; a water dish.")
+		(type STRING)
+		(default "water")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Golden+Retriever "Class to represent a golden retriever. It has superclass dog."
+	(is-a Dog+%28Canine%29)
+	(role concrete)
+	(single-slot has-owner
+;+		(comment "Class to relate golden retrievers to their owners. Initialized in instance.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot owns
+;+		(comment "Class to relate golden retrievers to what they own. Initialized in instance.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot frame-size
+;+		(comment "Class to relate golden retrievers to their frame size; large.")
+		(type STRING)
+		(default "large")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot retrieving-instinct
+;+		(comment "Class to relate golden retrievers to the level of their retrieving instinct; excellent.")
+		(type STRING)
+		(default "excellent")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot likes
+;+		(comment "Class to relate golden retrievers to what they like. Initialized in instance.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+;+		(comment "Class to store a golden retriever's name. Initialized in instance.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot age
+;+		(comment "Slot to relate dogs to their age. Initialized in an instance of a golden retriever. Age must be a positive number.")
+		(type FLOAT)
+		(range 0.0 %3FVARIABLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot coat-type
+;+		(comment "Class to relate golden retrievers to their coat type; heavy fur.")
+		(type STRING)
+		(default "heavy fur")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

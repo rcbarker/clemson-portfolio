@@ -1,0 +1,28 @@
+CC= gcc
+CFLAGS= -m32
+
+BINS= arithmetic asciisum atoi factorial fibonacci triangle
+
+all: $(BINS)
+
+arithmetic: arithmetic.c arithmetic.s
+	$(CC) $(CFLAGS) -o arithmetic arithmetic.c arithmetic.s
+
+asciisum: asciisum.c asciisum.s
+	$(CC) $(CFLAGS) -o asciisum asciisum.c asciisum.s
+
+atoi: atoi.c atoi.s
+	$(CC) $(CFLAGS) -o atoi atoi.c atoi.s
+
+factorial: factorial.c factorial.s
+	$(CC) $(CFLAGS) -o factorial factorial.c factorial.s
+
+fibonacci: fibonacci.c fibonacci.s
+	$(CC) $(CFLAGS) -o fibonacci fibonacci.c fibonacci.s
+
+triangle: triangle.c triangle.s
+	$(CC) $(CFLAGS) -o triangle triangle.c triangle.s
+
+clean:
+	rm -f $(BINS) core
+

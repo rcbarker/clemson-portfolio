@@ -1,0 +1,16 @@
+Thu Mar 12 17:49:11 EDT 2015
+Trace back: invalid command name "vsim_increment_error_count"
+    while executing
+"vsim_increment_error_count"
+    (procedure "mti_message" line 18)
+    invoked from within
+"mti_message "$s" Error"
+    (procedure "mti_error_message" line 4)
+    invoked from within
+"mti_error_message "${rv}\n""
+    (procedure "quit" line 97)
+    invoked from within
+"quit"
+    (command for "WM_DELETE_WINDOW" window manager protocol)
+  <2:F:/altera/14.1/modelsim_ase/win32aloem/tk8.5/bgerror.tcl:92: ::tkerror {invalid command name "vsim_increment_error_count"}
+  <1:proc:5: ::tk::dialog::error::bgerror {invalid command name "vsim_increment_error_count"}

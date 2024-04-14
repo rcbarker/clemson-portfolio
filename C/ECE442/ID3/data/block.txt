@@ -1,0 +1,20 @@
+5 locOB clearUp clearLeft clearRight clearDown 6 up down left right no yes
+move 4 up down left right
+16
+
+up yes yes yes yes up
+up no yes yes yes left
+up no no yes yes right
+up no no no yes down
+down yes yes yes yes down
+down no yes yes no right
+down yes no no no up
+down no no yes no right
+left yes yes yes yes left
+left no no yes yes down
+left yes yes yes no left
+left yes no no yes up
+right yes yes yes yes right
+right yes yes no yes up
+right no no no yes down
+right no yes no no left

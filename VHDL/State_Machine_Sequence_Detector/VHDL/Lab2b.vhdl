@@ -1,0 +1,83 @@
+
+-- Ryan Barker --
+-- ECE 3270
+-- Dr. Smith
+-- Lab2b.vhdl
+--
+-- Purpose: File contains code that will generate a finite state machine that detects 
+-- an input of "1111" or an input of "0000". Repeated 1's or 0's after each string is
+-- matched keep the output of the machine high.
+-- 
+-- This is a Moore FSM coded manually. It is designed with "almost one-hot" encoding.
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+-- Declare state machine --
+ENTITY FSM2 IS 
+   PORT (clk	 : IN std_logic;
+			w, rst : IN std_logic;	
+         state	 : OUT std_logic_vector(7 DOWNTO 0);
+			z 	    : OUT std_logic);
+END FSM2;
+
+-- Architecture of state machine: Manual --
+ARCHITECTURE Behavioral OF FSM2 IS
+SIGNAL y : std_logic_vector(7 DOWNTO 0);
+BEGIN
+	logic: PROCESS (clk)
+	BEGIN
+		IF rising_edge(clk) THEN
+			IF rst = '0' 
+			   -- Synchronous Reset --
+				THEN y <= "00000000";
+			ELSIF y = "00000000" THEN
+				IF w = '0' THEN y <= "00010000";
+				ELSE y <= "00000001";
+				END IF;
+			ELSE
+			   -- Find intermediate logic --
+				y(0) <= w AND (y(4) OR y(5) OR y(6) OR y(7));
+				y(1) <= w AND y(0);
+				y(2) <= w AND y(1);
+				y(3) <= w AND (y(2) OR y(3));
+				y(4) <= (NOT(w)) AND (y(0) OR y(1) OR y(2) OR y(3));
+				y(5) <= (NOT(w)) AND y(4);
+				y(6) <= (NOT(w)) AND y(5);
+				y(7) <= (NOT(w)) AND (y(6) OR y(7));
+			END IF;
+		END IF;	
+				
+	END PROCESS logic;
+		
+	-- Find output --
+	state <= y;
+	z <= y(3) OR y(7);
+END Behavioral;
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+-- Declare Entity for mapping state machine to physical ports --
+ENTITY Lab2b IS
+	PORT(KEY  : IN std_logic_vector(0 DOWNTO 0);
+		  SW   : IN std_logic_vector(1 DOWNTO 0);
+		  LEDR : OUT std_logic_vector(7 DOWNTO 0);
+		  LEDG : OUT std_logic_vector(0 DOWNTO 0));
+END Lab2b;
+
+-- Port map for state machine --
+ARCHITECTURE Structural of Lab2b IS
+COMPONENT FSM2
+   PORT (clk	 : IN std_logic;
+			w, rst : IN std_logic;	
+         state	 : OUT std_logic_vector(7 DOWNTO 0);
+			z 	    : OUT std_logic);
+END COMPONENT;
+
+BEGIN
+	Lab2b : FSM2
+		PORT MAP(clk=>KEY(0), w=>SW(1), rst=>SW(0), state=>LEDR, z=>LEDG(0));
+END Structural;
+		  

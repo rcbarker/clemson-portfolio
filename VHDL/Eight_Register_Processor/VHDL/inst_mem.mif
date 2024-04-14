@@ -1,0 +1,56 @@
+-- Copyright (C) 1991-2014 Altera Corporation. All rights reserved.
+-- Your use of Altera Corporation's design tools, logic functions 
+-- and other software and tools, and its AMPP partner logic 
+-- functions, and any output files from any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Altera Program License 
+-- Subscription Agreement, the Altera Quartus II License Agreement,
+-- the Altera MegaCore Function License Agreement, or other 
+-- applicable license agreement, including, without limitation, 
+-- that your use is for the sole purpose of programming logic 
+-- devices manufactured by Altera and sold by Altera or its 
+-- authorized distributors.  Please refer to the applicable 
+-- agreement for further details.
+
+-- Quartus II generated Memory Initialization File (.mif)
+
+WIDTH=16;
+DEPTH=32;
+ADDRESS_RADIX= HEX;
+DATA_RADIX= BIN;
+CONTENT 
+BEGIN
+    00  : 0010000001111111; -- mvi R0  
+	01  : 0000000000000100; -- data
+	02  : 0010010001010101; -- mvi R1
+	03  : 0000000000001010; -- data
+	04  : 0000100010101010; -- mv R2, R1
+	05  : 0001010001111111; -- mv R5, R0
+	06  : 0101010010000000; -- add R5, R1
+	07  : 0110010000000000; -- sub R1, R0
+    08  : 0100000010000000; -- add R0, R1
+	09  : 0011010000000000; -- mvi R5 
+	0A  : 0101010101010101; -- data
+	0B  : 0000101010000000; -- mv R4, R5
+	0C  : 0110010000000000; -- sub R1, R0
+	0D  : 0110101010000000; -- sub R4, R5
+	0E  : 0001110010000000; -- mv R7, R1
+	0F  : 0100101110000000; -- add R2, R7
+    10  : 0000111010000000; -- mv R3, R5
+	11  : 0011100000000000; -- mvi R6
+	12  : 0011101010101110; -- data
+    13  : 0111100000000000; -- sub R6, R0
+	14  : 0111100010000000; -- sub R6, R1
+	15  : 0101010100101100; -- add R5, R4 
+	16  : 0000100010101010; -- mv R2, R1
+	17  : 0110101010000000; -- sub R4, R5
+    18  : 0100000010000000; -- add R0, R1
+	19  : 0000100010101010; -- mv R2, R1
+	1A  : 0100101110000000; -- add R2, R7
+	1B  : 0110101010000000; -- sub R4, R5
+    1C  : 0100000010000000; -- add R0, R1
+	1D  : 0000100010101010; -- mv R2, R1
+	1E  : 0100101110000000; -- add R2, R7
+	1F  : 0100000010000000; -- add R0, R1
+END;

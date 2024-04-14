@@ -1,0 +1,173 @@
+# Reading F:/altera/14.1/modelsim_ase/tcl/vsim/pref.tcl
+# do Lab4_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim PE vmap 10.3c Lib Mapping Utility 2014.09 Sep 20 2014
+# vmap -modelsim_quiet work rtl_work 
+# Copying F:/altera/14.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied F:/altera/14.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vcom -93 -work work {F:/altera/14.1/Lab4/Lab4.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 13:07:32 on Mar 17,2015
+# vcom -reportprogress 300 -93 -work work F:/altera/14.1/Lab4/Lab4.vhdl 
+# -- Loading package STANDARD
+# -- Loading package MATH_REAL
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity Lab4
+# -- Compiling architecture Lab4_B of Lab4
+# End time: 13:07:33 on Mar 17,2015, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {F:/altera/14.1/Lab4/Lab4_RegA.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 13:07:33 on Mar 17,2015
+# vcom -reportprogress 300 -93 -work work F:/altera/14.1/Lab4/Lab4_RegA.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab4_RegA
+# -- Compiling architecture Lab4_RegA_B of Lab4_RegA
+# End time: 13:07:33 on Mar 17,2015, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {F:/altera/14.1/Lab4/Lab4_RegB.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 13:07:33 on Mar 17,2015
+# vcom -reportprogress 300 -93 -work work F:/altera/14.1/Lab4/Lab4_RegB.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab4_RegB
+# -- Compiling architecture Lab4_RegB_B of Lab4_RegB
+# End time: 13:07:33 on Mar 17,2015, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {F:/altera/14.1/Lab4/Lab4_RegC.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 13:07:34 on Mar 17,2015
+# vcom -reportprogress 300 -93 -work work F:/altera/14.1/Lab4/Lab4_RegC.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab4_RegC
+# -- Compiling architecture Lab4_RegC_B of Lab4_RegC
+# End time: 13:07:34 on Mar 17,2015, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {F:/altera/14.1/Lab4/Lab4_RegD.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 13:07:34 on Mar 17,2015
+# vcom -reportprogress 300 -93 -work work F:/altera/14.1/Lab4/Lab4_RegD.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity Lab4_RegD
+# -- Compiling architecture Lab4_RegD_B of Lab4_RegD
+# End time: 13:07:34 on Mar 17,2015, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {F:/altera/14.1/Lab4/Lab4_Ctrl.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 13:07:34 on Mar 17,2015
+# vcom -reportprogress 300 -93 -work work F:/altera/14.1/Lab4/Lab4_Ctrl.vhdl 
+# -- Loading package STANDARD
+# -- Loading package MATH_REAL
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity Lab4_Ctrl
+# -- Compiling architecture Lab4_Ctrl_B of Lab4_Ctrl
+# End time: 13:07:35 on Mar 17,2015, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {F:/altera/14.1/Lab4/Lab4_Adder.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 13:07:35 on Mar 17,2015
+# vcom -reportprogress 300 -93 -work work F:/altera/14.1/Lab4/Lab4_Adder.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity One_Bit_Full_Adder
+# -- Compiling architecture One_Bit_Full_Adder_B of One_Bit_Full_Adder
+# -- Compiling entity Lab4_Adder
+# -- Compiling architecture Lab4_Adder_B of Lab4_Adder
+# End time: 13:07:35 on Mar 17,2015, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {F:/altera/14.1/Lab4/Lab4_RegA_Mux.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 13:07:35 on Mar 17,2015
+# vcom -reportprogress 300 -93 -work work F:/altera/14.1/Lab4/Lab4_RegA_Mux.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity Lab4_RegA_Mux
+# -- Compiling architecture Lab4_RegA_Mux_B of Lab4_RegA_Mux
+# End time: 13:07:36 on Mar 17,2015, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {F:/altera/14.1/Lab4/Lab4_Adder_Mux.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 13:07:36 on Mar 17,2015
+# vcom -reportprogress 300 -93 -work work F:/altera/14.1/Lab4/Lab4_Adder_Mux.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab4_Adder_Mux
+# -- Compiling architecture Lab4_Adder_Mux_B of Lab4_Adder_Mux
+# End time: 13:07:36 on Mar 17,2015, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {F:/altera/14.1/Lab4/simulation/modelsim/Lab4_5.vht}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 13:07:36 on Mar 17,2015
+# vcom -reportprogress 300 -93 -work work F:/altera/14.1/Lab4/simulation/modelsim/Lab4_5.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab4_5_vhd_tst
+# -- Compiling architecture Lab4_arch5 of Lab4_5_vhd_tst
+# End time: 13:07:36 on Mar 17,2015, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneive -L rtl_work -L work -voptargs="+acc"  Lab4_5_vhd_tst
+# vsim -gui "+altera" -l msim_transcript -do "Lab4_run_msim_rtl_vhdl.do" 
+# Start time: 13:07:37 on Mar 17,2015
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.lab4_5_vhd_tst(lab4_arch5)
+# Loading ieee.math_real(body)
+# Loading ieee.numeric_std(body)
+# Loading work.lab4(lab4_b)
+# Loading work.lab4_ctrl(lab4_ctrl_b)
+# Loading work.lab4_rega(lab4_rega_b)
+# Loading work.lab4_regb(lab4_regb_b)
+# Loading work.lab4_regc(lab4_regc_b)
+# Loading work.lab4_regd(lab4_regd_b)
+# Loading work.lab4_rega_mux(lab4_rega_mux_b)
+# Loading work.lab4_adder_mux(lab4_adder_mux_b)
+# Loading work.lab4_adder(lab4_adder_b)
+# Loading work.one_bit_full_adder(one_bit_full_adder_b)
+# 
+# add wave *
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: Ryan  Hostname: RYAN  ProcessID: 8380
+# 
+#           Attempting to use alternate WLF file "./wlft0cfn01".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlft0cfn01
+# 
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# Break key hit
+# Break in Process next_state at F:/altera/14.1/Lab4/Lab4_Ctrl.vhdl line 41
+# End time: 13:33:53 on Mar 17,2015, Elapsed time: 0:26:16
+# Errors: 0, Warnings: 2

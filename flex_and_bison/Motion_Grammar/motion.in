@@ -1,0 +1,30 @@
+/* Ryan Barker 
+   CPSC/ECE 3520 Spring 2015
+   SDE1 - Flex Grammar File
+ */
+
+/* Prevent "input defined but not used" warning for yylex when compiled */
+%option noinput
+/* Prevents "unput defined but not used" warning for yylex when compiled */
+%option nounput
+
+%{
+#include "motion.tab.h"
+%} 
+
+DIR [dlnru]
+NUM [0-9]+
+
+%%
+
+"\n" return NEWLINE;
+
+{DIR} { yylval.ideptr = (char *) strdup(yytext);
+        return DIR; }
+
+{NUM} { yylval.numval = atoi(yytext);
+        return NUM; }
+
+.    return ERROR; 
+
+%%

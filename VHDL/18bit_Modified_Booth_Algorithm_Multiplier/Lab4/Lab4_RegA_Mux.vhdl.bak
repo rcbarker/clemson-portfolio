@@ -1,0 +1,46 @@
+LIBRARY ieee;
+use ieee.numeric_std.all;
+USE ieee.std_logic_1164.all;
+
+-- Declare Register A multiplexer --
+ENTITY RegA_Mux IS 
+   GENERIC (N : INTEGER := 18);
+   PORT (regA_out     : IN std_logic_vector(N DOWNTO 0);
+         mux_ctrl     : IN std_logic_vector(2 DOWNTO 0);
+			output       : OUT std_logic_vector(N DOWNTO 0));
+END RegA_Mux;
+
+-- Architecture of Register A multiplexer --
+ARCHITECTURE RegA_Mux_B OF RegA_Mux IS
+BEGIN
+    main: PROCESS (mux_ctrl)
+	     VARIABLE twos_complement : std_logic_vector(N DOWNTO 0);
+    BEGIN
+	     -- Initialize two's complement --
+		  twos_complement := NOT(regA_out);
+		  twos_complement := std_logic_vector(unsigned(twos_complement) + 1);
+		  
+		  -- Use mux_ctrl value to determine output --
+		  CASE mux_ctrl IS
+		      WHEN "000" | "111" =>
+			       -- 0*M --
+					 zeroes: FOR i IN 0 TO N LOOP
+                    output(i) <= '0';
+                END LOOP;
+			   WHEN "001" | "010" =>
+			       -- +1*M --
+				    output <= regA_out;
+			   WHEN "011" =>
+					 -- +2*M --
+				    output(0) <= '0';
+				    output(N DOWNTO 1) <= regA_out(N - 1 DOWNTO 0);
+			   WHEN "100" =>
+					 -- -2*M --
+					 output(0) <= '0';
+				    output(N DOWNTO 1) <= twos_complement(N - 1 DOWNTO 0);
+			   WHEN "101" | "110" =>
+					 -- -1*M --
+			       output <= twos_complement;
+        END CASE;
+    END PROCESS main;
+END RegA_Mux_B;

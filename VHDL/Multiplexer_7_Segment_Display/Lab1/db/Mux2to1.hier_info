@@ -1,0 +1,658 @@
+|Lab1d
+SW[0] => Mux5to1_3Bit:Mux4.u[0]
+SW[0] => Mux5to1_3Bit:Mux3.v[0]
+SW[0] => Mux5to1_3Bit:Mux2.w[0]
+SW[0] => Mux5to1_3Bit:Mux1.x[0]
+SW[0] => Mux5to1_3Bit:Mux0.y[0]
+SW[1] => Mux5to1_3Bit:Mux4.u[1]
+SW[1] => Mux5to1_3Bit:Mux3.v[1]
+SW[1] => Mux5to1_3Bit:Mux2.w[1]
+SW[1] => Mux5to1_3Bit:Mux1.x[1]
+SW[1] => Mux5to1_3Bit:Mux0.y[1]
+SW[2] => Mux5to1_3Bit:Mux4.u[2]
+SW[2] => Mux5to1_3Bit:Mux3.v[2]
+SW[2] => Mux5to1_3Bit:Mux2.w[2]
+SW[2] => Mux5to1_3Bit:Mux1.x[2]
+SW[2] => Mux5to1_3Bit:Mux0.y[2]
+SW[3] => Mux5to1_3Bit:Mux4.y[0]
+SW[3] => Mux5to1_3Bit:Mux3.u[0]
+SW[3] => Mux5to1_3Bit:Mux2.v[0]
+SW[3] => Mux5to1_3Bit:Mux1.w[0]
+SW[3] => Mux5to1_3Bit:Mux0.x[0]
+SW[4] => Mux5to1_3Bit:Mux4.y[1]
+SW[4] => Mux5to1_3Bit:Mux3.u[1]
+SW[4] => Mux5to1_3Bit:Mux2.v[1]
+SW[4] => Mux5to1_3Bit:Mux1.w[1]
+SW[4] => Mux5to1_3Bit:Mux0.x[1]
+SW[5] => Mux5to1_3Bit:Mux4.y[2]
+SW[5] => Mux5to1_3Bit:Mux3.u[2]
+SW[5] => Mux5to1_3Bit:Mux2.v[2]
+SW[5] => Mux5to1_3Bit:Mux1.w[2]
+SW[5] => Mux5to1_3Bit:Mux0.x[2]
+SW[6] => Mux5to1_3Bit:Mux4.x[0]
+SW[6] => Mux5to1_3Bit:Mux3.y[0]
+SW[6] => Mux5to1_3Bit:Mux2.u[0]
+SW[6] => Mux5to1_3Bit:Mux1.v[0]
+SW[6] => Mux5to1_3Bit:Mux0.w[0]
+SW[7] => Mux5to1_3Bit:Mux4.x[1]
+SW[7] => Mux5to1_3Bit:Mux3.y[1]
+SW[7] => Mux5to1_3Bit:Mux2.u[1]
+SW[7] => Mux5to1_3Bit:Mux1.v[1]
+SW[7] => Mux5to1_3Bit:Mux0.w[1]
+SW[8] => Mux5to1_3Bit:Mux4.x[2]
+SW[8] => Mux5to1_3Bit:Mux3.y[2]
+SW[8] => Mux5to1_3Bit:Mux2.u[2]
+SW[8] => Mux5to1_3Bit:Mux1.v[2]
+SW[8] => Mux5to1_3Bit:Mux0.w[2]
+SW[9] => Mux5to1_3Bit:Mux4.w[0]
+SW[9] => Mux5to1_3Bit:Mux3.x[0]
+SW[9] => Mux5to1_3Bit:Mux2.y[0]
+SW[9] => Mux5to1_3Bit:Mux1.u[0]
+SW[9] => Mux5to1_3Bit:Mux0.v[0]
+SW[10] => Mux5to1_3Bit:Mux4.w[1]
+SW[10] => Mux5to1_3Bit:Mux3.x[1]
+SW[10] => Mux5to1_3Bit:Mux2.y[1]
+SW[10] => Mux5to1_3Bit:Mux1.u[1]
+SW[10] => Mux5to1_3Bit:Mux0.v[1]
+SW[11] => Mux5to1_3Bit:Mux4.w[2]
+SW[11] => Mux5to1_3Bit:Mux3.x[2]
+SW[11] => Mux5to1_3Bit:Mux2.y[2]
+SW[11] => Mux5to1_3Bit:Mux1.u[2]
+SW[11] => Mux5to1_3Bit:Mux0.v[2]
+SW[12] => Mux5to1_3Bit:Mux4.v[0]
+SW[12] => Mux5to1_3Bit:Mux3.w[0]
+SW[12] => Mux5to1_3Bit:Mux2.x[0]
+SW[12] => Mux5to1_3Bit:Mux1.y[0]
+SW[12] => Mux5to1_3Bit:Mux0.u[0]
+SW[13] => Mux5to1_3Bit:Mux4.v[1]
+SW[13] => Mux5to1_3Bit:Mux3.w[1]
+SW[13] => Mux5to1_3Bit:Mux2.x[1]
+SW[13] => Mux5to1_3Bit:Mux1.y[1]
+SW[13] => Mux5to1_3Bit:Mux0.u[1]
+SW[14] => Mux5to1_3Bit:Mux4.v[2]
+SW[14] => Mux5to1_3Bit:Mux3.w[2]
+SW[14] => Mux5to1_3Bit:Mux2.x[2]
+SW[14] => Mux5to1_3Bit:Mux1.y[2]
+SW[14] => Mux5to1_3Bit:Mux0.u[2]
+SW[15] => Mux5to1_3Bit:Mux4.s[0]
+SW[15] => Mux5to1_3Bit:Mux3.s[0]
+SW[15] => Mux5to1_3Bit:Mux2.s[0]
+SW[15] => Mux5to1_3Bit:Mux1.s[0]
+SW[15] => Mux5to1_3Bit:Mux0.s[0]
+SW[16] => Mux5to1_3Bit:Mux4.s[1]
+SW[16] => Mux5to1_3Bit:Mux3.s[1]
+SW[16] => Mux5to1_3Bit:Mux2.s[1]
+SW[16] => Mux5to1_3Bit:Mux1.s[1]
+SW[16] => Mux5to1_3Bit:Mux0.s[1]
+SW[17] => Mux5to1_3Bit:Mux4.s[2]
+SW[17] => Mux5to1_3Bit:Mux3.s[2]
+SW[17] => Mux5to1_3Bit:Mux2.s[2]
+SW[17] => Mux5to1_3Bit:Mux1.s[2]
+SW[17] => Mux5to1_3Bit:Mux0.s[2]
+HEX0[0] << Decoder3to7:Dec0.d[0]
+HEX0[1] << Decoder3to7:Dec0.d[1]
+HEX0[2] << Decoder3to7:Dec0.d[2]
+HEX0[3] << Decoder3to7:Dec0.d[3]
+HEX0[4] << Decoder3to7:Dec0.d[4]
+HEX0[5] << Decoder3to7:Dec0.d[5]
+HEX0[6] << Decoder3to7:Dec0.d[6]
+HEX1[0] << Decoder3to7:Dec1.d[0]
+HEX1[1] << Decoder3to7:Dec1.d[1]
+HEX1[2] << Decoder3to7:Dec1.d[2]
+HEX1[3] << Decoder3to7:Dec1.d[3]
+HEX1[4] << Decoder3to7:Dec1.d[4]
+HEX1[5] << Decoder3to7:Dec1.d[5]
+HEX1[6] << Decoder3to7:Dec1.d[6]
+HEX2[0] << Decoder3to7:Dec2.d[0]
+HEX2[1] << Decoder3to7:Dec2.d[1]
+HEX2[2] << Decoder3to7:Dec2.d[2]
+HEX2[3] << Decoder3to7:Dec2.d[3]
+HEX2[4] << Decoder3to7:Dec2.d[4]
+HEX2[5] << Decoder3to7:Dec2.d[5]
+HEX2[6] << Decoder3to7:Dec2.d[6]
+HEX3[0] << Decoder3to7:Dec3.d[0]
+HEX3[1] << Decoder3to7:Dec3.d[1]
+HEX3[2] << Decoder3to7:Dec3.d[2]
+HEX3[3] << Decoder3to7:Dec3.d[3]
+HEX3[4] << Decoder3to7:Dec3.d[4]
+HEX3[5] << Decoder3to7:Dec3.d[5]
+HEX3[6] << Decoder3to7:Dec3.d[6]
+HEX4[0] << Decoder3to7:Dec4.d[0]
+HEX4[1] << Decoder3to7:Dec4.d[1]
+HEX4[2] << Decoder3to7:Dec4.d[2]
+HEX4[3] << Decoder3to7:Dec4.d[3]
+HEX4[4] << Decoder3to7:Dec4.d[4]
+HEX4[5] << Decoder3to7:Dec4.d[5]
+HEX4[6] << Decoder3to7:Dec4.d[6]
+
+
+|Lab1d|Mux5to1_3Bit:Mux4
+u[0] => Mux5to1:Gen_Mux:0:MuxX.u
+u[1] => Mux5to1:Gen_Mux:1:MuxX.u
+u[2] => Mux5to1:Gen_Mux:2:MuxX.u
+v[0] => Mux5to1:Gen_Mux:0:MuxX.v
+v[1] => Mux5to1:Gen_Mux:1:MuxX.v
+v[2] => Mux5to1:Gen_Mux:2:MuxX.v
+w[0] => Mux5to1:Gen_Mux:0:MuxX.w
+w[1] => Mux5to1:Gen_Mux:1:MuxX.w
+w[2] => Mux5to1:Gen_Mux:2:MuxX.w
+x[0] => Mux5to1:Gen_Mux:0:MuxX.x
+x[1] => Mux5to1:Gen_Mux:1:MuxX.x
+x[2] => Mux5to1:Gen_Mux:2:MuxX.x
+y[0] => Mux5to1:Gen_Mux:0:MuxX.y
+y[1] => Mux5to1:Gen_Mux:1:MuxX.y
+y[2] => Mux5to1:Gen_Mux:2:MuxX.y
+s[0] => Mux5to1:Gen_Mux:0:MuxX.s[0]
+s[0] => Mux5to1:Gen_Mux:1:MuxX.s[0]
+s[0] => Mux5to1:Gen_Mux:2:MuxX.s[0]
+s[1] => Mux5to1:Gen_Mux:0:MuxX.s[1]
+s[1] => Mux5to1:Gen_Mux:1:MuxX.s[1]
+s[1] => Mux5to1:Gen_Mux:2:MuxX.s[1]
+s[2] => Mux5to1:Gen_Mux:0:MuxX.s[2]
+s[2] => Mux5to1:Gen_Mux:1:MuxX.s[2]
+s[2] => Mux5to1:Gen_Mux:2:MuxX.s[2]
+m[0] <= Mux5to1:Gen_Mux:0:MuxX.m
+m[1] <= Mux5to1:Gen_Mux:1:MuxX.m
+m[2] <= Mux5to1:Gen_Mux:2:MuxX.m
+
+
+|Lab1d|Mux5to1_3Bit:Mux4|Mux5to1:\Gen_Mux:0:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux4|Mux5to1:\Gen_Mux:1:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux4|Mux5to1:\Gen_Mux:2:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Decoder3to7:Dec4
+c[0] => Mux0.IN10
+c[0] => Mux1.IN10
+c[0] => Mux2.IN10
+c[0] => Mux3.IN10
+c[0] => Mux4.IN10
+c[0] => Mux5.IN10
+c[0] => Mux6.IN10
+c[1] => Mux0.IN9
+c[1] => Mux1.IN9
+c[1] => Mux2.IN9
+c[1] => Mux3.IN9
+c[1] => Mux4.IN9
+c[1] => Mux5.IN9
+c[1] => Mux6.IN9
+c[2] => Mux0.IN8
+c[2] => Mux1.IN8
+c[2] => Mux2.IN8
+c[2] => Mux3.IN8
+c[2] => Mux4.IN8
+c[2] => Mux5.IN8
+c[2] => Mux6.IN8
+d[0] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+d[1] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+d[2] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+d[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+d[4] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+d[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+d[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux3
+u[0] => Mux5to1:Gen_Mux:0:MuxX.u
+u[1] => Mux5to1:Gen_Mux:1:MuxX.u
+u[2] => Mux5to1:Gen_Mux:2:MuxX.u
+v[0] => Mux5to1:Gen_Mux:0:MuxX.v
+v[1] => Mux5to1:Gen_Mux:1:MuxX.v
+v[2] => Mux5to1:Gen_Mux:2:MuxX.v
+w[0] => Mux5to1:Gen_Mux:0:MuxX.w
+w[1] => Mux5to1:Gen_Mux:1:MuxX.w
+w[2] => Mux5to1:Gen_Mux:2:MuxX.w
+x[0] => Mux5to1:Gen_Mux:0:MuxX.x
+x[1] => Mux5to1:Gen_Mux:1:MuxX.x
+x[2] => Mux5to1:Gen_Mux:2:MuxX.x
+y[0] => Mux5to1:Gen_Mux:0:MuxX.y
+y[1] => Mux5to1:Gen_Mux:1:MuxX.y
+y[2] => Mux5to1:Gen_Mux:2:MuxX.y
+s[0] => Mux5to1:Gen_Mux:0:MuxX.s[0]
+s[0] => Mux5to1:Gen_Mux:1:MuxX.s[0]
+s[0] => Mux5to1:Gen_Mux:2:MuxX.s[0]
+s[1] => Mux5to1:Gen_Mux:0:MuxX.s[1]
+s[1] => Mux5to1:Gen_Mux:1:MuxX.s[1]
+s[1] => Mux5to1:Gen_Mux:2:MuxX.s[1]
+s[2] => Mux5to1:Gen_Mux:0:MuxX.s[2]
+s[2] => Mux5to1:Gen_Mux:1:MuxX.s[2]
+s[2] => Mux5to1:Gen_Mux:2:MuxX.s[2]
+m[0] <= Mux5to1:Gen_Mux:0:MuxX.m
+m[1] <= Mux5to1:Gen_Mux:1:MuxX.m
+m[2] <= Mux5to1:Gen_Mux:2:MuxX.m
+
+
+|Lab1d|Mux5to1_3Bit:Mux3|Mux5to1:\Gen_Mux:0:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux3|Mux5to1:\Gen_Mux:1:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux3|Mux5to1:\Gen_Mux:2:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Decoder3to7:Dec3
+c[0] => Mux0.IN10
+c[0] => Mux1.IN10
+c[0] => Mux2.IN10
+c[0] => Mux3.IN10
+c[0] => Mux4.IN10
+c[0] => Mux5.IN10
+c[0] => Mux6.IN10
+c[1] => Mux0.IN9
+c[1] => Mux1.IN9
+c[1] => Mux2.IN9
+c[1] => Mux3.IN9
+c[1] => Mux4.IN9
+c[1] => Mux5.IN9
+c[1] => Mux6.IN9
+c[2] => Mux0.IN8
+c[2] => Mux1.IN8
+c[2] => Mux2.IN8
+c[2] => Mux3.IN8
+c[2] => Mux4.IN8
+c[2] => Mux5.IN8
+c[2] => Mux6.IN8
+d[0] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+d[1] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+d[2] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+d[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+d[4] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+d[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+d[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux2
+u[0] => Mux5to1:Gen_Mux:0:MuxX.u
+u[1] => Mux5to1:Gen_Mux:1:MuxX.u
+u[2] => Mux5to1:Gen_Mux:2:MuxX.u
+v[0] => Mux5to1:Gen_Mux:0:MuxX.v
+v[1] => Mux5to1:Gen_Mux:1:MuxX.v
+v[2] => Mux5to1:Gen_Mux:2:MuxX.v
+w[0] => Mux5to1:Gen_Mux:0:MuxX.w
+w[1] => Mux5to1:Gen_Mux:1:MuxX.w
+w[2] => Mux5to1:Gen_Mux:2:MuxX.w
+x[0] => Mux5to1:Gen_Mux:0:MuxX.x
+x[1] => Mux5to1:Gen_Mux:1:MuxX.x
+x[2] => Mux5to1:Gen_Mux:2:MuxX.x
+y[0] => Mux5to1:Gen_Mux:0:MuxX.y
+y[1] => Mux5to1:Gen_Mux:1:MuxX.y
+y[2] => Mux5to1:Gen_Mux:2:MuxX.y
+s[0] => Mux5to1:Gen_Mux:0:MuxX.s[0]
+s[0] => Mux5to1:Gen_Mux:1:MuxX.s[0]
+s[0] => Mux5to1:Gen_Mux:2:MuxX.s[0]
+s[1] => Mux5to1:Gen_Mux:0:MuxX.s[1]
+s[1] => Mux5to1:Gen_Mux:1:MuxX.s[1]
+s[1] => Mux5to1:Gen_Mux:2:MuxX.s[1]
+s[2] => Mux5to1:Gen_Mux:0:MuxX.s[2]
+s[2] => Mux5to1:Gen_Mux:1:MuxX.s[2]
+s[2] => Mux5to1:Gen_Mux:2:MuxX.s[2]
+m[0] <= Mux5to1:Gen_Mux:0:MuxX.m
+m[1] <= Mux5to1:Gen_Mux:1:MuxX.m
+m[2] <= Mux5to1:Gen_Mux:2:MuxX.m
+
+
+|Lab1d|Mux5to1_3Bit:Mux2|Mux5to1:\Gen_Mux:0:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux2|Mux5to1:\Gen_Mux:1:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux2|Mux5to1:\Gen_Mux:2:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Decoder3to7:Dec2
+c[0] => Mux0.IN10
+c[0] => Mux1.IN10
+c[0] => Mux2.IN10
+c[0] => Mux3.IN10
+c[0] => Mux4.IN10
+c[0] => Mux5.IN10
+c[0] => Mux6.IN10
+c[1] => Mux0.IN9
+c[1] => Mux1.IN9
+c[1] => Mux2.IN9
+c[1] => Mux3.IN9
+c[1] => Mux4.IN9
+c[1] => Mux5.IN9
+c[1] => Mux6.IN9
+c[2] => Mux0.IN8
+c[2] => Mux1.IN8
+c[2] => Mux2.IN8
+c[2] => Mux3.IN8
+c[2] => Mux4.IN8
+c[2] => Mux5.IN8
+c[2] => Mux6.IN8
+d[0] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+d[1] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+d[2] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+d[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+d[4] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+d[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+d[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux1
+u[0] => Mux5to1:Gen_Mux:0:MuxX.u
+u[1] => Mux5to1:Gen_Mux:1:MuxX.u
+u[2] => Mux5to1:Gen_Mux:2:MuxX.u
+v[0] => Mux5to1:Gen_Mux:0:MuxX.v
+v[1] => Mux5to1:Gen_Mux:1:MuxX.v
+v[2] => Mux5to1:Gen_Mux:2:MuxX.v
+w[0] => Mux5to1:Gen_Mux:0:MuxX.w
+w[1] => Mux5to1:Gen_Mux:1:MuxX.w
+w[2] => Mux5to1:Gen_Mux:2:MuxX.w
+x[0] => Mux5to1:Gen_Mux:0:MuxX.x
+x[1] => Mux5to1:Gen_Mux:1:MuxX.x
+x[2] => Mux5to1:Gen_Mux:2:MuxX.x
+y[0] => Mux5to1:Gen_Mux:0:MuxX.y
+y[1] => Mux5to1:Gen_Mux:1:MuxX.y
+y[2] => Mux5to1:Gen_Mux:2:MuxX.y
+s[0] => Mux5to1:Gen_Mux:0:MuxX.s[0]
+s[0] => Mux5to1:Gen_Mux:1:MuxX.s[0]
+s[0] => Mux5to1:Gen_Mux:2:MuxX.s[0]
+s[1] => Mux5to1:Gen_Mux:0:MuxX.s[1]
+s[1] => Mux5to1:Gen_Mux:1:MuxX.s[1]
+s[1] => Mux5to1:Gen_Mux:2:MuxX.s[1]
+s[2] => Mux5to1:Gen_Mux:0:MuxX.s[2]
+s[2] => Mux5to1:Gen_Mux:1:MuxX.s[2]
+s[2] => Mux5to1:Gen_Mux:2:MuxX.s[2]
+m[0] <= Mux5to1:Gen_Mux:0:MuxX.m
+m[1] <= Mux5to1:Gen_Mux:1:MuxX.m
+m[2] <= Mux5to1:Gen_Mux:2:MuxX.m
+
+
+|Lab1d|Mux5to1_3Bit:Mux1|Mux5to1:\Gen_Mux:0:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux1|Mux5to1:\Gen_Mux:1:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux1|Mux5to1:\Gen_Mux:2:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Decoder3to7:Dec1
+c[0] => Mux0.IN10
+c[0] => Mux1.IN10
+c[0] => Mux2.IN10
+c[0] => Mux3.IN10
+c[0] => Mux4.IN10
+c[0] => Mux5.IN10
+c[0] => Mux6.IN10
+c[1] => Mux0.IN9
+c[1] => Mux1.IN9
+c[1] => Mux2.IN9
+c[1] => Mux3.IN9
+c[1] => Mux4.IN9
+c[1] => Mux5.IN9
+c[1] => Mux6.IN9
+c[2] => Mux0.IN8
+c[2] => Mux1.IN8
+c[2] => Mux2.IN8
+c[2] => Mux3.IN8
+c[2] => Mux4.IN8
+c[2] => Mux5.IN8
+c[2] => Mux6.IN8
+d[0] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+d[1] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+d[2] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+d[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+d[4] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+d[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+d[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux0
+u[0] => Mux5to1:Gen_Mux:0:MuxX.u
+u[1] => Mux5to1:Gen_Mux:1:MuxX.u
+u[2] => Mux5to1:Gen_Mux:2:MuxX.u
+v[0] => Mux5to1:Gen_Mux:0:MuxX.v
+v[1] => Mux5to1:Gen_Mux:1:MuxX.v
+v[2] => Mux5to1:Gen_Mux:2:MuxX.v
+w[0] => Mux5to1:Gen_Mux:0:MuxX.w
+w[1] => Mux5to1:Gen_Mux:1:MuxX.w
+w[2] => Mux5to1:Gen_Mux:2:MuxX.w
+x[0] => Mux5to1:Gen_Mux:0:MuxX.x
+x[1] => Mux5to1:Gen_Mux:1:MuxX.x
+x[2] => Mux5to1:Gen_Mux:2:MuxX.x
+y[0] => Mux5to1:Gen_Mux:0:MuxX.y
+y[1] => Mux5to1:Gen_Mux:1:MuxX.y
+y[2] => Mux5to1:Gen_Mux:2:MuxX.y
+s[0] => Mux5to1:Gen_Mux:0:MuxX.s[0]
+s[0] => Mux5to1:Gen_Mux:1:MuxX.s[0]
+s[0] => Mux5to1:Gen_Mux:2:MuxX.s[0]
+s[1] => Mux5to1:Gen_Mux:0:MuxX.s[1]
+s[1] => Mux5to1:Gen_Mux:1:MuxX.s[1]
+s[1] => Mux5to1:Gen_Mux:2:MuxX.s[1]
+s[2] => Mux5to1:Gen_Mux:0:MuxX.s[2]
+s[2] => Mux5to1:Gen_Mux:1:MuxX.s[2]
+s[2] => Mux5to1:Gen_Mux:2:MuxX.s[2]
+m[0] <= Mux5to1:Gen_Mux:0:MuxX.m
+m[1] <= Mux5to1:Gen_Mux:1:MuxX.m
+m[2] <= Mux5to1:Gen_Mux:2:MuxX.m
+
+
+|Lab1d|Mux5to1_3Bit:Mux0|Mux5to1:\Gen_Mux:0:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux0|Mux5to1:\Gen_Mux:1:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Mux5to1_3Bit:Mux0|Mux5to1:\Gen_Mux:2:MuxX
+u => Mux0.IN0
+v => Mux0.IN1
+w => Mux0.IN2
+x => Mux0.IN3
+y => Mux0.IN4
+y => Mux0.IN5
+y => Mux0.IN6
+y => Mux0.IN7
+s[0] => Mux0.IN10
+s[1] => Mux0.IN9
+s[2] => Mux0.IN8
+m <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Lab1d|Decoder3to7:Dec0
+c[0] => Mux0.IN10
+c[0] => Mux1.IN10
+c[0] => Mux2.IN10
+c[0] => Mux3.IN10
+c[0] => Mux4.IN10
+c[0] => Mux5.IN10
+c[0] => Mux6.IN10
+c[1] => Mux0.IN9
+c[1] => Mux1.IN9
+c[1] => Mux2.IN9
+c[1] => Mux3.IN9
+c[1] => Mux4.IN9
+c[1] => Mux5.IN9
+c[1] => Mux6.IN9
+c[2] => Mux0.IN8
+c[2] => Mux1.IN8
+c[2] => Mux2.IN8
+c[2] => Mux3.IN8
+c[2] => Mux4.IN8
+c[2] => Mux5.IN8
+c[2] => Mux6.IN8
+d[0] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+d[1] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+d[2] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+d[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+d[4] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+d[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+d[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+

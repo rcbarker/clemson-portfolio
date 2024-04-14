@@ -1,0 +1,320 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/users/rcbarke/ECE327/Lab5/simulation/modelsim
+Elab5_addsub
+Z1 w1428203496
+Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z4 d/users/rcbarke/ECE327/Lab5/simulation/modelsim
+Z5 8/users/rcbarke/ECE327/Lab5/Lab5_AddSub.vhdl
+Z6 F/users/rcbarke/ECE327/Lab5/Lab5_AddSub.vhdl
+l0
+L34
+VQmhCa88[D1eI4fBc?8K:]3
+Z7 OV;C;10.1d;51
+31
+Z8 !s108 1429306585.264263
+Z9 !s90 -reportprogress|300|-93|-work|work|/users/rcbarke/ECE327/Lab5/Lab5_AddSub.vhdl|
+Z10 !s107 /users/rcbarke/ECE327/Lab5/Lab5_AddSub.vhdl|
+Z11 o-93 -work work -O0
+Z12 tExplicit 1
+!s100 PL:IV@gj[Vb@NaWfFF>2N1
+!i10b 1
+Alab5_addsub_b
+R2
+R3
+DEx4 work 11 lab5_addsub 0 22 QmhCa88[D1eI4fBc?8K:]3
+l53
+L44
+Vi0cfBJGk8SLb:1AZ4U<iG1
+R7
+31
+R8
+R9
+R10
+R11
+R12
+!s100 icCKBRF=3LBlP^MI9BA0@1
+!i10b 1
+Elab5_ctrl
+Z13 w1429066822
+R2
+R3
+R4
+Z14 8/users/rcbarke/ECE327/Lab5/Lab5_Ctrl.vhdl
+Z15 F/users/rcbarke/ECE327/Lab5/Lab5_Ctrl.vhdl
+l0
+L14
+VY7C>a9EJ@DKW[oSQk^OiY3
+R7
+31
+Z16 !s108 1429306585.343896
+Z17 !s90 -reportprogress|300|-93|-work|work|/users/rcbarke/ECE327/Lab5/Lab5_Ctrl.vhdl|
+Z18 !s107 /users/rcbarke/ECE327/Lab5/Lab5_Ctrl.vhdl|
+R11
+R12
+!s100 ?=8E;TQ:^gf6W8XO306MN0
+!i10b 1
+Alab5_ctrl_b
+R2
+R3
+DEx4 work 9 lab5_ctrl 0 22 Y7C>a9EJ@DKW[oSQk^OiY3
+l38
+L35
+V=@mkfzGPoO^YhnTJ=G5;H3
+R7
+31
+R16
+R17
+R18
+R11
+R12
+!s100 _ad18:Rhm<_6]gI`fjIcD2
+!i10b 1
+Elab5_decoder
+Z19 w1428390880
+R2
+R3
+R4
+Z20 8/users/rcbarke/ECE327/Lab5/Lab5_Decoder.vhdl
+Z21 F/users/rcbarke/ECE327/Lab5/Lab5_Decoder.vhdl
+l0
+L16
+Vh231gcjD``k>P6DhEHP`@2
+R7
+31
+Z22 !s108 1429306585.410813
+Z23 !s90 -reportprogress|300|-93|-work|work|/users/rcbarke/ECE327/Lab5/Lab5_Decoder.vhdl|
+Z24 !s107 /users/rcbarke/ECE327/Lab5/Lab5_Decoder.vhdl|
+R11
+R12
+!s100 n691Fi16^44CiUJ3gh=RY3
+!i10b 1
+Alab5_decoder_b
+R2
+R3
+DEx4 work 12 lab5_decoder 0 22 h231gcjD``k>P6DhEHP`@2
+l30
+L29
+V5dAl_XM>knalT@dbS0YP^2
+R7
+31
+R22
+R23
+R24
+R11
+R12
+!s100 E8U837]^W^RIMKGLd2R5;3
+!i10b 1
+Elab5_ir
+Z25 w1429063714
+R2
+R3
+R4
+Z26 8/users/rcbarke/ECE327/Lab5/Lab5_IR.vhdl
+Z27 F/users/rcbarke/ECE327/Lab5/Lab5_IR.vhdl
+l0
+L14
+VE_[kclmPnTbiVSi`Sk;cd2
+R7
+31
+Z28 !s108 1429306585.126213
+Z29 !s90 -reportprogress|300|-93|-work|work|/users/rcbarke/ECE327/Lab5/Lab5_IR.vhdl|
+Z30 !s107 /users/rcbarke/ECE327/Lab5/Lab5_IR.vhdl|
+R11
+R12
+!s100 mJD^9KYFIM?I09[?TU9jT3
+!i10b 1
+Alab5_ir_b
+R2
+R3
+DEx4 work 7 lab5_ir 0 22 E_[kclmPnTbiVSi`Sk;cd2
+l25
+L24
+VD7l=nX@VA3`hL=k5jfIQg2
+R7
+31
+R28
+R29
+R30
+R11
+R12
+!s100 8QVUCoNIfW]3IFOW20?nI2
+!i10b 1
+Elab5_mux
+Z31 w1428378560
+R2
+R3
+R4
+Z32 8/users/rcbarke/ECE327/Lab5/Lab5_Mux.vhdl
+Z33 F/users/rcbarke/ECE327/Lab5/Lab5_Mux.vhdl
+l0
+L14
+V1hJOS_>><RAEJC4@LWeT_1
+R7
+31
+Z34 !s108 1429306585.200524
+Z35 !s90 -reportprogress|300|-93|-work|work|/users/rcbarke/ECE327/Lab5/Lab5_Mux.vhdl|
+Z36 !s107 /users/rcbarke/ECE327/Lab5/Lab5_Mux.vhdl|
+R11
+R12
+!s100 >h`E9@4jJh:@XP[hF8[X23
+!i10b 1
+Alab5_mux_b
+R2
+R3
+DEx4 work 8 lab5_mux 0 22 1hJOS_>><RAEJC4@LWeT_1
+l41
+L40
+VZ;<<zb>AG0GS]fb[C47X=1
+R7
+31
+R34
+R35
+R36
+R11
+R12
+!s100 @PDo1:6TL3kV6S2MbYX5]0
+!i10b 1
+Elab5_processor
+Z37 w1429062300
+R2
+R3
+R4
+Z38 8/users/rcbarke/ECE327/Lab5/Lab5_Processor.vhdl
+Z39 F/users/rcbarke/ECE327/Lab5/Lab5_Processor.vhdl
+l0
+L13
+VbZE9?SGOoY_YbgY[No;V91
+R7
+31
+Z40 !s108 1429306585.479731
+Z41 !s90 -reportprogress|300|-93|-work|work|/users/rcbarke/ECE327/Lab5/Lab5_Processor.vhdl|
+Z42 !s107 /users/rcbarke/ECE327/Lab5/Lab5_Processor.vhdl|
+R11
+R12
+!s100 LhOXlm8d3E>M<a495l]gC2
+!i10b 1
+Alab5_processor_b
+R2
+R3
+DEx4 work 14 lab5_processor 0 22 bZE9?SGOoY_YbgY[No;V91
+l131
+L35
+Vai5@A4Lbhfo;0R7Q17YJ<3
+R7
+31
+R40
+R41
+R42
+R11
+R12
+!s100 b[_2GKQBJS;c2=6iN=FL^2
+!i10b 1
+Elab5_processor_vhd_tst
+Z43 w1429063724
+R2
+R3
+R4
+Z44 8/users/rcbarke/ECE327/Lab5/simulation/modelsim/Lab5_Processor.vht
+Z45 F/users/rcbarke/ECE327/Lab5/simulation/modelsim/Lab5_Processor.vht
+l0
+L31
+V]m;TLDjMX`^ATZKViRgVP1
+!s100 SeTYYl3bO9QYDMTNoLWDC1
+R7
+31
+!i10b 1
+Z46 !s108 1429306585.562902
+Z47 !s90 -reportprogress|300|-93|-work|work|/users/rcbarke/ECE327/Lab5/simulation/modelsim/Lab5_Processor.vht|
+Z48 !s107 /users/rcbarke/ECE327/Lab5/simulation/modelsim/Lab5_Processor.vht|
+R11
+R12
+Alab5_processor_arch
+R2
+R3
+DEx4 work 22 lab5_processor_vhd_tst 0 22 ]m;TLDjMX`^ATZKViRgVP1
+l74
+L33
+Vzn8WecbSlda4:gmWzooe52
+!s100 L=05_n]n[N8h36@S;e;CK3
+R7
+31
+!i10b 1
+R46
+R47
+R48
+R11
+R12
+Elab5_reg
+Z49 w1429063712
+R2
+R3
+R4
+Z50 8/users/rcbarke/ECE327/Lab5/Lab5_Reg.vhdl
+Z51 F/users/rcbarke/ECE327/Lab5/Lab5_Reg.vhdl
+l0
+L15
+VRU1_KIK3ic9e<73odRc_I0
+R7
+31
+Z52 !s108 1429306584.968621
+Z53 !s90 -reportprogress|300|-93|-work|work|/users/rcbarke/ECE327/Lab5/Lab5_Reg.vhdl|
+Z54 !s107 /users/rcbarke/ECE327/Lab5/Lab5_Reg.vhdl|
+R11
+R12
+!s100 2]6D`O^178;1P:E^KJhL33
+!i10b 1
+Alab5_reg_b
+R2
+R3
+DEx4 work 8 lab5_reg 0 22 RU1_KIK3ic9e<73odRc_I0
+l26
+L25
+V_UD8nOnXn;T5eCPJ@42B_1
+R7
+31
+R52
+R53
+R54
+R11
+R12
+!s100 2KRSn:UQkW>UE_P5ZMb8E1
+!i10b 1
+Eone_bit_full_adder
+R1
+R2
+R3
+R4
+R5
+R6
+l0
+L16
+VY[EF6z@mAZ1[_LZFADR8=1
+R7
+31
+R8
+R9
+R10
+R11
+R12
+!s100 JCF<E2dZO?[fbWMQ0angQ1
+!i10b 1
+Aone_bit_full_adder_b
+R2
+R3
+DEx4 work 18 one_bit_full_adder 0 22 Y[EF6z@mAZ1[_LZFADR8=1
+l25
+L24
+V9Wo9MhDmN4kFY?Dl7aDNF0
+R7
+31
+R8
+R9
+R10
+R11
+R12
+!s100 BJLh?3YABcD`kUTd;Wabj1
+!i10b 1

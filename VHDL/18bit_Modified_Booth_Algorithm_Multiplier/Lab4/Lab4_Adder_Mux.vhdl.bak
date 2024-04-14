@@ -1,0 +1,34 @@
+-- Ryan Barker --
+-- ECE 3270
+-- Dr. Smith
+-- Lab4_Adder_Mux.vhdl
+--
+-- Purpose: N + 1 bit 2-to-1 multiplexer that selects either the partial product from the N + 1 bit 
+--          adder or zeroes to go into Reg C.
+--
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+-- Declare adder multiplexer --
+ENTITY Lab4_Adder_Mux IS 
+   GENERIC (N : INTEGER := 18);
+   PORT (partial_product : IN std_logic_vector(N DOWNTO 0);
+         loadreg         : IN std_logic;
+			output          : OUT std_logic_vector(N DOWNTO 0));
+END Lab4_Adder_Mux;
+
+-- Architecture of adder multiplexer --
+ARCHITECTURE Lab4_Adder_Mux_B OF Lab4_Adder_Mux IS
+BEGIN
+    main: PROCESS (loadreg)
+    BEGIN
+		  CASE loadreg IS
+		      WHEN '0' => 
+				    output <= partial_product;				
+			   WHEN '1' =>
+					 zeroes: FOR i IN 0 TO N LOOP
+                    output(i) <= '0';
+                END LOOP;
+        END CASE;
+    END PROCESS main;
+END Lab4_Adder_Mux_B;

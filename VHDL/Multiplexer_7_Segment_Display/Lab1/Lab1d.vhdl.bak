@@ -1,0 +1,21 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+-- Declare overall entity --
+ENTITY Lab1c IS
+	GENERIC (WIDTH : INTEGER := 3);
+	PORT(SW   : IN std_logic_vector(WIDTH - 1 DOWNTO 0);
+		  HEX0 : OUT std_logic_vector(6 DOWNTO 0));
+END Lab1c;
+
+-- Architecture of overall entity: Structural --
+ARCHITECTURE Structural OF Lab1c IS
+COMPONENT Decoder3to7
+   PORT (c : IN std_logic_vector(2 DOWNTO 0);
+         d : OUT std_logic_vector(6 DOWNTO 0));
+END COMPONENT;
+	
+BEGIN
+	Dec : Decoder3to7
+		PORT MAP(c=>SW(2 DOWNTO 0), d=>HEX0(6 DOWNTO 0));
+END Structural;

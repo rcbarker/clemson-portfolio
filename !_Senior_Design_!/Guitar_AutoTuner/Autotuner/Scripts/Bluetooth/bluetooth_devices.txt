@@ -1,0 +1,5 @@
+Ryan's Phone:
+4C:A5:6D:C3:5F:EF  SAMSUNG-SM-G900V
+
+Raspberry Pi:
+00:19:86:00:0F:5F  hci0

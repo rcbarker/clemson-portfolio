@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+<title>signalchain Project: Digital Amplifier</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="htmlexport.css"/>
+</head>
+
+<body class="generalContent">
+<a name="top"></a>
+
+<!-- BEGIN HEADER -->
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td><img src="http://protege.stanford.edu/images/ProtegeLogo.gif" width="160" height="57" alt="protege logo"/></td>
+	</tr>
+</table><br>
+<!-- END HEADER -->
+
+<span class="pageTitle">Class: Digital Amplifier</span><br><br>
+<div class="classBorder">
+<span class="sectionTitle">Documentation:</span> Class for all amplifiers utilizing digital amplification.
+
+Digital amplifiers typically have built in effects similiar to effects pedals, so the default value for the "on board effects" slot is true. They also have an extra slot for thier mounting type, which is either cabinet or rack based.<br><br>
+<span class="sectionTitle">Superclasses</span>
+<ul class="iconList">
+	<li class="abstractClass"><a href="Amplifier.html">Amplifier</a></li>
+</ul><br>
+<span class="sectionTitle">Subclasses</span>
+<ul class="iconList">
+	<li>None</li>
+</ul><br>
+<span class="sectionTitle">Types</span>
+<ul class="iconList">
+	<li class="metaclass"><a href="_STANDARD-CLASS.html">:STANDARD-CLASS</a></li>
+</ul><br>
+<span class="sectionTitle"><a href="#direct_instances">Instances (2)</a></span><br><br>
+<table width="100%" border="1" cellpadding="3" cellspacing="0" class="mozillaTableHack">
+	<th align="left" bgcolor="#C4DAE5" colspan="5" class="mozillaTableHack">Template Slots</th>
+	<tr class="sectionTitle">
+		<td class="mozillaTableHack">&nbsp;</td>
+		<td class="mozillaTableHack">Slot Name</td>
+		<td class="mozillaTableHack">Documentation</td>
+		<td class="mozillaTableHack">Type</td>
+		<td class="mozillaTableHack">Cardinality</td>
+	</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.inherited.overridden.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_amplification_type.html">amplification_type</a></td>
+<td class="mozillaTableHack">Slot to represent the method of amplification used by guitar amplifiers as one of three symbols.
+
+Symbols:
+- Valve: Vacuum Tube based amplifiers that work with true analog signal. These include most traditional amplifiers and are still the most popular type of amplifier today. 
+- Solid State: Semiconductor-circuit based amplifiers that work with true analog signal. Solid state amplifiers are less expensive alternatives to tube amplifiers.
+- Digital: Amplifiers that use a digital processor to amplify guitar signal. These are either cabinet-based or rack-based.</td>
+<td class="mozillaTableHack">{Valve, Solid-State, Digital}</td>
+<td class="mozillaTableHack">0:1</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.inherited.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_is_part_of_a.html">is_part_of_a</a></td>
+<td class="mozillaTableHack">Slot used as a class relation to show what makes up a signal chain along with the "contains a" relation. Useful to show users how to build a signal chain out of an artist's gear.</td>
+<td class="mozillaTableHack">Class</td>
+<td class="mozillaTableHack">0:1</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.inherited.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_make_and_model.html">make_and_model</a></td>
+<td class="mozillaTableHack">A string used to describe the model number and manufacturer of a piece of audio equipment. This is used as the label for all instances of audio equipment.</td>
+<td class="mozillaTableHack">String</td>
+<td class="mozillaTableHack">1:1</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_mounting_type.html">mounting_type</a></td>
+<td class="mozillaTableHack">Slot that describes the different types of digital amplifiers as one of two symbols. This is represented as a slot rather than a subclass heirarchy because there are a very small number of digital cabinet based amplifiers.
+
+Symbols:
+- Cabinet: Mounted inside a wooden cabinet like a traditional amplifier. Less expensive and produce a lower quality sound.
+- Rack: Mounted on an effects rack. More expensive and produce a higher quality sound.</td>
+<td class="mozillaTableHack">{Cabinet, Rack}</td>
+<td class="mozillaTableHack">0:1</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.inherited.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_number_of_channels.html">number_of_channels</a></td>
+<td class="mozillaTableHack">An integer slot describing the number of channels contained in an amplifier. To function, all amplifiers must have at least one channel, so this value must be at least one.
+
+Definition: An amplifier channel is a section of an amplifier dedicated to producing either a clean or distorted sound. When an amp is switched on, only one channel can be active at a time.</td>
+<td class="mozillaTableHack">Integer</td>
+<td class="mozillaTableHack">0:1</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.inherited.overridden.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_on_board_effects.html">on_board_effects</a></td>
+<td class="mozillaTableHack">A boolean slot to describe whether an amplifier is equipped with on-board effects.
+
+Definition: Some amplifiers have built in processors with on-board effects. These can include but are not limited to reverberation, chorus, delay, and flange. Amplifiers with on-board effects are typically digital.</td>
+<td class="mozillaTableHack">Boolean</td>
+<td class="mozillaTableHack">0:1</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.inherited.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_power_rating__watts_.html">power_rating_(watts)</a></td>
+<td class="mozillaTableHack">An integer slot used to show the power rating of an amplifier. All amplifiers are rated for at least one watt, so this value must be greater than or equal to one.</td>
+<td class="mozillaTableHack">Integer</td>
+<td class="mozillaTableHack">0:1</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.inherited.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_speaker_name.html">speaker_name</a></td>
+<td class="mozillaTableHack">A slot used to specify the speaker's used in an amplifier's cabinet as a string. Not applicable to rack units.</td>
+<td class="mozillaTableHack">String</td>
+<td class="mozillaTableHack">0:1</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.inherited.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_unique_features.html">unique_features</a></td>
+<td class="mozillaTableHack">A string slot with multiple degrees of cardinality. This is used to list any miscallaneous features of audio equipment not described by the other slots, but is limited to five entries to reduce clutter.</td>
+<td class="mozillaTableHack">String</td>
+<td class="mozillaTableHack">0:5</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.inherited.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot_used_by.html">used_by</a></td>
+<td class="mozillaTableHack">Relation used to show which electric guitarists use a particular piece of audio equipment. One half of linking famous artists to the musical equipment they use.</td>
+<td class="mozillaTableHack"><a href="Electric_Guitarist.html">Electric Guitarist</a></td>
+<td class="mozillaTableHack">0:*</td>
+</tr>
+</table><br>
+<table width="100%" border="1" cellpadding="3" cellspacing="0" class="mozillaTableHack">
+	<th align="left" bgcolor="#C4DAE5" colspan="3" class="mozillaTableHack">Own Slots</th>
+	<tr class="sectionTitle">
+		<td class="mozillaTableHack">&nbsp;</td>
+		<td class="mozillaTableHack">Slot Name</td>
+		<td class="mozillaTableHack">Value</td>
+	</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot__ROLE.html">:ROLE</a></td>
+<td class="mozillaTableHack">Concrete</td>
+</tr>
+<tr>
+<td class="mozillaTableHack"><img src="images/slot.gif" width="16" height="16" border="0" align="middle"></td>
+<td class="mozillaTableHack"><a href="slot__SLOT-CONSTRAINTS.html">:SLOT-CONSTRAINTS</a></td>
+<td class="mozillaTableHack">&nbsp;</td>
+</tr>
+</table>
+<br>
+<a name="direct_instances"></a>
+<span class="sectionTitle">Instances</span>
+<ul class="iconList">
+	<li class="directInstance"><A HREF="signalchain_Class40007.html">Fractal Audio Axe-FX II</A></li>
+	<li class="directInstance"><A HREF="signalchain_Class100009.html">TC Electronic G-Major 2</A></li>
+</ul><br>
+&nbsp;&nbsp;<a href="#top"><span style="font-weight: bold;">^ back to top</span></a>
+</div><br>
+<span class="generalContentBold">Return to <a href="index.html" target="_self">Class Hierarchy</a></span><br><br>
+<span class="generalContentBold">Generated: 10/26/2015, 7:22:20 PM, Eastern Daylight Time</span><br><br>
+<!-- BEGIN FOOTER -->
+<span class="legal">Prot&eacute;g&eacute; is a trademark of Stanford University, Copyright (c) 1998-2011 Stanford University.</span><br><br>
+<!-- END FOOTER -->

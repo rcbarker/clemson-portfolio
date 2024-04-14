@@ -1,0 +1,310 @@
+-- Ryan Barker --
+-- ECE 3270
+-- Dr. Smith
+-- Lab5a.vhdl
+--
+-- Purpose: 
+--
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+-- Declare Controller Test --
+ENTITY Lab5_Processor IS 
+GENERIC (N : INTEGER := 16);
+PORT (DIN      : IN std_logic_vector(N - 1 DOWNTO 0); 
+	   Run      : IN std_logic;
+	   Resetn   : IN std_logic;
+	   Clk      : IN std_logic;	
+      Data_Bus : BUFFER std_logic_vector(N - 1 DOWNTO 0);		
+		Done     : OUT std_logic);
+END Lab5_Processor;
+
+-- Architecture of Controller Test --
+ARCHITECTURE Lab5_Processor_B OF Lab5_Processor IS
+    SIGNAL IR_to_ctrl : std_logic_vector(8 DOWNTO 0);
+	 SIGNAL IR_in : std_logic;
+	 SIGNAL ctrl_to_DecX : std_logic_vector(2 DOWNTO 0);
+	 SIGNAL ctrl_to_DecY : std_logic_vector(2 DOWNTO 0);
+	 SIGNAL decX0, decX1, decX2, decX3, decX4, decX5,
+	        decX6, decX7, decY0, decY1, decY2, decY3,
+			  decY4, decY5, decY6, decY7 : std_logic;
+    SIGNAL R0_out, R1_out, R2_out, R3_out, R4_out, R5_out, R6_out, 
+	        R7_out, G_out, DIN_out, R0_in, R1_in, R2_in, R3_in, R4_in, 
+			  R5_in, R6_in, R7_in, A_in, G_in, AddSub : std_logic;
+    SIGNAL R0_to_mux, R1_to_mux, R2_to_mux, R3_to_mux, R4_to_mux,
+	        R5_to_mux, R6_to_mux, R7_to_mux, Adder_to_mux : 
+			  std_logic_vector(N - 1 DOWNTO 0);
+	 SIGNAL RA_to_Adder, Adder_to_RG, 
+	        RG_to_mux : std_logic_vector(N - 1 DOWNTO 0);
+			  
+    COMPONENT Lab5_Ctrl
+    PORT (IR       : IN std_logic_vector(8 DOWNTO 0); 
+	       Run      : IN std_logic;
+	       Resetn   : IN std_logic;
+		    Clk      : IN std_logic;
+			 DecX0    : IN std_logic;
+			 DecX1    : IN std_logic;
+			 DecX2    : IN std_logic;
+			 DecX3    : IN std_logic;
+			 DecX4    : IN std_logic;
+			 DecX5    : IN std_logic;
+			 DecX6    : IN std_logic;
+			 DecX7    : IN std_logic;
+			 DecY0    : IN std_logic;
+			 DecY1    : IN std_logic;
+			 DecY2    : IN std_logic;
+			 DecY3    : IN std_logic;
+			 DecY4    : IN std_logic;
+			 DecY5    : IN std_logic;
+			 DecY6    : IN std_logic;
+			 DecY7    : IN std_logic;
+		    IR_in    : OUT std_logic;
+			 R0_out   : OUT std_logic;
+			 R1_out   : OUT std_logic;
+			 R2_out   : OUT std_logic;
+			 R3_out   : OUT std_logic;
+			 R4_out   : OUT std_logic;
+			 R5_out   : OUT std_logic;
+			 R6_out   : OUT std_logic;
+			 R7_out   : OUT std_logic;
+		    G_out    : OUT std_logic;
+			 DIN_out  : OUT std_logic;
+			 R0_in    : OUT std_logic;
+			 R1_in    : OUT std_logic;
+			 R2_in    : OUT std_logic;
+			 R3_in    : OUT std_logic;
+			 R4_in    : OUT std_logic;
+			 R5_in    : OUT std_logic;
+			 R6_in    : OUT std_logic;
+			 R7_in    : OUT std_logic;
+		    A_in     : OUT std_logic;
+			 G_in     : OUT std_logic;
+          AddSub   : OUT std_logic;			
+			 Done     : OUT std_logic;
+		    DecX_out : OUT std_logic_vector(2 DOWNTO 0);
+			 DecY_out : OUT std_logic_vector(2 DOWNTO 0));
+    END COMPONENT;
+	 
+	 COMPONENT Lab5_Decoder
+    PORT (input : IN std_logic_vector(2 DOWNTO 0);
+          out0  : OUT std_logic;
+          out1  : OUT std_logic;
+          out2  : OUT std_logic;
+          out3  : OUT std_logic;
+          out4  : OUT std_logic;
+          out5  : OUT std_logic;
+          out6  : OUT std_logic;
+          out7  : OUT std_logic);
+    END COMPONENT;
+	 
+	 COMPONENT Lab5_IR
+    PORT (input  : IN std_logic_vector(8 DOWNTO 0);
+          load   : IN std_logic;
+	  		 clk    : IN std_logic;
+			 output : OUT std_logic_vector(8 DOWNTO 0));
+    END COMPONENT;
+	 
+	 COMPONENT Lab5_Reg
+	 PORT (input  : IN std_logic_vector(N - 1 DOWNTO 0);
+         load   : IN std_logic;
+			clk    : IN std_logic;
+			output : OUT std_logic_vector(N - 1 DOWNTO 0));
+	 END COMPONENT;
+	 
+	 COMPONENT Lab5_Mux
+    PORT (reg0_in   : IN std_logic_vector(N - 1 DOWNTO 0);
+	       reg1_in   : IN std_logic_vector(N - 1 DOWNTO 0);
+	       reg2_in   : IN std_logic_vector(N - 1 DOWNTO 0);			
+	       reg3_in   : IN std_logic_vector(N - 1 DOWNTO 0);	
+	       reg4_in   : IN std_logic_vector(N - 1 DOWNTO 0);
+	       reg5_in   : IN std_logic_vector(N - 1 DOWNTO 0);		
+	       reg6_in   : IN std_logic_vector(N - 1 DOWNTO 0);
+	       reg7_in   : IN std_logic_vector(N - 1 DOWNTO 0);
+          data_in   : IN std_logic_vector(N - 1 DOWNTO 0);
+	       adder_in  : IN std_logic_vector(N - 1 DOWNTO 0);
+          reg0_out  : IN std_logic;
+	       reg1_out  : IN std_logic;
+	       reg2_out  : IN std_logic;			
+	       reg3_out  : IN std_logic;	
+	       reg4_out  : IN std_logic;
+	       reg5_out  : IN std_logic;		
+	       reg6_out  : IN std_logic;
+	       reg7_out  : IN std_logic;
+          data_out  : IN std_logic;
+	       adder_out : IN std_logic;
+			 output    : OUT std_logic_vector(N - 1 DOWNTO 0));
+    END COMPONENT;
+	 
+	 COMPONENT Lab5_AddSub
+    PORT (in1   : IN std_logic_vector(N - 1 DOWNTO 0);
+	       in2   : IN std_logic_vector(N - 1 DOWNTO 0);
+			 mode  : IN std_logic;
+			 sum   : OUT std_logic_vector(N - 1 DOWNTO 0);
+			 c_out : OUT std_logic);
+    END COMPONENT;
+BEGIN
+    Ctrl: Lab5_Ctrl
+    PORT MAP (IR       => IR_to_ctrl,
+	           Run      => Run,
+	           Resetn   => Resetn,
+		        Clk      => Clk,
+			     DecX0    => decX0,
+			     DecX1    => decX1,
+			     DecX2    => decX2,
+			     DecX3    => decX3,
+			     DecX4    => decX4,
+			     DecX5    => decX5,
+			     DecX6    => decX6,
+			     DecX7    => decX7,
+			     DecY0    => decY0,
+			     DecY1    => decY1,
+			     DecY2    => decY2,
+		  	     DecY3    => decY3,
+			     DecY4    => decY4,
+			     DecY5    => decY5,
+			     DecY6    => decY6,
+			     DecY7    => decY7,
+		        IR_in    => IR_in,
+			     R0_out   => R0_out,
+			     R1_out   => R1_out,
+			     R2_out   => R2_out,
+			     R3_out   => R3_out,
+			     R4_out   => R4_out,
+			     R5_out   => R5_out,
+			     R6_out   => R6_out,
+			     R7_out   => R7_out,
+		        G_out    => G_out,
+			     DIN_out  => DIN_out,
+			     R0_in    => R0_in,
+			     R1_in    => R1_in,
+			     R2_in    => R2_in, 
+			     R3_in    => R3_in,
+			     R4_in    => R4_in,
+				  R5_in    => R5_in,
+				  R6_in    => R6_in,
+				  R7_in    => R7_in,
+				  A_in     => A_in,
+				  G_in     => G_in,
+				  AddSub   => AddSub,		
+				  Done     => Done,
+				  DecX_out => ctrl_to_DecX,
+				  DecY_out => ctrl_to_DecY);
+				  
+DecX: Lab5_Decoder
+    PORT MAP (input => ctrl_to_DecX,
+              out0  => decX0,
+              out1  => decX1,
+              out2  => decX2,
+              out3  => decX3,
+              out4  => decX4,
+              out5  => decX5,
+              out6  => decX6,
+              out7  => decX7);
+				  
+DecY: Lab5_Decoder
+    PORT MAP (input => ctrl_to_DecY,
+              out0  => decY0,
+              out1  => decY1,
+              out2  => decY2,
+              out3  => decY3,
+              out4  => decY4,
+              out5  => decY5,
+              out6  => decY6,
+              out7  => decY7);
+				  
+IR: Lab5_IR
+    PORT MAP (input => IR_bits,
+              load  => IR_in,
+	  		     clk   => Clk,
+			     output => IR_to_ctrl);
+				  
+Reg0: Lab5_Reg
+	 PORT MAP (input  => Data_Bus,
+              load   => Reg0_in,
+			     clk    => Clk,
+			     output => R0_to_mux);
+			
+Reg1: Lab5_Reg
+	 PORT MAP (input  => Data_Bus,
+              load   => Reg1_in,
+			     clk    => Clk,
+			     output => R1_to_mux);
+
+Reg2: Lab5_Reg
+	 PORT MAP (input  => Data_Bus,
+              load   => Reg2_in,
+			     clk    => Clk,
+			     output => R2_to_mux);
+
+Reg3: Lab5_Reg
+	 PORT MAP (input  => Data_Bus,
+              load   => Reg3_in,
+			     clk    => Clk,
+			     output => R3_to_mux);
+
+Reg4: Lab5_Reg
+	 PORT MAP (input  => Data_Bus,
+              load   => Reg4_in,
+			     clk    => Clk,
+			     output => R4_to_mux);
+
+Reg5: Lab5_Reg
+	 PORT MAP (input  => Data_Bus,
+              load   => Reg5_in,
+			     clk    => Clk,
+			     output => R5_to_mux);
+
+Reg6: Lab5_Reg
+	 PORT MAP (input  => Data_Bus,
+              load   => Reg6_in,
+			     clk    => Clk,
+			     output => R6_to_mux);
+			
+Reg7: Lab5_Reg
+	 PORT MAP (input  => Data_Bus,
+              load   => Reg7_in,
+			     clk    => Clk,
+			     output => R7_to_mux);
+
+RegA: Lab5_Reg
+	 PORT MAP (input  => Data_Bus,
+              load   => A_in,
+			     clk    => Clk,
+			     output => RA_to_Adder);
+
+RegG: Lab5_Reg
+	 PORT MAP (input  => Adder_to_RegG,
+              load   => G_in,
+			     clk    => Clk,
+			     output => RG_to_mux);
+			
+Mux: Lab5_Mux
+    PORT MAP (reg0_in   => R0_to_mux,
+	           reg1_in   => R1_to_mux,
+	           reg2_in   =>	R2_to_mux,		
+	           reg3_in   =>	R3_to_mux,
+	           reg4_in   => R4_to_mux,
+	           reg5_in   => R5_to_mux,
+	           reg6_in   => R6_to_mux,
+	           reg7_in   => R7_to_mux,
+              data_in   => DIN,
+				  adder_in  => RG_to_mux,
+				  reg0_out  => R0_out,
+				  reg1_out  => R1_out,
+				  reg2_out  =>	R2_out,		
+				  reg3_out  =>	R3_out,
+				  reg4_out  => R4_out,
+				  reg5_out  => R5_out,
+				  reg6_out  => R6_out,
+				  reg7_out  => R7_out,
+				  data_out  => DIN_out,
+				  adder_out => G_out,
+				  output    => Data_Bus);
+				  
+Adder: Lab5_AddSub
+    PORT MAP (in1   => RA_to_Adder,
+	           in2   => Data_Bus,
+			     mode  => AddSub,
+			     sum   => Adder_to_RG);
+END Lab5_Processor_B;

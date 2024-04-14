@@ -1,0 +1,15 @@
+The below shows some runtimes of the equilibrium driver (-e) for various starting flags. It also
+shows the state of the chunk list after the driver closes. Notice the complete elimation of 
+fragmentation that coalescing provides.
+
+Search P    Roving P  Coalescing   |   Time (ms)   List Size (Chunks)   Total Memory (B)
+   F           R         Off       |    4545.55         49737               10346496
+   F           R         On        |    237.207           1                  770048
+   F           H         Off       |    1517.61         50659               13041664
+   F           H         On        |    260.869           1                  741376
+   B           R         Off       |    689.929         7141                 933888
+   B           R         On        |    264.162           1                  704512
+   B           H         Off       |    501.292         7141                 933888
+   B           H         On        |    259.4             1                  708608 
+
+System: 191.376 ms 1 chunk in list 135168 B

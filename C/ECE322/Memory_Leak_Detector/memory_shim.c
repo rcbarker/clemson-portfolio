@@ -1,0 +1,130 @@
+/* Ryan Barker
+   ECE 3220 - Operating Systems
+   Spring 2015, Section 2
+   memory_shim.c
+   
+   Purpose: This file generates a shared object library used by leakcount.c
+            to intercept all malloc and free calls. The functions in this 
+            library keep track of all dynamic memory allocations and frees
+            as a calling process makes them. When the library this file creates
+            is destructed, it writes all memory leaks made by the calling process
+            to the file leaks.txt. 
+ */
+
+#define _GNU_SOURCE
+
+void __attribute__ ((constructor)) memory_init(void);
+void __attribute__ ((destructor)) report_leaks(void);
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <dlfcn.h>
+
+/* Global Constants */
+#define TRUE 1
+#define FALSE 0
+
+/* Global Variables and Function Pointers */
+void *(*original_malloc)(size_t) = NULL;
+void (*original_free)(void *) = NULL;
+void **ptrs_allocated = NULL;
+int *freed_ptrs = NULL;
+size_t *malloced_bytes = NULL;
+int num_allocations = 0;
+
+/* Function Name: report_leaks
+   Input value(s): none
+   Return value(s): none
+   Purpose: Analyzes and prints all memory leaks made by the calling process 
+            to the file leaks.txt. Also cleans up all dynamic memory allocations 
+            made by this file before the library it generates is destructed.
+ */ 
+void report_leaks(void)
+{
+    /* Open leaks.txt for writing */
+    FILE *output = fopen("leaks.txt", "w");
+
+    /* Loop through arrays and print leaks to leaks.txt as they are found. 
+       Note mallocs are in the order they occured. Also note that calling fopen
+       calls malloc, so we don't want to count the last allocation as a leak */
+    int index;
+    for(index = 0; index < num_allocations - 1; ++index) {
+        if(!freed_ptrs[index]) fprintf(output, "%d\n", (int) malloced_bytes[index]);
+    }
+
+    /* Close file */
+    fclose(output);
+
+    /* Free all dynamic memory with original free function */
+    original_free(ptrs_allocated);
+    original_free(freed_ptrs);
+    original_free(malloced_bytes);
+}
+
+/* Function Name: memory_init
+   Input value(s): none
+   Return value(s): none
+   Purpose: Initializes library by obtaining the addresses of the system
+            malloc and free for later use.
+ */ 
+void memory_init(void)
+{
+    /* Get addresses of system malloc and free */
+    if (original_free == NULL) original_free = dlsym(RTLD_NEXT, "free");
+    if (original_malloc == NULL) original_malloc = dlsym(RTLD_NEXT, "malloc");
+}
+
+/* Function Name: malloc
+   Input value(s): size, a size_t variable representing the amount of 
+                   memory the user wishes to malloc in bytes.
+   Return value(s): The first address of the memory for the user.
+   Purpose: A function that intercepts all library calls to malloc and
+            uses three global arrays to keep track of all memory the user
+            allocates before calling the system malloc.
+ */ 
+void *malloc(size_t size)
+{
+    /* Increment number of allocations */
+    num_allocations++;
+
+    /* Realloc all arrays */
+    ptrs_allocated = realloc(ptrs_allocated, num_allocations*sizeof(void *));
+    freed_ptrs = realloc(freed_ptrs, num_allocations*sizeof(int));
+    malloced_bytes = realloc(malloced_bytes, num_allocations*sizeof(size_t));
+
+    /* Call system malloc and store return */
+    void *ptr = original_malloc(size);
+
+    /* Insert information into last slot of arrays */
+    ptrs_allocated[num_allocations - 1] = ptr;
+    freed_ptrs[num_allocations - 1] = FALSE;
+    malloced_bytes[num_allocations - 1] = size;
+
+    /* Return ptr to user */
+    return ptr;
+}
+
+/* Function Name: free
+   Input value(s): ptr, a pointer to the first address in a block of dynamic 
+                   memory the calling process wishes to return. 
+   Return value(s): none
+   Purpose: A function that interceps all library calls to free and marks that
+            block as returned in this file's three global arrays, so they aren't
+            counted as leaked. It then calls the system free to actually free the
+            memory.
+ */ 
+void free(void *ptr)
+{
+    if(ptr == NULL) return;
+
+    /* Roam to find index of ptr being freed */
+    int index;
+    for(index = 0; index < num_allocations; ++index) 
+        if(ptrs_allocated[index] == ptr && !freed_ptrs[index]) break;
+
+    /* Set boolean freed_ptrs array to TRUE in index */
+    if(index < num_allocations) freed_ptrs[index] = TRUE;
+
+    /* Call system free */
+    original_free(ptr);
+}

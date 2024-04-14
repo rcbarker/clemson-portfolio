@@ -1,0 +1,92 @@
+# do Lab5_run_msim_rtl_vhdl.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying /usr/commercial_amd64/altera/13.0sp1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied /usr/commercial_amd64/altera/13.0sp1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vcom -93 -work work {/users/rcbarke/ECE327/Lab5/Lab5_Reg.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab5_Reg
+# -- Compiling architecture Lab5_Reg_B of Lab5_Reg
+# vcom -93 -work work {/users/rcbarke/ECE327/Lab5/Lab5_IR.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab5_IR
+# -- Compiling architecture Lab5_IR_B of Lab5_IR
+# vcom -93 -work work {/users/rcbarke/ECE327/Lab5/Lab5_Mux.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab5_Mux
+# -- Compiling architecture Lab5_Mux_B of Lab5_Mux
+# vcom -93 -work work {/users/rcbarke/ECE327/Lab5/Lab5_AddSub.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity One_Bit_Full_Adder
+# -- Compiling architecture One_Bit_Full_Adder_B of One_Bit_Full_Adder
+# -- Compiling entity Lab5_AddSub
+# -- Compiling architecture Lab5_AddSub_B of Lab5_AddSub
+# vcom -93 -work work {/users/rcbarke/ECE327/Lab5/Lab5_Ctrl.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab5_Ctrl
+# -- Compiling architecture Lab5_Ctrl_B of Lab5_Ctrl
+# vcom -93 -work work {/users/rcbarke/ECE327/Lab5/Lab5_Decoder.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab5_Decoder
+# -- Compiling architecture Lab5_Decoder_B of Lab5_Decoder
+# vcom -93 -work work {/users/rcbarke/ECE327/Lab5/Lab5_Processor.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab5_Processor
+# -- Compiling architecture Lab5_Processor_B of Lab5_Processor
+# 
+# vcom -93 -work work {/users/rcbarke/ECE327/Lab5/simulation/modelsim/Lab5_Processor.vht}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab5_Processor_vhd_tst
+# -- Compiling architecture Lab5_Processor_arch of Lab5_Processor_vhd_tst
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneive -L rtl_work -L work -voptargs="+acc"  Lab5_Processor_vhd_tst
+# vsim -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneive -L rtl_work -L work -voptargs=\"+acc\" -t 1ps Lab5_Processor_vhd_tst 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.lab5_processor_vhd_tst(lab5_processor_arch)
+# Loading work.lab5_processor(lab5_processor_b)
+# Loading work.lab5_ctrl(lab5_ctrl_b)
+# Loading work.lab5_decoder(lab5_decoder_b)
+# Loading work.lab5_ir(lab5_ir_b)
+# Loading work.lab5_reg(lab5_reg_b)
+# Loading work.lab5_mux(lab5_mux_b)
+# Loading work.lab5_addsub(lab5_addsub_b)
+# Loading work.one_bit_full_adder(one_bit_full_adder_b)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all

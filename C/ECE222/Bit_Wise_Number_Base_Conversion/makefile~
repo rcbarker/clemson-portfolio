@@ -1,0 +1,19 @@
+CC= gcc
+CFLAGS= -Wall -g
+
+BINS= edgedetection memscanner quartocthex tictactiger wordswithinwords
+
+all: $(BINS)
+
+quartocthex: quartocthex.c
+	$(CC) $(CFLAGS) -o quartocthex quartocthex.c
+
+tictactiger: tictactiger.c
+	$(CC) $(CFLAGS) -o tictactiger tictactiger.c
+
+wordswithinwords: wordswithinwords.c
+	$(CC) $(CFLAGS) -o wordswithinwords wordswithinwords.c
+
+clean:
+	rm -f $(BINS) core
+

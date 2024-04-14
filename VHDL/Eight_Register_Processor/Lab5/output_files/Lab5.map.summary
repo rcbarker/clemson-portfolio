@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Fri Apr 17 16:37:34 2015
+Quartus II 32-bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version
+Revision Name : Lab5
+Top-level Entity Name : Lab5_Processor
+Family : Cyclone IV E
+Total logic elements : 320
+    Total combinational functions : 182
+    Dedicated logic registers : 173
+Total registers : 173
+Total pins : 205
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

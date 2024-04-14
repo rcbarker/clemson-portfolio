@@ -1,0 +1,91 @@
+# Reading F:/altera/14.1/modelsim_ase/tcl/vsim/pref.tcl
+# do Mux2to1_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim PE vmap 10.3c Lib Mapping Utility 2014.09 Sep 20 2014
+# vmap -modelsim_quiet work rtl_work 
+# Copying F:/altera/14.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied F:/altera/14.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vcom -93 -work work {C:/Users/Ryan/Dropbox/Clemson Portfolio/VHDL Code/Multiplexer + 7 Segment Display/Lab1/Lab1d.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 21:06:06 on Mar 05,2015
+# vcom -reportprogress 300 -93 -work work C:/Users/Ryan/Dropbox/Clemson Portfolio/VHDL Code/Multiplexer + 7 Segment Display/Lab1/Lab1d.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab1d
+# -- Compiling architecture Structural of Lab1d
+# End time: 21:06:08 on Mar 05,2015, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/Ryan/Dropbox/Clemson Portfolio/VHDL Code/Multiplexer + 7 Segment Display/Lab1/Lab1c.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 21:06:08 on Mar 05,2015
+# vcom -reportprogress 300 -93 -work work C:/Users/Ryan/Dropbox/Clemson Portfolio/VHDL Code/Multiplexer + 7 Segment Display/Lab1/Lab1c.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Decoder3to7
+# -- Compiling architecture Behavioral of Decoder3to7
+# -- Compiling entity Lab1c
+# -- Compiling architecture Structural of Lab1c
+# End time: 21:06:09 on Mar 05,2015, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/Ryan/Dropbox/Clemson Portfolio/VHDL Code/Multiplexer + 7 Segment Display/Lab1/Lab1b.vhdl}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 21:06:09 on Mar 05,2015
+# vcom -reportprogress 300 -93 -work work C:/Users/Ryan/Dropbox/Clemson Portfolio/VHDL Code/Multiplexer + 7 Segment Display/Lab1/Lab1b.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity Mux5to1
+# -- Compiling architecture Behavioral of Mux5to1
+# -- Compiling entity Mux5to1_3Bit
+# -- Compiling architecture Struct1 of Mux5to1_3Bit
+# -- Compiling entity Lab1b
+# -- Compiling architecture Struct2 of Lab1b
+# End time: 21:06:11 on Mar 05,2015, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {C:/Users/Ryan/Dropbox/Clemson Portfolio/VHDL Code/Multiplexer + 7 Segment Display/Lab1/simulation/modelsim/Lab1d.vht}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 21:06:11 on Mar 05,2015
+# vcom -reportprogress 300 -93 -work work C:/Users/Ryan/Dropbox/Clemson Portfolio/VHDL Code/Multiplexer + 7 Segment Display/Lab1/simulation/modelsim/Lab1d.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Lab1d_vhd_tst
+# -- Compiling architecture Lab1d_arch of Lab1d_vhd_tst
+# End time: 21:06:12 on Mar 05,2015, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneive -L rtl_work -L work -voptargs="+acc"  lab1d_vhd_tst
+# vsim -gui "+altera" -l msim_transcript -do "Mux2to1_run_msim_rtl_vhdl.do" 
+# Start time: 21:06:12 on Mar 05,2015
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.lab1d_vhd_tst(lab1d_arch)
+# Loading work.lab1d(structural)
+# Loading work.mux5to1_3bit(struct1)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.mux5to1(behavioral)
+# Loading work.decoder3to7(behavioral)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+run
+# End time: 21:09:11 on Mar 05,2015, Elapsed time: 0:02:59
+# Errors: 0, Warnings: 0

@@ -1,0 +1,421 @@
+/* Ryan Barker
+   ECE 3220 - Operating Systems
+   Spring 2015, Section 2
+   allocator.c
+
+   Purpose: Allocator Library containing direct replacements for malloc, calloc,
+            realloc, and free. Uses mmap and segregated free lists to perform
+            allocations/frees. 
+ */
+
+#define _GNU_SOURCE
+
+void __attribute__ ((constructor)) alloc_init(void);
+void __attribute__ ((destructor)) alloc_destruct(void);
+
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/mman.h>
+#include <stdint.h>
+#include <string.h>
+#include <math.h>
+#include <assert.h>
+#include "allocator.h"
+
+/* Global Variables */
+mem_page_header_t *page_lists[NUM_LISTS];
+int fd = -1;
+
+/* Function Name: alloc_destruct
+   Input value(s): none
+   Return value(s): none
+   Purpose: Simply closes /dev/zero/ when the library cleans up.
+ */ 
+void alloc_destruct(void)
+{
+    /* Close /dev/zero/. */
+    close(fd);
+}
+
+/* Function Name: alloc_init
+   Input value(s): none
+   Return value(s): none
+   Purpose: Initializes page list data structure and opens /dev/zero/
+            when the library begins running.
+ */ 
+void alloc_init(void)
+{
+    /* Initialize page lists array to NULL. */
+    int i;
+    for(i = 0; i < NUM_LISTS; ++i) page_lists[i] = NULL;
+
+    /* Needed for initializing new memory to zero. */
+    fd = open("/dev/zero", O_RDWR);
+}
+
+/* Function Name: get_page
+   Input value(s): page_list_db_ptr, a double pointer to the page list for the 
+                       new page to be added to.
+                   object_size, the size of each chunk of user memory in bytes
+                       for the page to divide into.
+   Return value(s): If mmap succeeded, returns the address of the header block of
+                        the new page.
+                    If mmap failed, returns NULL to signify the system is out of
+                        virtual memory.
+   Purpose: Used by malloc and calloc to initialize a new page of memory
+                into a header block and linked list of object headers. The size of
+                the user memory in each object is given by the second input to this
+                function.
+ */
+mem_page_header_t *get_page(mem_page_header_t **page_list_db_ptr, int object_size)
+{
+    /* Map a new page. */
+    mem_page_header_t *page_header = mmap(NULL, PAGESIZE,
+                                          PROT_READ | PROT_WRITE,
+                                          MAP_PRIVATE, fd, 0);
+    if(page_header == MAP_FAILED) return NULL; // Return NULL if unable to
+                                               // map more memory.
+ 
+    /* Initialize alloc list and size in page header. */
+    page_header->alloc_list = NULL;
+    page_header->size = object_size;
+
+    /* Insert new page into the front of the page list. */
+    page_header->next_pg = *page_list_db_ptr;
+    *page_list_db_ptr = page_header;
+
+    /* Carve objects of object_size with metadata (next ptr) and link together. Note
+       that this algorithm takes advantage of uint8_t pointers, since uint8_t's are 
+       1B. This allows for pointer arithmetic on a byte-by-byte basis. */
+    uint8_t *object_rover = (uint8_t *) page_header + sizeof(mem_page_header_t);
+    int total_obj_size = sizeof(mem_obj_header_t) + object_size;
+    int remaining_memory = PAGESIZE - sizeof(mem_page_header_t) - total_obj_size;
+    mem_obj_header_t *prev_object = NULL, *curr_object = NULL;
+
+    do {
+        /* Save previous object and move to next object. */
+        prev_object = (mem_obj_header_t *) object_rover;
+        object_rover += total_obj_size;
+        curr_object = (mem_obj_header_t *) object_rover;        
+
+        /* Initialize previous object. */
+        prev_object->next = curr_object;
+
+        /* Initialize current object. Note this line will 
+           be overwritten for everything except the last object. */
+        curr_object->next = NULL;
+
+        /* Update remaining for new object. */
+        remaining_memory -= total_obj_size;
+    } while(remaining_memory - total_obj_size > 0);
+
+    /* Set free list to the first object in the newly created object list. */
+    object_rover = (uint8_t *) page_header + sizeof(mem_page_header_t); // Moves back to start
+                                                                        // of object list.
+    page_header->free_list = (mem_obj_header_t *) object_rover;         
+ 
+    /* Give the new, initialized page to malloc/calloc. */
+    return page_header;
+}
+
+/* Function Name: malloc
+   Input value(s): size, a size_t variable representing the amount of 
+                       memory the user wishes to allocate in bytes.
+   Return value(s): A pointer to the front of the new memory for the user.
+   Purpose: Dynamically allocates an object with capacity >= size bytes for 
+               the user. Uses segregated free lists for small objects and mmaps 
+               any object > 1024B independently. The allocated memory is not initialized.
+ */ 
+void *malloc(size_t size)
+{
+    /* Don't do anything if the user doesn't want memory or constructor hasn't run yet. */
+    if     (size == 0 || fd == -1) return NULL; 
+    else if(size <= 1024) {
+        /* Find index in page list array for user's request. */
+        int index = -1; 
+            
+        /* Computes index = floor(log2(size)) - 1 unless
+           size is a power of two, where it subtracts one
+           before computing to attain correct index. */
+        size_t log2 = size;
+        if(!(log2 % 2)) log2--;
+        while(log2 != 0) {
+            log2 = log2 >> 1;
+            index++;
+        }
+
+        /* Search free list of each page in page list for an available object. */
+        mem_page_header_t *page_rover = page_lists[index];
+        while(page_rover != NULL && page_rover->free_list == NULL) 
+            page_rover = page_rover->next_pg;
+
+        if(page_rover == NULL) {
+            /* No object found. Get a new page and place in current page list. */
+            mem_page_header_t *new_page = get_page(page_lists + index, pow(2, index + 1));
+            if(new_page == NULL) return NULL; // Return NULL if unable 
+                                              // to get more memory.
+
+            /* Make a recursive call to allocate new memory for user. */
+            return malloc(size);
+        } else {
+            /* Object found. Assign to user. */
+
+            /* Remove object header from the front of this page's free list. */
+            mem_obj_header_t *object_header = page_rover->free_list;
+            page_rover->free_list = object_header->next;
+
+            /* Insert object header into the front of this page's allocated list. */
+            object_header->next = page_rover->alloc_list;
+            page_rover->alloc_list = object_header;
+
+            /* Move object_header into object and give to user. */
+            object_header = object_header + 1;
+            return object_header;
+        }
+    } else {
+        /* Large Object: Handle separate from object lists. */
+
+        /* Find total bytes necessary and allocate page(s). */
+        size_t total_size = size + sizeof(mem_page_header_t);     
+        mem_page_header_t *large_obj = (mem_page_header_t *) mmap(NULL, total_size,
+                                                                  PROT_READ | PROT_WRITE,
+                                                                  MAP_PRIVATE, fd, 0);
+        if(large_obj == MAP_FAILED) return NULL; // Return NULL if unable 
+                                                 // to get more memory.
+
+        /* Initialize header of first page allocated. */
+        large_obj->free_list = NULL;
+        large_obj->alloc_list = NULL;
+        large_obj->size = size;
+        large_obj->next_pg = NULL;
+
+        /* Give page(s) to user. */
+        large_obj = large_obj + 1;
+        return large_obj;
+    }
+}
+
+/* Function Name: calloc
+   Input value(s): nmemb, a size_t variable representing the number of
+                       elements the user wants to allocate.
+                   size, a size_t variable representing the size of the
+                       elements the user wishes to allocate in bytes.
+   Return value(s): A pointer to the front of the new memory for the user.
+   Purpose: Dynamically allocates an object with capacity >= nmemb x size bytes for 
+               the user. Uses segregated free lists for small objects and mmaps 
+               any object > 1024B independently. The allocated memory is initialized to zero.
+ */ 
+void *calloc(size_t nmemb, size_t size)
+{
+    /* Compute real size needed. */
+    size_t real_size = nmemb * size;
+
+    /* Don't do anything if the user doesn't want memory or constructor hasn't run yet. */
+    if     (real_size == 0 || fd == -1) return NULL;
+    else if(real_size <= 1024) { 
+        /* Find index in page list array for user's request. */
+        int index = -1; 
+        
+        /* Computes index = floor(log2(real_size)) - 1 unless
+           real_size is a power of two, where it subtracts one
+           before computing to attain correct index. */
+        size_t log2 = real_size;
+        if(!(log2 % 2)) log2--;
+        while(log2 != 0) {
+            log2 = log2 >> 1;
+            index++;
+        }
+
+        /* Save object size for later use. */
+        int object_size = pow(2, index + 1);
+
+        /* Search free list of each page in page list for an available object. */
+        mem_page_header_t *page_rover = page_lists[index]; 
+        while(page_rover != NULL && page_rover->free_list == NULL) 
+            page_rover = page_rover->next_pg;
+
+        if(page_rover == NULL) {
+            /* No object found. Get a new page and place in current page list. */
+            mem_page_header_t *new_page = get_page(page_lists + index, object_size);
+            if(new_page == NULL) return NULL; // Return NULL if unable 
+                                              // to get more memory.
+
+            /* Make a recursive call to allocate new memory for user. */
+            return calloc(nmemb, size);
+        } else {
+            /* Object found. Assign to user. */
+
+            /* Remove object header from the front of this page's free list. */
+            mem_obj_header_t *object_header = page_rover->free_list;
+            page_rover->free_list = object_header->next;
+
+            /* Insert object header into the front of this page's allocated list. */
+            object_header->next = page_rover->alloc_list;
+            page_rover->alloc_list = object_header;
+
+            /* Move object_header into object, initialize memory to zero, and give to user. */
+            object_header = object_header + 1;
+            return memset(object_header, 0, object_size);
+        }
+    } else {
+        /* Large Object: Handle separate from object lists. */
+
+        /* Find total bytes necessary and allocate page(s). */
+        size_t total_size = real_size + sizeof(mem_page_header_t);     
+        mem_page_header_t *large_obj = (mem_page_header_t *) mmap(NULL, total_size,
+                                                                  PROT_READ | PROT_WRITE,
+                                                                  MAP_PRIVATE, fd, 0);
+        if(large_obj == MAP_FAILED) return NULL; // Return NULL if unable 
+                                                 // to get more memory.
+
+        /* Initialize header of first page allocated. */
+        large_obj->free_list = NULL;
+        large_obj->alloc_list = NULL;
+        large_obj->size = real_size;
+        large_obj->next_pg = NULL;
+
+        /* Initialize and give page(s) to user. */
+        large_obj = large_obj + 1;
+        return memset(large_obj, 0, real_size);
+    }
+}
+
+/* Function Name: realloc
+   Input value(s): ptr, a pointer to the object the user wishes to resize.
+                   size, a size_t variable representing the new size for the
+                       user's object.
+   Return value(s): A pointer to the front of the new memory for the user.
+   Purpose: Reallocates the passed pointer to a new memory block of size bytes
+                and copies as much old data into the new memory as possible.
+ */ 
+void *realloc(void *ptr, size_t size)
+{
+    /* Don't do anything if constructor hasn't run yet */
+    if(fd == -1) return NULL;
+
+    if(ptr == NULL) {
+        /* Special Case: Simply return new memory. */
+        return malloc(size);
+    } else if(size == 0) {
+        /* Special Case: Free memory and return NULL. */
+        free(ptr);
+        return NULL;
+    }
+
+    /* Find page header. */
+    void *header_ptr = (void *) ((uintptr_t) ptr & (uintptr_t) 0xFFFFFFFFF000);
+    mem_page_header_t *page_header = (mem_page_header_t *) header_ptr;
+
+    /* If asking for the same size object, return current object. */
+    if(page_header->size == size) return ptr;
+
+    /* Malloc new memory of the new size and copy the user's data into
+       the new space. Use smallest of two sizes for the copy to avoid
+       copying into unallocated memory. */
+    void *new_memory = malloc(size);
+    if(new_memory == NULL) return NULL; // Return NULL if unable 
+                                        // to get more memory.
+
+    if(page_header->size < size) memcpy(new_memory, ptr, page_header->size);
+    else memcpy(new_memory, ptr, size);
+
+    /* Free the old pointer. */
+    free(ptr);
+ 
+    /* Give the user the new memory. */
+    return new_memory;
+}
+
+/* Function Name: free
+   Input value(s): ptr, a pointer to the object the user wishes to free. 
+   Return value(s): none
+   Purpose: Frees the object pointed to by ptr. If the object is <= 1024B,
+                it is moved from the appropriate alloc_list to the appropriate
+                free_list. If alloc_list is NULL after this operation, the
+                corresponding page is unmapped to save memory.
+
+            If the object is > 1024B, it is unmapped independent from the
+                segregated free lists.
+ */ 
+void free(void *ptr)
+{
+    /* Return when passed NULL or library not constructed. */
+    if(ptr == NULL || fd == -1) return;
+
+    /* Find page header. */
+    void *header_ptr = (void *) ((uintptr_t) ptr & (uintptr_t) 0xFFFFFFFFF000);
+    mem_page_header_t *page_header = (mem_page_header_t *) header_ptr;
+
+    if(page_header->size <= 1024) {
+        /* Back pointer up into object header. */
+        mem_obj_header_t *obj_header = (mem_obj_header_t *) ptr;
+        obj_header--;
+
+        /* Search alloc list of page to get previous pointer for object
+           being freed. */
+        mem_obj_header_t *previous_alloc = NULL;
+        mem_obj_header_t *alloc_rover = page_header->alloc_list;
+        while(alloc_rover != NULL && alloc_rover != obj_header) {
+            previous_alloc = alloc_rover;
+            alloc_rover = alloc_rover->next;
+        }
+
+        if(alloc_rover == NULL) return; // The object being freed isn't in the
+                                        // alloc list, so return.
+
+        /* Alloc rover should be equal to object being freed. */
+        assert(alloc_rover == obj_header);
+
+        /* Remove object from allocated list. */
+        if(page_header->alloc_list == alloc_rover) { 
+            /* At beginning of alloc list. */
+            page_header->alloc_list = alloc_rover->next;
+        } else {
+            /* In middle of alloc list or at the end of alloc list. */
+            previous_alloc->next = alloc_rover->next; 
+        }
+
+        /* Insert object into the first slot of this page's free list. */
+        alloc_rover->next = page_header->free_list;
+        page_header->free_list = alloc_rover;
+
+        /* Check if page can be unmapped. */
+        if(page_header->alloc_list == NULL) {
+            /* Find page list using usual algorithm. */
+            size_t size = page_header->size - 1; // Size guaranteed to
+            int index = -1;                      // be a power of two.
+            while(size != 0) {
+                size = size >> 1;
+                index++;
+            }
+
+            /* Remove from page list. */
+            if(page_lists[index] == page_header) { 
+                /* At front of page list. Take page out of list. */
+                mem_page_header_t **page_list_db_ptr = page_lists + index;
+                *page_list_db_ptr = page_header->next_pg;
+            } else {
+                /* In middle or at end of page list. Get previous pointer. */
+                mem_page_header_t *previous_page = page_lists[index];
+                while(previous_page->next_pg != page_header) 
+                    previous_page = previous_page->next_pg;
+
+                /* Link past page being unmapped. */
+                previous_page->next_pg = page_header->next_pg;
+            }
+
+            /* Unmap this page now that it is safely removed from the page list. */
+            munmap(page_header, PAGESIZE);
+        }
+    } else {
+        /* Large Object: Handle separate from object lists. */
+  
+        /* Find total amount of pages taken by object. */
+        size_t total_size = page_header->size + sizeof(mem_page_header_t);
+        int total_pages = total_size / PAGESIZE;
+        if(total_size % PAGESIZE) total_pages++;
+
+        /* Unmap page(s). */
+        munmap(page_header, total_pages * PAGESIZE);     
+    }
+}

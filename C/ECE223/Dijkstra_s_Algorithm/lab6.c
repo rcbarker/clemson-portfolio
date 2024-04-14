@@ -1,0 +1,417 @@
+/* lab6.c 
+ * Ryan Barker
+ * rcbarke
+ * Lab6: Graphs and Shortest Path
+ * ECE 223, Fall 2014
+ *
+ * Purpose: This file contains functions to calculate shortest paths and network
+ *          diameter through various graph types. The code works by using various
+ *          flags to set various global variables, which are printed when ./lab6 is
+ *          executed unless -o is specified.
+ *
+ *          The associated module for working with graphs, graph.c and graph.h, 
+ *          contains two methods of creating graphs and two versions of Djisktra's
+ *          Algorithm. These are also navigated by flags.
+ * 
+ * Assumptions: Compiled with graph.c and graph.h.
+ *
+ * Bugs: No currently known bugs.
+ */
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <assert.h>
+#include <math.h>
+#include <time.h>
+#include <unistd.h>
+
+#include "graph.h" 
+
+/* Data types for this file only */
+typedef struct location_tag {
+    float x;
+    float y; 
+} location_t;
+
+/* Global variables for command line parameters */
+int Graph_Type = 1;
+int Num_Vertices = 100;
+int Adj_Vertices = 20;
+int Graph_Op = 1;
+int Source_Vertex = 0;
+int Destination_Vertex = INF;
+int Fast = TRUE;
+int Safe_Mode = FALSE;
+int Verbose = FALSE;
+char Print_Type = 'L';
+int Off = FALSE;
+int Seed = 1431655765;
+
+/* prototypes for functions in this file only */
+void get_command_line(int argc, char **argv);
+void verify_command_line();
+void print_command_line_options();
+graph_t *get_graph();
+int get_weight(int src, int dest);
+float get_distance(location_t src, location_t dest);
+float get_data_rate(float dist, float range);
+void do_graph_operation(graph_t *G);
+
+int main(int argc, char **argv) 
+{
+    /* Read in and verify command line flags. */
+    get_command_line(argc, argv);
+    verify_command_line();
+
+    /* Print seed and seed the random number generator. */
+    printf("Seed: %d\n", Seed);
+    srand48(Seed);
+
+    printf("Welcome to MP6: Djisktra's Shortest Path Algorithm\n\n");
+    
+    /* Print command line options to inform user. */
+    if(!Off) print_command_line_options();
+
+    /* Build specified graph. */
+    graph_t *graph = get_graph();
+
+    /* Perform specified operation. */
+    do_graph_operation(graph);
+    
+    /* Clean up graph. */
+    graph_destruct(graph);
+
+    return 0;
+}
+
+/* Builds one of three types of graphs depending on the state of Graph Type, and returns
+   the graph that was built. Additionally, if graph type is three, this function uses 
+   graph_stats to print the max, min, and average neighbor values of the graph.
+
+   Graph Type States:
+   1 -> Builds the given weakly-connected, directed graph in the PDF.
+   2 -> Builds a strongly-connected, directed graph with weights given by
+        the formula in the PDF.
+   3 -> Builds a random graph representing a wireless network. Weight is based
+        on location in the network as outlined in the PDF. 
+ */
+graph_t *get_graph() 
+{
+    graph_t *G;
+
+    if(Graph_Type == 1) {
+        /* Graph is the weakly-connected, directed graph from the graph.bmp. */
+        G = graph_construct(7);
+
+        graph_add_edge(G, 1, 2, 3,  Safe_Mode);
+        graph_add_edge(G, 1, 6, 5,  Safe_Mode);
+        graph_add_edge(G, 2, 3, 7,  Safe_Mode);
+        graph_add_edge(G, 2, 4, 3,  Safe_Mode);
+        graph_add_edge(G, 2, 6, 10, Safe_Mode);
+        graph_add_edge(G, 3, 4, 5,  Safe_Mode);
+        graph_add_edge(G, 3, 5, 1,  Safe_Mode);
+        graph_add_edge(G, 4, 5, 6,  Safe_Mode);
+        graph_add_edge(G, 5, 6, 7,  Safe_Mode);
+        graph_add_edge(G, 6, 0, 4,  Safe_Mode);
+        graph_add_edge(G, 6, 3, 8,  Safe_Mode);
+        graph_add_edge(G, 6, 4, 9,  Safe_Mode);
+    } else if(Graph_Type == 2) {
+        /* Graph is a strongly-connected, directed graph. */
+        G = graph_construct(Num_Vertices);
+        int link_src, link_dest;
+        for(link_src = 0; link_src < Num_Vertices; link_src++) {
+            for(link_dest = 0; link_dest < Num_Vertices; link_dest++) {
+                if(link_src == link_dest) continue;
+                graph_add_edge(G, link_src, link_dest, get_weight(link_src, link_dest), 
+                               Safe_Mode);
+            }
+        }
+    } else {
+        /* Graph is a random graph representing a wireless network. */
+        G = graph_construct(Num_Vertices);
+        int link_src, link_dest;
+        location_t *loc_matrix = malloc(Num_Vertices * sizeof(location_t));
+
+        /* Initialize location values. */
+        loc_matrix[0].x = 0.0; loc_matrix[0].y = 0.5;
+        loc_matrix[Num_Vertices - 1].x = 1.0; loc_matrix[Num_Vertices - 1].y = 0.5;
+        for(link_src = 1; link_src < Num_Vertices - 1; link_src++) {
+            loc_matrix[link_src].x = drand48(); loc_matrix[link_src].y = drand48();
+        }
+
+        /* Calculate normalized communication range and minimum data rate. */
+        float C = pow(Adj_Vertices / (Num_Vertices * M_PI), 0.5);
+        float M = log10(1 + pow(1 / C, 2));
+
+        /* Assign weight to each vertex pair. */
+        for(link_src = 0; link_src < Num_Vertices; link_src++) {
+            for(link_dest = 0; link_dest < Num_Vertices; link_dest++) {
+                if(link_src == link_dest) continue;
+                else if(get_distance(loc_matrix[link_src], loc_matrix[link_dest]) <= C) {
+                    int W = floor(10.0 * (M / get_data_rate(get_distance(loc_matrix[link_src], 
+                                          loc_matrix[link_dest]), C))) + 1;
+                    graph_add_edge(G, link_src, link_dest, W, Safe_Mode);
+                }
+            }
+        } 
+
+        /* Free location matrix. */
+        free(loc_matrix);
+    }
+    
+    /* If verbose output enabled, print graph. */
+    if(Verbose) graph_debug_print(G, Print_Type);
+ 
+    /* If Graph Type was 3, print random graph stats. */
+    if(Graph_Type == 3) graph_stats(G);
+
+    return G;
+}
+
+/* Calculates weight between src and dest for Graph Type 2
+   based on given formula.
+ */
+int get_weight(int src, int dest) 
+{
+    if(src == dest) return 0;
+
+    return abs(src - dest) + pow(src - dest + 2, 2) + 3*dest;
+}
+
+/* Calculates distance from source to destination for Graph Type 3.
+ */
+float get_distance(location_t src, location_t dest) 
+{
+    return pow(pow(src.x - dest.x, 2) + pow(src.y - dest.y, 2), 0.5);
+}
+
+/* Calculates the data rate of transmission to destination given 
+   the distance from the source to the destination and the commmunication
+   range of the wireless network in Graph Type 3.
+ */
+float get_data_rate(float dist, float range) 
+{
+    return log10(1 + pow((1 / (dist + (range / 1000))), 2));
+}
+
+/* Performs one of two calculations on the graph modelled by G depending on the state of
+   Graph_Op.
+
+   Graph_Op States:
+   1 -> Finds the shortest path in G from Source_Vertex to Destination_Vertex and prints it 
+        along with algorithm run time.
+   2 -> Calculates the graph's network diameter and prints it along with algorithm run time.
+        Additionally, prints to inform user if graph is not connected.
+ */
+void do_graph_operation(graph_t *G) 
+{
+    clock_t start, end;
+
+    if(Graph_Op == 1) {
+        /* Calculate Distance Table for Source. */
+        start = clock();
+        dist_table_t *src_table = graph_shortest_path(G, Source_Vertex, Fast);
+        end = clock();
+
+        /* If verbose output enabled, print distance table. */
+        if(Verbose) {
+            printf("Distance Table For Source Calculated -- Printing Below\n");
+            graph_shortest_path_debug_print(src_table, Num_Vertices);
+        }
+
+        /* Print shortest path from source to destination along with algorithm
+           run time. */
+        graph_print_shortest_path(src_table, Num_Vertices, Source_Vertex, Destination_Vertex,
+                                  Graph_Op);
+        printf("The shortest path algorithm took %g ms to run.\n", 
+                1000*((double)(end-start)/CLOCKS_PER_SEC));
+
+        /* Free path table. */
+        free(src_table);
+    } else {
+        int v1, v2;
+        int connected = TRUE;
+        int max_cost = 0, max_cost_src = -1, max_cost_dest = -1;
+        dist_table_t *max_cost_table = NULL, *current_table = NULL;
+
+        /* Calculate network diameter by finding maximum shortest path through network. */
+        start = clock();
+        for(v1 = 0; v1 < Num_Vertices; v1++) {
+            current_table = graph_shortest_path(G, v1, Fast);
+
+            for(v2 = 0; v2 < Num_Vertices; v2++) {
+                if(current_table[v2].weight > max_cost && current_table[v2].weight != INF) {
+                    /* A longer network diameter was found, free old table related to 
+                       old network diameter unless new network diameter is in the same
+                       table. */
+                    if(max_cost_table != NULL && max_cost_table != current_table) 
+                        free(max_cost_table);
+
+                    /* Save parameters related to new network diameter. */
+                    max_cost = current_table[v2].weight;
+                    max_cost_table = current_table;
+                    max_cost_src = v1;
+                    max_cost_dest = v2;
+                }
+
+                /* If any weights are inifinity, the graph is not connected. */
+                if(current_table[v2].weight == INF) connected = FALSE;
+            }
+
+            /* After all costs have been checked, free the table that was just analyzed
+               unless it contains the network diameter. */
+            if(current_table != max_cost_table) free(current_table);
+        }
+        end = clock();
+
+        /* If verbose output enabled, print distance table containing network diameter. */
+        if(Verbose) {
+            printf("Network Diameter Calculated -- Printing Associated Distance Table\n");
+            graph_shortest_path_debug_print(max_cost_table, Num_Vertices);
+        }
+
+        /* Print network diameter, if the graph was not connected, and algorithm run time. */
+        graph_print_shortest_path(max_cost_table, Num_Vertices, max_cost_src, max_cost_dest,
+                                  Graph_Op);
+        if(!connected) printf("The graph is not connected.\n");
+        printf("The network diameter algorithm took %g ms to run.\n", 
+                1000*((double)(end-start)/CLOCKS_PER_SEC));
+
+        /* Free table containing network diameter. */
+        free(max_cost_table);
+    } 
+}
+
+/* Reads in command line arguments and stores in global variables for easy
+   access by other functions.
+ */
+void get_command_line(int argc, char **argv) 
+{
+    /* optopt--if an unknown option character is found
+     * optind--index of next element in argv 
+     * optarg--argument for option that requires argument 
+     * "x:" colon after x means argument required
+     */
+    int c, error = FALSE;
+    int index;
+
+    while((c = getopt(argc, argv, "g:n:a:h:s:d:tm:vp:r:o")) != -1)
+        switch(c) {
+            case 'g': Graph_Type = atoi(optarg);            break;
+            case 'n': Num_Vertices = atoi(optarg);          break;
+            case 'a': Adj_Vertices = atoi(optarg);          break;
+            case 'h': Graph_Op = atoi(optarg);              break;
+            case 's': Source_Vertex = atoi(optarg);         break;
+            case 'd': Destination_Vertex = atoi(optarg);    break;
+            case 't': Fast = FALSE;                         break;
+            case 'm': Safe_Mode = atoi(optarg);             break;
+            case 'v': Verbose = TRUE;                       break;
+            case 'p': Print_Type = *optarg;                 break;
+            case 'r': Seed = atoi(optarg);                  break;
+            case 'o': Off = TRUE;                           break;
+            default : error = TRUE; 
+        }
+    for(index = optind; index < argc; index++)
+        printf("Non-option argument %s\n", argv[index]);
+
+    if(error) exit(1);
+}
+
+/* Verifies all flags are set to correct values after get_command_line() call.
+   If there is an error with a flag, print_command_line_options() is called and
+   the program exits.
+ */
+void verify_command_line() 
+{
+    int error = FALSE;
+
+    /* Check for any errors in flag values. */
+    if(Graph_Type < 1 || Graph_Type > 3) {
+        fprintf(stderr, "invalid graph type: %d\n", Graph_Type);
+        error = TRUE;
+    }
+
+    /* If Graph Type was 1, set Num_Vertices to 7. */
+    if(Graph_Type == 1) Num_Vertices = 7;
+
+    /* Check Num_Vertices validity. */
+    if(Num_Vertices < 0) {
+        fprintf(stderr, "invalid number of vertices: %d\n", Num_Vertices);
+        error = TRUE;
+    }
+
+    /* Check Adj_Vertices validity. */
+    if(Adj_Vertices < 0) {
+        fprintf(stderr, "invalid number of adjacent vertices: %d\n", Adj_Vertices);
+        error = TRUE;
+    }
+
+    /* Check Graph_Op validity. */
+    if(Graph_Op < 1 || Graph_Op > 2) {
+        fprintf(stderr, "invalid graph operation: %d\n", Graph_Op);
+        error = TRUE;
+    }
+
+    /* Check Source_Vertex validity. */
+    if(Source_Vertex < 0 || Source_Vertex >= Num_Vertices) {
+        fprintf(stderr, "invalid source vertice: %d\n", Source_Vertex);
+        error = TRUE;
+    }
+
+    /* If destination was not specified, set to Num_Vertices - 1 */
+    if(Destination_Vertex == INF ) Destination_Vertex = Num_Vertices - 1;
+
+    if(Destination_Vertex < 0 || Destination_Vertex >= Num_Vertices) {
+        fprintf(stderr, "invalid destination vertice: %d\n", Destination_Vertex);
+        error = TRUE;
+    }
+
+    /* If source equals destination, print error and exit, but do not print command
+       line options */
+    if(Source_Vertex == Destination_Vertex) {
+        fprintf(stderr, "invalid - source equals destination\n");
+        exit(1);
+    }
+
+    /* Check mode validity. */
+    if(Safe_Mode != FALSE && Safe_Mode != TRUE) {
+        fprintf(stderr, "invalid mode specification: %d\n", Safe_Mode);
+        error = TRUE;
+    }
+
+    /* Check print type validity. */
+    if(Print_Type != 'l' && Print_Type != 'L' && Print_Type != 'm' && Print_Type != 'M') {
+        fprintf(stderr, "invalid print type: %c\n", Print_Type);
+        error = TRUE;
+    }
+
+    /* If there was an error, exit. */
+    if(error) exit(1);
+}
+
+/* Prints command line options.
+ */
+void print_command_line_options() 
+{
+    printf("Lab6 command line options\n");
+    printf("Note: options are listed in the order they appear (ex: -g 1 = fixed graph type)\n");
+    printf("Reference program comments in lab6.c and graph.c to understand each option\n\n");
+    printf("General options ---------\n");
+    printf("  -g [1|2|3]      set graph type to fixed, strongly-connected, or random");
+    printf(" (default fixed)\n");
+    printf("  -n 5            set number of vertices in graph (default 100)\n");
+    printf("  -a 3            set estimate number of adjacent vertices (default 20)\n");
+    printf("  -h [1|2]        set operation to shortest path or network diameter calculation\n");
+    printf("                  (default shortest path)\n");
+    printf("  -s 35           set source vertice (default 0)\n");
+    printf("  -d 37           set destination vertice (default N - 1)\n");
+    printf("  -t              set Djisktra's Algorithm to run in traditional mode");
+    printf(" (slower, default off)\n");
+    printf("  -m [0|1]        set mode to efficient or safe (default efficient)\n");
+    printf("  -v              enable verbose prints (default off)\n");
+    printf("  -p [l|m]        if -v enabled, set to print adj matrix or list (default list)\n");
+    printf("  -r 341          seed for random number generator\n");
+    printf("  -o              disable command line options printout\n\n");
+}
+
+/* vi:set ts=8 sts=4 sw=4 et: */

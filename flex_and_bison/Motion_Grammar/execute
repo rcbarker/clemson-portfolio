@@ -1,0 +1,23 @@
+#! /bin/bash
+
+## run with: ./execute tests files [redirect to output file with > if preferred]
+## tests parser using tests directory
+
+dir=$1
+contents=$2
+
+echo "TO RUN SCRIPT: ./execute tests files"
+echo " "
+echo "NOW TESTING SDE1 (Motion Trajectory Checker)"
+for i in $( cat  $contents ); 
+do
+echo " "
+echo "*****************************************************"
+echo "test file name: "$i 
+echo "test file contents:"
+cat ./$1/$i
+echo "motion trajectory scanner/parser result:"
+./motion < $1/$i
+echo "*****************************************************"
+echo " "
+done 

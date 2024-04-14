@@ -1,0 +1,97 @@
+TRUE
+CLIPS> (reset)
+CLIPS> (run)
+Welcome to the ECE 4420 Takehome 1 Block Puzzle Solver!
+This program will solve all five required boards sequentially.
+The cell containing the block in each printout is designated with a 'B'.
+
+Moved block to starting position row 6 col 6 on board 1.
+
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxooBxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxExoxox
+
+Found a solution to board 1. Optimizing final path...
+Final path optimized on board 1. Beginning to move block...
+
+Moving block from row 6 col 6 to row 7 col 6.
+
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxooSxoxox
+xoxoxBxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxExoxox
+
+Moving block from row 7 col 6 to row 8 col 6.
+
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxooSxoxox
+xoxoxoxoxox
+xoxoxBxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxExoxox
+
+Moving block from row 8 col 6 to row 9 col 6.
+
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxooSxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxBxoxox
+xoxoxoxoxox
+xoxoxExoxox
+
+Moving block from row 9 col 6 to row 10 col 6.
+
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxooSxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxBxoxox
+xoxoxExoxox
+
+Moving block from row 10 col 6 to row 11 col 6.
+
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxooSxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxBxoxox
+
+Board 1 has been solved.
+
+CLIPS> (dribble-off)

@@ -1,0 +1,389 @@
+Loading file ./data/block.txt into ID3...
+File contents:
+  locOB	clearUp	clearLeft	clearRight	clearDown	move
+  up	yes	yes	yes	yes	up	
+  up	no	yes	yes	yes	left	
+  up	no	no	yes	yes	right	
+  up	no	no	no	yes	down	
+  down	yes	yes	yes	yes	down	
+  down	no	yes	yes	no	right	
+  down	yes	no	no	no	up	
+  down	no	no	yes	no	right	
+  left	yes	yes	yes	yes	left	
+  left	no	no	yes	yes	down	
+  left	yes	yes	yes	no	left	
+  left	yes	no	no	yes	up	
+  right	yes	yes	yes	yes	right	
+  right	yes	yes	no	yes	up	
+  right	no	no	no	yes	down	
+  right	no	yes	no	no	left	
+ID3 returned successfully. Printing tree...
+clearUp
+no
+   clearLeft
+   no
+      clearRight
+      no
+      move -> down
+      yes
+         locOB
+         up
+         move -> right
+         down
+         move -> right
+         left
+         move -> down
+   yes
+      locOB
+      up
+      move -> left
+      down
+      move -> right
+      right
+      move -> left
+yes
+   clearRight
+   no
+   move -> up
+   yes
+      locOB
+      up
+      move -> up
+      down
+      move -> down
+      left
+      move -> left
+      right
+      move -> right
+Beginning ID3 tree validation...
+-> ID3 tree validation succeeded.
+
+Loading file ./data/chords.txt into ID3...
+File contents:
+  note1	note2	note3	Chord
+  1	3	5	Maj	
+  3	5	1	Maj	
+  5	1	3	Maj	
+  1	b3	5	Min	
+  b3	5	1	Min	
+  5	1	b3	Min	
+ID3 returned successfully. Printing tree...
+note1
+1
+   note2
+   3
+   Chord -> Maj
+   b3
+   Chord -> Min
+3
+Chord -> Maj
+b3
+Chord -> Min
+5
+   note3
+   3
+   Chord -> Maj
+   b3
+   Chord -> Min
+Beginning ID3 tree validation...
+-> ID3 tree validation succeeded.
+
+Loading file ./data/chords_extended2.txt into ID3...
+File contents:
+  note1	note2	note3	Chord
+  1	3	5	Maj	
+  3	5	1	Maj	
+  5	1	3	Maj	
+  1	1	5	HM	
+  1	5	5	HM	
+  1	5	1	HM	
+  1	b3	5	Min	
+  b3	5	1	Min	
+  5	1	b3	Min	
+ID3 returned successfully. Printing tree...
+note1
+1
+   note2
+   1
+   Chord -> HM
+   3
+   Chord -> Maj
+   b3
+   Chord -> Min
+   5
+   Chord -> HM
+3
+Chord -> Maj
+b3
+Chord -> Min
+5
+   note3
+   3
+   Chord -> Maj
+   b3
+   Chord -> Min
+Beginning ID3 tree validation...
+-> ID3 tree validation succeeded.
+
+Loading file ./data/chords_extended3.txt into ID3...
+File contents:
+  note1	note2	note3	note4	Chord
+  1	3	5	*none*	Maj	
+  3	5	1	*none*	Maj	
+  5	1	3	*none*	Maj	
+  1	b3	5	*none*	Min	
+  b3	5	1	*none*	Min	
+  5	1	b3	*none*	Min	
+ID3 returned successfully. Printing tree...
+note4
+*none*
+   note1
+   1
+      note2
+      3
+      Chord -> Maj
+      b3
+      Chord -> Min
+   3
+   Chord -> Maj
+   b3
+   Chord -> Min
+   5
+      note3
+      3
+      Chord -> Maj
+      b3
+      Chord -> Min
+Beginning ID3 tree validation...
+-> ID3 tree validation succeeded.
+
+Loading file ./data/chords_extended4.txt into ID3...
+File contents:
+  note1	note2	note3	note4	Chord
+  1	3	5	*none*	Maj	
+  3	5	1	*none*	Maj	
+  5	1	3	*none*	Maj	
+  1	b3	5	*none*	Min	
+  b3	5	1	*none*	Min	
+  5	1	b3	*none*	Min	
+  1	3	5	7	Maj7	
+  1	3	5	b7	Dom7	
+  1	b3	5	b7	Min7	
+ID3 returned successfully. Printing tree...
+note4
+7
+Chord -> Maj7
+b7
+   note2
+   3
+   Chord -> Dom7
+   b3
+   Chord -> Min7
+*none*
+   note1
+   1
+      note2
+      3
+      Chord -> Maj
+      b3
+      Chord -> Min
+   3
+   Chord -> Maj
+   b3
+   Chord -> Min
+   5
+      note3
+      3
+      Chord -> Maj
+      b3
+      Chord -> Min
+Beginning ID3 tree validation...
+-> ID3 tree validation succeeded.
+
+Loading file ./data/four_class_three_attribute.txt into ID3...
+File contents:
+  x1	x2	x3	or
+  no	no	no	c0	
+  no	no	yes	c1	
+  no	yes	no	c1	
+  no	yes	yes	c1	
+  yes	no	no	c1	
+  yes	no	yes	c2	
+  yes	yes	no	c2	
+  yes	yes	yes	c3	
+ID3 returned successfully. Printing tree...
+x1
+no
+   x2
+   no
+      x3
+      no
+      or -> c0
+      yes
+      or -> c1
+   yes
+   or -> c1
+yes
+   x2
+   no
+      x3
+      no
+      or -> c1
+      yes
+      or -> c2
+   yes
+      x3
+      no
+      or -> c2
+      yes
+      or -> c3
+Beginning ID3 tree validation...
+-> ID3 tree validation succeeded.
+
+Loading file ./data/four_input_and.txt into ID3...
+File contents:
+  a1	a2	a3	a4	and
+  no	no	no	no	no	
+  no	no	no	yes	no	
+  no	no	yes	no	no	
+  no	no	yes	yes	no	
+  no	yes	no	no	no	
+  no	yes	no	yes	no	
+  no	yes	yes	no	no	
+  no	yes	yes	yes	no	
+  yes	no	no	no	no	
+  yes	no	no	yes	no	
+  yes	no	yes	no	no	
+  yes	no	yes	yes	no	
+  yes	yes	no	no	no	
+  yes	yes	no	yes	no	
+  yes	yes	yes	no	no	
+  yes	yes	yes	yes	yes	
+ID3 returned successfully. Printing tree...
+a1
+no
+and -> no
+yes
+   a2
+   no
+   and -> no
+   yes
+      a3
+      no
+      and -> no
+      yes
+         a4
+         no
+         and -> no
+         yes
+         and -> yes
+Beginning ID3 tree validation...
+-> ID3 tree validation succeeded.
+
+Loading file ./data/three_input_or.txt into ID3...
+File contents:
+  x1	x2	x3	or
+  0	0	0	0	
+  0	0	1	1	
+  0	1	0	1	
+  0	1	1	1	
+  1	0	0	1	
+  1	0	1	1	
+  1	1	0	1	
+  1	1	1	1	
+ID3 returned successfully. Printing tree...
+x1
+0
+   x2
+   0
+      x3
+      0
+      or -> 0
+      1
+      or -> 1
+   1
+   or -> 1
+1
+or -> 1
+Beginning ID3 tree validation...
+-> ID3 tree validation succeeded.
+
+Loading file ./data/tsand_reduced.txt into ID3...
+File contents:
+  x1	x2	x3	x4	x5	out
+  0	0	0	0	1	0	
+  0	0	0	1	1	0	
+  0	0	1	0	1	0	
+  0	0	1	1	1	0	
+  0	1	0	0	1	0	
+  0	1	0	1	1	0	
+  0	1	1	0	1	0	
+  0	1	1	1	1	0	
+  1	0	0	0	1	0	
+  1	0	0	1	1	0	
+  1	0	1	0	1	0	
+  1	0	1	1	1	0	
+  1	1	0	0	1	0	
+  1	1	0	1	1	0	
+  1	1	1	0	1	0	
+  1	1	1	1	1	1	
+ID3 returned successfully. Printing tree...
+x1
+0
+out -> 0
+1
+   x2
+   0
+   out -> 0
+   1
+      x3
+      0
+      out -> 0
+      1
+         x4
+         0
+         out -> 0
+         1
+         out -> 1
+Beginning ID3 tree validation...
+-> ID3 tree validation succeeded.
+
+Loading file ./data/conflicting_data.txt into ID3...
+File contents:
+  x1	x2	x3	con
+  0	0	0	0	
+  0	0	1	1	
+  0	1	0	1	
+  0	1	1	1	
+  1	0	0	1	
+  1	0	1	1	
+  1	1	0	1	
+  1	1	1	1	
+  0	0	0	1	
+  1	1	1	0	
+***** ID3 WARNING: Out of attributes but multiple outcomes exist! *****
+***** ID3 WARNING: Out of attributes but multiple outcomes exist! *****
+ID3 returned successfully. Printing tree...
+x1
+0
+   x2
+   0
+      x3
+      0
+      con -> 0
+      1
+      con -> 1
+   1
+   con -> 1
+1
+   x2
+   0
+   con -> 1
+   1
+      x3
+      0
+      con -> 1
+      1
+      con -> 1
+Beginning ID3 tree validation...
+-> ID3 tree validation failed.

@@ -1,0 +1,25 @@
+CC= gcc
+CFLAGS= -Wall -g
+
+BINS= memscanner
+
+all: $(BINS)
+
+edgedetection: edgedetection.c
+	$(CC) $(CFLAGS) -o edgedetection edgedetection.c
+
+memscanner: memscanner.c
+	$(CC) $(CFLAGS) -o memscanner memscanner.c
+
+quartocthex: quartocthex.c
+	$(CC) $(CFLAGS) -o quartocthex quartocthex.c
+
+tictactiger: tictactiger.c
+	$(CC) $(CFLAGS) -o tictactiger tictactiger.c
+
+wordswithinwords: wordswithinwords.c
+	$(CC) $(CFLAGS) -o wordswithinwords wordswithinwords.c
+
+clean:
+	rm -f $(BINS) core
+

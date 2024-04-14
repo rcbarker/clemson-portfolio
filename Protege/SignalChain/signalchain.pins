@@ -1,0 +1,1737 @@
+; Mon Oct 26 19:11:19 EDT 2015
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([signalchain_Class0] of  Guitar+Cable
+
+	(make_and_model "Monster Rock Instrument Cable"))
+
+([signalchain_Class1] of  Multi-Effects+Pedal
+
+	(make_and_model "Visual Sound Jekyll and Hyde")
+	(pedal_effects_loop FALSE)
+	(primary_control Gain)
+	(signal_level Line-Level)
+	(unique_features
+		"Blunt and Sharp channel voicings"
+		"Distortion Effect"
+		"Overdrive Effect"
+		"Effects wired in series")
+	(used_by [signalchain_Class11]))
+
+([signalchain_Class10] of  Locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Basswood")
+	(bridge_type Ibanez-Edge)
+	(fretboard_wood Rosewood)
+	(make_and_model "Ibanez RG350DXZ")
+	(pickup_configuration HSH)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Ibanez Edge Zero II tremolo"
+		"Ibanez Zero Point System"
+		"Seymour Duncan pickups")
+	(used_by
+		[signalchain_Class11]
+		[signalchain_Class40002]))
+
+([signalchain_Class10000] of  Tube+Amplifier
+
+	(cabinet_type 4x12)
+	(make_and_model "Marshall JCM-800")
+	(number_of_channels 1)
+	(on_board_effects FALSE)
+	(power_rating_%28watts%29 100)
+	(speaker_name "Celestion Vintage 30")
+	(unique_features "One ECC83 and four EL34 power tubes")
+	(used_by
+		[signalchain_Class40039]
+		[signalchain_Class40029]
+		[signalchain_Class100013]
+		[signalchain_Class40033]
+		[signalchain_Class40017]
+		[signalchain_Class40028]
+		[signalchain_Class10005]
+		[signalchain_Class40026]
+		[signalchain_Class40019]
+		[signalchain_Class40027]))
+
+([signalchain_Class100001] of  Tube+Amplifier
+
+	(cabinet_type 1x12)
+	(make_and_model "Mesa Boogie King Snake")
+	(number_of_channels 2)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 100)
+	(speaker_name "Mesa Boogie Fillmore KS-100")
+	(unique_features
+		"Limited edition"
+		"On board reverberation"
+		"Santana signature series"
+		"Slave input"
+		"Two 6L6 power tubes")
+	(used_by [signalchain_Class40032]))
+
+([signalchain_Class100002] of  Chorus+Pedal
+
+	(make_and_model "Vertex Landau Stereo Chorus")
+	(pedal_effects_loop FALSE)
+	(primary_control Pitch)
+	(signal_level Loop-Level)
+	(unique_features
+		"Enhanced Arion SCH-1"
+		"Stereo output capabilities"
+		"Two voicing modes")
+	(used_by [signalchain_Class40025]))
+
+([signalchain_Class100003] of  Tube+Amplifier
+
+	(cabinet_type 4x12)
+	(make_and_model "Two Rock TR-JMS")
+	(number_of_channels 1)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 100)
+	(speaker_name "Celestion Vintage 30")
+	(unique_features
+		"Four 6L6 power tubes"
+		"All-tube spring reverb")
+	(used_by [signalchain_Class40043]))
+
+([signalchain_Class100005] of  Overdrive+Pedal
+
+	(distortion_level Moderate)
+	(make_and_model "Boss BD-2")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Classic blues tone"
+		"Responds to pick attack level"
+		"Rugged metal casing")
+	(used_by
+		[signalchain_Class40029]
+		[signalchain_Class40043]))
+
+([signalchain_Class100006] of  Fixed+Bridge+Guitar
+
+	(body_cutaway Single)
+	(body_wood "Mahogany")
+	(fretboard_wood Rosewood)
+	(make_and_model "Gibson Slash Apetite Les Paul")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 24.75)
+	(unique_features
+		"Maple body cap"
+		"Slash signature series"
+		"Used on Apetite for Destruction record")
+	(used_by [signalchain_Class40027]))
+
+([signalchain_Class100007] of  Wah+Pedal
+
+	(make_and_model "Dunlop Crybaby SC-95")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"LED on/off indicator"
+		"Low-pass filter"
+		"True bypass"
+		"Slash signature series")
+	(used_by [signalchain_Class40027]))
+
+([signalchain_Class100008] of  Fuzz+Pedal
+
+	(distortion_level Low)
+	(make_and_model "MXR Sub Machine Octave Fuzz")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Fuzzes signal with octave below"
+		"Switch to engage octave above in signal")
+	(used_by [signalchain_Class40027]))
+
+([signalchain_Class100009] of  Digital+Amplifier
+
+	(make_and_model "TC Electronic G-Major 2")
+	(mounting_type Rack)
+	(number_of_channels 1)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 10)
+	(speaker_name "None")
+	(unique_features
+		"Hundreds of stompbox effects"
+		"Incorperates classic effects like the Univibe"
+		"Relay switching")
+	(used_by [signalchain_Class40037]))
+
+([signalchain_Class10001] of  Locking+Bridge+Guitar
+
+	(body_cutaway Single)
+	(body_wood "Basswood")
+	(bridge_type Floyd-Rose)
+	(fretboard_wood Rosewood)
+	(make_and_model "ESP:LTD SA-2")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Richie Sambora signature series"
+		"Locking tuners")
+	(used_by [signalchain_Class10005]))
+
+([signalchain_Class100010] of  Overdrive+Pedal
+
+	(distortion_level Moderate)
+	(make_and_model "Klon Centaur")
+	(pedal_effects_loop FALSE)
+	(unique_features "Vintage 1960's overdrive")
+	(used_by
+		[signalchain_Class40037]
+		[signalchain_Class100013]
+		[signalchain_Class100012]))
+
+([signalchain_Class100011] of  Fixed+Bridge+Guitar
+
+	(body_cutaway Explorer)
+	(body_wood "Mahogany")
+	(fretboard_wood Ebony)
+	(make_and_model "ESP:LTD Snakebyte")
+	(pickup_configuration Active)
+	(scale_length_%28inches%29 24.75)
+	(unique_features
+		"EMG JH Het Set active pickups"
+		"James Hetfield signature series"
+		"Lightweight body"
+		"Tonepros locking bridge")
+	(used_by [signalchain_Class40037]))
+
+([signalchain_Class100012] of  70%27s+Guitarist
+
+	(band "Aerosmith")
+	(name "Joe Perry")
+	(uses
+		[signalchain_Class100022]
+		[signalchain_Class100023]
+		[signalchain_Class100010]
+		[signalchain_Class80001]
+		[signalchain_Class40000]
+		[signalchain_Class60004]
+		[signalchain_Class60000]
+		[signalchain_Class110011]
+		[signalchain_Class80002]
+		[signalchain_Class30005]
+		[signalchain_Class30003]
+		[signalchain_Class30000])
+	(year_began 1970))
+
+([signalchain_Class100013] of  60%27s+Guitarist
+
+	(band "The Yardbirds")
+	(name "Jeff Beck")
+	(uses
+		[signalchain_Class90002]
+		[signalchain_Class110009]
+		[signalchain_Class100010]
+		[signalchain_Class60008]
+		[signalchain_Class10000]
+		[signalchain_Class60004]
+		[signalchain_Class60005])
+	(year_began 1964))
+
+([signalchain_Class100015] of  Tube+Amplifier
+
+	(cabinet_type 4x12)
+	(make_and_model "Marshall YJM-100")
+	(number_of_channels 2)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 100)
+	(speaker_name "Celestion Vintage 30")
+	(unique_features
+		"3 band equalisation"
+		"On-board reverberation"
+		"Malmsteen signature series")
+	(used_by [signalchain_Class40019]))
+
+([signalchain_Class100016] of  Fuzz+Pedal
+
+	(distortion_level Low)
+	(make_and_model "Dunlop JHF-1")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"BC108 transistor"
+		"Jimmi Hendrix signature series"
+		"Unique round shape")
+	(used_by
+		[signalchain_Class40041]
+		[signalchain_Class40028]
+		[signalchain_Class40038]
+		[signalchain_Class40019]))
+
+([signalchain_Class100017] of  Overdrive+Pedal
+
+	(distortion_level Moderate)
+	(make_and_model "Vox Ice 9")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Joe Satriani signature series"
+		"\"More\" dual overdrive switch"
+		"Vintage and modern voicings")
+	(used_by [signalchain_Class40033]))
+
+([signalchain_Class100018] of  Distortion+Pedal
+
+	(distortion_level High)
+	(make_and_model "Vox Satchurator")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Joe Satriani signature series"
+		"\"More\" boost switch"
+		"Pad switch for chaining with overdrive pedals")
+	(used_by [signalchain_Class40033]))
+
+([signalchain_Class100019] of  Tube+Amplifier
+
+	(cabinet_type 4x12)
+	(make_and_model "Marshall JVM-410")
+	(number_of_channels 4)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 100)
+	(speaker_name "Celestion Vintage 30")
+	(unique_features
+		"Digital Reverb"
+		"Four EL34 power tubes"
+		"Three voicings per channel")
+	(used_by
+		[signalchain_Class40016]
+		[signalchain_Class40033]))
+
+([signalchain_Class10002] of  Locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Maple")
+	(bridge_type Floyd-Rose)
+	(fretboard_wood Maple)
+	(make_and_model "Kramer Jersey Star")
+	(pickup_configuration HHH)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Richie Sambora signature series"
+		"Coil tap switches (bridge and middle pickups)"
+		"Made entirely of maple")
+	(used_by [signalchain_Class10005]))
+
+([signalchain_Class100020] of  Locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Basswood")
+	(bridge_type Ibanez-Edge)
+	(fretboard_wood Rosewood)
+	(make_and_model "Ibanez JS24P")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Dimarzio Joe Satriani pickups"
+		"Joe Satriani signature series"
+		"Original Edge tremolo")
+	(used_by [signalchain_Class40033]))
+
+([signalchain_Class100021] of  Locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Mahogany")
+	(bridge_type Ibanez-Edge)
+	(fretboard_wood Rosewood)
+	(make_and_model "Ibanez S520")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Ibanez Zero Point System"
+		"Ibanez ZR ball-bearing tremolo")
+	(used_by [signalchain_Class40033]))
+
+([signalchain_Class100022] of  Fixed+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Glass")
+	(fretboard_wood Rosewood)
+	(make_and_model "Ampeg Dan Armstrong Lucite")
+	(pickup_configuration H)
+	(scale_length_%28inches%29 25.5)
+	(unique_features "Glass body with wooden center")
+	(used_by [signalchain_Class100012]))
+
+([signalchain_Class100023] of  Tube+Amplifier
+
+	(cabinet_type 4x12)
+	(make_and_model "Jet City 20")
+	(number_of_channels 2)
+	(on_board_effects FALSE)
+	(power_rating_%28watts%29 20)
+	(speaker_name "Celestion Vintage 30")
+	(unique_features
+		"Two EL84 power tubes"
+		"Solid state rectifier")
+	(used_by [signalchain_Class100012]))
+
+([signalchain_Class100024] of  Fixed+Bridge+Guitar
+
+	(body_cutaway Explorer)
+	(body_wood "Mahogany")
+	(fretboard_wood Rosewood)
+	(make_and_model "Gibson USA Explorer")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 24.75)
+	(unique_features
+		"Tune-o-matic bridge"
+		"Gibson explorer humbuckers")
+	(used_by [signalchain_Class40029]))
+
+([signalchain_Class100025] of  Distortion+Pedal
+
+	(distortion_level High)
+	(make_and_model "Ibanez TS-9")
+	(pedal_effects_loop FALSE)
+	(unique_features "Classic 1970's distortion tone")
+	(used_by
+		[signalchain_Class40032]
+		[signalchain_Class40029]
+		[signalchain_Class40038]))
+
+([signalchain_Class100026] of  Fixed+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Mahogany")
+	(fretboard_wood Rosewood)
+	(make_and_model "Gibson SG Standard")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 24.75)
+	(unique_features
+		"Optional GForce tuning system upgrade"
+		"Easy access, high-set neck")
+	(used_by
+		[signalchain_Class40039]
+		[signalchain_Class40032]))
+
+([signalchain_Class10005] of  80%27s+Guitarist
+
+	(band "Bon Jovi")
+	(name "Richie Sambora")
+	(uses
+		[signalchain_Class10001]
+		[signalchain_Class10002]
+		[signalchain_Class40020]
+		[signalchain_Class30001]
+		[signalchain_Class10000]
+		[signalchain_Class6]
+		[signalchain_Class30002]
+		[signalchain_Class20000]
+		[signalchain_Class30005]
+		[signalchain_Class30003]
+		[signalchain_Class30004])
+	(year_began 1983))
+
+([signalchain_Class11] of  Modern+Guitarist
+
+	(band "Original Ontology Developer")
+	(name "Ryan Barker")
+	(uses
+		[signalchain_Class8]
+		[signalchain_Class9]
+		[signalchain_Class5]
+		[signalchain_Class1]
+		[signalchain_Class7]
+		[signalchain_Class4]
+		[signalchain_Class10]
+		[signalchain_Class6])
+	(year_began 2007))
+
+([signalchain_Class110002] of  Tube+Amplifier
+
+	(cabinet_type 4x12)
+	(make_and_model "EVH 5150 III")
+	(number_of_channels 3)
+	(on_board_effects FALSE)
+	(power_rating_%28watts%29 100)
+	(speaker_name "Celestion G12-EVH")
+	(unique_features
+		"Four 6L6 power tubes"
+		"Three band equalisation with presence control"
+		"Vintage Van Halen tone")
+	(used_by [signalchain_Class40016]))
+
+([signalchain_Class110003] of  Locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Basswood")
+	(bridge_type Floyd-Rose)
+	(fretboard_wood Maple)
+	(make_and_model "EVH Striped Frankenstrat")
+	(pickup_configuration H)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"EVH humbucker"
+		"Original Floyd Rose"
+		"Replica of Eddie's original Frankenstrat")
+	(used_by [signalchain_Class40016]))
+
+([signalchain_Class110004] of  Chorus+Pedal
+
+	(make_and_model "MXR M-234 Analog Chorus")
+	(pedal_effects_loop FALSE)
+	(primary_control Pitch)
+	(signal_level Loop-Level)
+	(unique_features
+		"Bucket brigade circuitry"
+		"High and low cut filters"
+		"Rate, level, and depth controls")
+	(used_by [signalchain_Class40016]))
+
+([signalchain_Class110005] of  Wah+Pedal
+
+	(make_and_model "Dunlop Crybaby EVH-95")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Based on the \"Holy Grail\" wah"
+		"Eddie Van Halen signature series"
+		"Made in California"
+		"Van Halen Bumblebee graphics")
+	(used_by [signalchain_Class40016]))
+
+([signalchain_Class110006] of  Non-locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Alder")
+	(bridge_type Standard-Floating)
+	(fretboard_wood Maple)
+	(make_and_model "Fender Eric Clapton Blackie")
+	(pickup_configuration SSS)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Blocked tremolo"
+		"Eric Clapton signature series"
+		"Noiseless pickups")
+	(used_by
+		[signalchain_Class40018]
+		[signalchain_Class40028]))
+
+([signalchain_Class110007] of  Tube+Amplifier
+
+	(cabinet_type 2x12)
+	(make_and_model "Fender ML-212 Hot Rod Deville")
+	(number_of_channels 2)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 60)
+	(speaker_name "Celestion V-Type")
+	(unique_features
+		"Fender spring reverberation"
+		"Two 6L6 power tubes"
+		"Variable bias control")
+	(used_by
+		[signalchain_Class40018]
+		[signalchain_Class40028]))
+
+([signalchain_Class110008] of  Vibrato+Pedal
+
+	(make_and_model "Boss TR-2")
+	(pedal_effects_loop FALSE)
+	(primary_control Rate)
+	(signal_level Loop-Level)
+	(unique_features
+		"Rugged metal casing"
+		"Tremolo waveform variable from triangular to square"
+		"Wave, Rate, and Depth knobs")
+	(used_by
+		[signalchain_Class40018]
+		[signalchain_Class40028]))
+
+([signalchain_Class110009] of  Delay+Pedal
+
+	(make_and_model "Way Huge Aqua Puss")
+	(pedal_effects_loop FALSE)
+	(signal_level Loop-Level)
+	(unique_features
+		"20 ms to 300 ms delay"
+		"Delay, Blend, and Feedback knobs"
+		"True bypass")
+	(used_by
+		[signalchain_Class100013]
+		[signalchain_Class40026]))
+
+([signalchain_Class110010] of  Non-locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Alder")
+	(bridge_type Standard-Floating)
+	(fretboard_wood Rosewood)
+	(make_and_model "Fender 60's Jaguar")
+	(pickup_configuration SS)
+	(scale_length_%28inches%29 24.0)
+	(unique_features
+		"Single Wing string tree"
+		"Heel-adjust truss rods"
+		"Pop-in tremolo arm")
+	(used_by [signalchain_Class40041]))
+
+([signalchain_Class110011] of  Overdrive+Pedal
+
+	(distortion_level Moderate)
+	(make_and_model "Fulltone OCD")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Switchable hi and low peak settings"
+		"Volume, drive, and tone controls")
+	(used_by
+		[signalchain_Class100012]
+		[signalchain_Class40017]))
+
+([signalchain_Class110012] of  Signal+Chain
+
+	(amplifier [signalchain_Class40000])
+	(cable [signalchain_Class0])
+	(effects_pedals
+		[signalchain_Class60004]
+		[signalchain_Class110011]
+		[signalchain_Class60002])
+	(guitar [signalchain_Class30000])
+	(name "Sample Chain 2"))
+
+([signalchain_Class110013] of  Fixed+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Maple and Popular")
+	(fretboard_wood Rosewood)
+	(make_and_model "Gibson ES-335")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 24.75)
+	(unique_features "Hollow body")
+	(used_by [signalchain_Class40026]))
+
+([signalchain_Class110014] of  Chorus+Pedal
+
+	(make_and_model "Rockman Stereo Chorus")
+	(pedal_effects_loop FALSE)
+	(primary_control Pitch)
+	(signal_level Loop-Level)
+	(unique_features
+		"Rack unit"
+		"Designed with Tom Scholz")
+	(used_by [signalchain_Class40026]))
+
+([signalchain_Class20000] of  Multi-Effects+Pedal
+
+	(make_and_model "Shin-ei Univibe")
+	(pedal_effects_loop FALSE)
+	(primary_control Pitch)
+	(signal_level Loop-Level)
+	(unique_features
+		"Chorus Effect"
+		"Vibrato Effect"
+		"Optional Expanded Foot Controller"
+		"Stereo Input")
+	(used_by
+		[signalchain_Class40041]
+		[signalchain_Class40043]
+		[signalchain_Class40035]
+		[signalchain_Class10005]))
+
+([signalchain_Class20001] of  Guitar+Cable
+
+	(make_and_model "Pig Hog Instrument Cable"))
+
+([signalchain_Class30000] of  Fixed+Bridge+Guitar
+
+	(body_cutaway Single)
+	(body_wood "Mahogany")
+	(fretboard_wood Rosewood)
+	(make_and_model "Gibson Les Paul Standard (1959)")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 24.75)
+	(unique_features
+		"Maple body cap"
+		"Kluson tuners")
+	(used_by
+		[signalchain_Class40037]
+		[signalchain_Class40040]
+		[signalchain_Class100012]
+		[signalchain_Class40033]
+		[signalchain_Class40017]
+		[signalchain_Class40026]
+		[signalchain_Class40027]))
+
+([signalchain_Class30001] of  Tube+Amplifier
+
+	(cabinet_type 4x12)
+	(make_and_model "Blackstar Artisan 100")
+	(number_of_channels 4)
+	(on_board_effects FALSE)
+	(power_rating_%28watts%29 100)
+	(speaker_name "Celestion Vintage 30")
+	(unique_features
+		"High and low impedance inputs"
+		"Four EL34 power tubes")
+	(used_by
+		[signalchain_Class40037]
+		[signalchain_Class10005]))
+
+([signalchain_Class30002] of  Overdrive+Pedal
+
+	(distortion_level Moderate)
+	(make_and_model "Boss SD-1")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Industry standard overdrive pedal"
+		"Thumbscrew for battery access")
+	(used_by
+		[signalchain_Class40016]
+		[signalchain_Class40028]
+		[signalchain_Class10005]
+		[signalchain_Class40026]))
+
+([signalchain_Class30003] of  Wah+Pedal
+
+	(make_and_model "Dunlop Crybaby 535-Q")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Adjustable frequency center"
+		"Adjustable frequency range"
+		"Signal boost switch")
+	(used_by
+		[signalchain_Class40029]
+		[signalchain_Class40018]
+		[signalchain_Class40042]
+		[signalchain_Class40025]
+		[signalchain_Class100012]
+		[signalchain_Class10005]
+		[signalchain_Class40002]
+		[signalchain_Class40019]))
+
+([signalchain_Class30004] of  Wah+Pedal
+
+	(make_and_model "Vox V847-A")
+	(pedal_effects_loop FALSE)
+	(unique_features "1960's style wah")
+	(used_by
+		[signalchain_Class40032]
+		[signalchain_Class40018]
+		[signalchain_Class40033]
+		[signalchain_Class40041]
+		[signalchain_Class40043]
+		[signalchain_Class40035]
+		[signalchain_Class10005]
+		[signalchain_Class40038]))
+
+([signalchain_Class30005] of  Talkbox
+
+	(make_and_model "Heil The Talkbox")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"One button design"
+		"Circuitry dates back to the 1960's"
+		"First talkbox")
+	(used_by
+		[signalchain_Class100012]
+		[signalchain_Class10005]))
+
+([signalchain_Class4] of  Multi-Effects+Pedal
+
+	(make_and_model "TC Electronic Dreamscape")
+	(pedal_effects_loop FALSE)
+	(primary_control Depth)
+	(signal_level Loop-Level)
+	(unique_features
+		"Chorus Effect"
+		"Phaser Effect"
+		"Vibrato Effect"
+		"John Petrucci signature series"
+		"Stereo output capabilties")
+	(used_by
+		[signalchain_Class11]
+		[signalchain_Class40008]))
+
+([signalchain_Class40000] of  Tube+Amplifier
+
+	(cabinet_type 4x12)
+	(make_and_model "Marshall Plexi")
+	(number_of_channels 2)
+	(on_board_effects FALSE)
+	(power_rating_%28watts%29 100)
+	(speaker_name "Celestion G12 Greenback")
+	(unique_features
+		"High and low impedance outputs"
+		"Three band equalisation"
+		"Four EL34 power tubes")
+	(used_by
+		[signalchain_Class40041]
+		[signalchain_Class40040]
+		[signalchain_Class100012]
+		[signalchain_Class40017]
+		[signalchain_Class40028]
+		[signalchain_Class40038]
+		[signalchain_Class40026]
+		[signalchain_Class40027]))
+
+([signalchain_Class40001] of  Wah+Pedal
+
+	(make_and_model "Morley Bad Horsie 2")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Clear-Tone buffer circuit"
+		"Steve Vai signature series"
+		"Switchless pressure-activated pedal")
+	(used_by [signalchain_Class40002]))
+
+([signalchain_Class40002] of  70%27s+Guitarist
+
+	(band "Solo Artist")
+	(name "Steve Vai")
+	(uses
+		[signalchain_Class40003]
+		[signalchain_Class40004]
+		[signalchain_Class10]
+		[signalchain_Class40005]
+		[signalchain_Class40006]
+		[signalchain_Class40001]
+		[signalchain_Class40007]
+		[signalchain_Class30003])
+	(year_began 1978))
+
+([signalchain_Class40003] of  Locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Alder")
+	(bridge_type Ibanez-Edge)
+	(fretboard_wood Rosewood)
+	(make_and_model "Ibanez JEM EVO")
+	(pickup_configuration HSH)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Steve Vai signature series"
+		"Original Edge tremolo"
+		"Monkey grip"
+		"DiMarzio evolution pickups")
+	(used_by [signalchain_Class40002]))
+
+([signalchain_Class40004] of  Non-locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Alder")
+	(bridge_type Standard-Floating)
+	(fretboard_wood Maple)
+	(make_and_model "Fender Yngwie Malmsteen Stratocaster")
+	(pickup_configuration SSS)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Malmsteen signature series"
+		"Scalloped maple fretboard"
+		"Seymour Duncan pickups")
+	(used_by
+		[signalchain_Class40002]
+		[signalchain_Class40019]))
+
+([signalchain_Class40005] of  Tube+Amplifier
+
+	(cabinet_type 4x12)
+	(make_and_model "Carvin VL-300 Legacy 3")
+	(number_of_channels 3)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 100)
+	(speaker_name "Celestion G12 Greenback")
+	(unique_features
+		"Channel-assignable reverberation"
+		"Four EL34 power tubes"
+		"Power switch: 15, 50, and 100 watt options"
+		"Steve Vai signature series"
+		"Two effects loops: pre and post master volume")
+	(used_by [signalchain_Class40002]))
+
+([signalchain_Class40006] of  Distortion+Pedal
+
+	(distortion_level High)
+	(make_and_model "Ibanez Jemini")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Steve Vai signature series"
+		"Two distortion pedals wired in series")
+	(used_by [signalchain_Class40002]))
+
+([signalchain_Class40007] of  Digital+Amplifier
+
+	(make_and_model "Fractal Audio Axe-FX II")
+	(mounting_type Rack)
+	(number_of_channels 1)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 10)
+	(speaker_name "None")
+	(unique_features
+		"512 user cabinet memories"
+		"768 user preset memories"
+		"Effects can be wired in series or parallel "
+		"Hundreds of amp and stompbox effects")
+	(used_by
+		[signalchain_Class40025]
+		[signalchain_Class40008]
+		[signalchain_Class40002]))
+
+([signalchain_Class40008] of  80%27s+Guitarist
+
+	(band "Dream Theater")
+	(name "John Petrucci")
+	(uses
+		[signalchain_Class40009]
+		[signalchain_Class40023]
+		[signalchain_Class40011]
+		[signalchain_Class40014]
+		[signalchain_Class4]
+		[signalchain_Class40007]
+		[signalchain_Class40010]
+		[signalchain_Class60000]
+		[signalchain_Class40013])
+	(year_began 1984))
+
+([signalchain_Class40009] of  Non-locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Alder")
+	(bridge_type Standard-Floating)
+	(fretboard_wood Ebony)
+	(make_and_model "Music Man JPXI")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Maple body cap"
+		"Dimarzio pickups"
+		"Custom Music Man piezo tremolo"
+		"Piezo bridge pickup")
+	(used_by [signalchain_Class40008]))
+
+([signalchain_Class40010] of  Tube+Amplifier
+
+	(cabinet_type 4x12)
+	(make_and_model "Mesa Boogie Mark V")
+	(number_of_channels 3)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 90)
+	(speaker_name "Celestion Vintage 30")
+	(unique_features
+		"Frequency specific Graphic EQ"
+		"Power switch: 10, 45, and 90 watt options"
+		"Channel specific reverberation effect"
+		"One 5U4 and four 6L6 power tubes")
+	(used_by
+		[signalchain_Class40037]
+		[signalchain_Class40008]))
+
+([signalchain_Class40011] of  Phaser+Pedal
+
+	(make_and_model "Boss PH-3")
+	(pedal_effects_loop FALSE)
+	(primary_control Rate)
+	(signal_level Loop-Level)
+	(unique_features
+		"Unidirectional phasing: Rise and Fall modes"
+		"Boss expression pedal compatible")
+	(used_by [signalchain_Class40008]))
+
+([signalchain_Class40013] of  Flanger+Pedal
+
+	(make_and_model "MXR EVH-117 Flanger")
+	(pedal_effects_loop FALSE)
+	(primary_control Depth)
+	(signal_level Loop-Level)
+	(unique_features
+		"Eddie Van Halen signature series"
+		"EVH Switch for Van Halen \"Unchained\" settings")
+	(used_by
+		[signalchain_Class40016]
+		[signalchain_Class40008]))
+
+([signalchain_Class40014] of  Distortion+Pedal
+
+	(distortion_level High)
+	(make_and_model "Ibanez TS-9 (Keely modified)")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Improved bass response"
+		"Texas Instruments RC4558P chip")
+	(used_by [signalchain_Class40008]))
+
+([signalchain_Class40016] of  60%27s+Guitarist
+
+	(band "Van Halen")
+	(name "Eddie Van Halen")
+	(uses
+		[signalchain_Class110003]
+		[signalchain_Class40020]
+		[signalchain_Class110002]
+		[signalchain_Class110004]
+		[signalchain_Class80003]
+		[signalchain_Class110005]
+		[signalchain_Class100019]
+		[signalchain_Class60000]
+		[signalchain_Class30002]
+		[signalchain_Class40013])
+	(year_began 1964))
+
+([signalchain_Class40017] of  60%27s+Guitarist
+
+	(band "The Rolling Stones")
+	(name "Keith Richards")
+	(uses
+		[signalchain_Class90002]
+		[signalchain_Class60008]
+		[signalchain_Class10000]
+		[signalchain_Class40000]
+		[signalchain_Class60004]
+		[signalchain_Class110011]
+		[signalchain_Class60002]
+		[signalchain_Class50001]
+		[signalchain_Class30000])
+	(year_began 1960))
+
+([signalchain_Class40018] of  60%27s+Guitarist
+
+	(band "Cream")
+	(name "Eric Clapton")
+	(uses
+		[signalchain_Class110006]
+		[signalchain_Class90002]
+		[signalchain_Class110007]
+		[signalchain_Class110008]
+		[signalchain_Class60008]
+		[signalchain_Class30003]
+		[signalchain_Class30004])
+	(year_began 1962))
+
+([signalchain_Class40019] of  70%27s+Guitarist
+
+	(band "Solo Artist")
+	(name "Yngwie Malmsteen")
+	(uses
+		[signalchain_Class40004]
+		[signalchain_Class100015]
+		[signalchain_Class80005]
+		[signalchain_Class90002]
+		[signalchain_Class10000]
+		[signalchain_Class100016]
+		[signalchain_Class70000]
+		[signalchain_Class30003])
+	(year_began 1978))
+
+([signalchain_Class40020] of  Locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Alder")
+	(bridge_type Floyd-Rose)
+	(fretboard_wood Ebony)
+	(make_and_model "Jackson SL2")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Seymour Duncan pickups"
+		"Alumiloid piranha neck inlays")
+	(used_by
+		[signalchain_Class10005]
+		[signalchain_Class40016]))
+
+([signalchain_Class40023] of  Fixed+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Alder")
+	(fretboard_wood Maple)
+	(make_and_model "Music Man Axis Super Sport")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Figured maple top"
+		"DiMarzio custom pickups")
+	(used_by [signalchain_Class40008]))
+
+([signalchain_Class40025] of  Modern+Guitarist
+
+	(band "Maroon 5")
+	(name "James Valentine")
+	(uses
+		[signalchain_Class80000]
+		[signalchain_Class90003]
+		[signalchain_Class100002]
+		[signalchain_Class40007]
+		[signalchain_Class80006]
+		[signalchain_Class30003]
+		[signalchain_Class60005]
+		[signalchain_Class50001])
+	(year_began 1996))
+
+([signalchain_Class40026] of  60%27s+Guitarist
+
+	(band "Boston")
+	(name "Tom Sholz")
+	(uses
+		[signalchain_Class110013]
+		[signalchain_Class110009]
+		[signalchain_Class60003]
+		[signalchain_Class110014]
+		[signalchain_Class10000]
+		[signalchain_Class40000]
+		[signalchain_Class30002]
+		[signalchain_Class30000])
+	(year_began 1969))
+
+([signalchain_Class40027] of  80%27s+Guitarist
+
+	(band "Guns N' Roses")
+	(name "Saul Hudson (Slash)")
+	(uses
+		[signalchain_Class100006]
+		[signalchain_Class30000]
+		[signalchain_Class10000]
+		[signalchain_Class40000]
+		[signalchain_Class100007]
+		[signalchain_Class100008]
+		[signalchain_Class80001]
+		[signalchain_Class80004]
+		[signalchain_Class80002]
+		[signalchain_Class60002])
+	(year_began 1981))
+
+([signalchain_Class40028] of  60%27s+Guitarist
+
+	(band "The Who")
+	(name "Pete Townsend")
+	(uses
+		[signalchain_Class90002]
+		[signalchain_Class110006]
+		[signalchain_Class110007]
+		[signalchain_Class110008]
+		[signalchain_Class10000]
+		[signalchain_Class40000]
+		[signalchain_Class60004]
+		[signalchain_Class100016]
+		[signalchain_Class90004]
+		[signalchain_Class30002])
+	(year_began 1962))
+
+([signalchain_Class40029] of  70%27s+Guitarist
+
+	(band "U2")
+	(name "David Evans (The Edge)")
+	(uses
+		[signalchain_Class100024]
+		[signalchain_Class80004]
+		[signalchain_Class90002]
+		[signalchain_Class60007]
+		[signalchain_Class10000]
+		[signalchain_Class6]
+		[signalchain_Class100025]
+		[signalchain_Class90004]
+		[signalchain_Class100005]
+		[signalchain_Class70000]
+		[signalchain_Class30003])
+	(year_began 1976))
+
+([signalchain_Class40032] of  60%27s+Guitarist
+
+	(band "Santana")
+	(name "Carlos Santana")
+	(uses
+		[signalchain_Class90000]
+		[signalchain_Class100026]
+		[signalchain_Class100001]
+		[signalchain_Class60008]
+		[signalchain_Class60004]
+		[signalchain_Class100025]
+		[signalchain_Class80006]
+		[signalchain_Class70000]
+		[signalchain_Class30004])
+	(year_began 1966))
+
+([signalchain_Class40033] of  70%27s+Guitarist
+
+	(band "Chickenfoot")
+	(name "Joe Satriani")
+	(uses
+		[signalchain_Class100020]
+		[signalchain_Class100021]
+		[signalchain_Class100017]
+		[signalchain_Class100018]
+		[signalchain_Class10000]
+		[signalchain_Class100019]
+		[signalchain_Class6]
+		[signalchain_Class70000]
+		[signalchain_Class30004]
+		[signalchain_Class30000])
+	(year_began 1970))
+
+([signalchain_Class40035] of  50%27s+Guitarist
+
+	(band "The Beatles")
+	(name "Paul McCartney")
+	(uses
+		[signalchain_Class60006]
+		[signalchain_Class60007]
+		[signalchain_Class60008]
+		[signalchain_Class60004]
+		[signalchain_Class20000]
+		[signalchain_Class30004]
+		[signalchain_Class60005])
+	(year_began 1957))
+
+([signalchain_Class40037] of  80%27s+Guitarist
+
+	(band "Metallica")
+	(name "James Hetfield")
+	(uses
+		[signalchain_Class100011]
+		[signalchain_Class100009]
+		[signalchain_Class100010]
+		[signalchain_Class30001]
+		[signalchain_Class40010]
+		[signalchain_Class60000]
+		[signalchain_Class30000])
+	(year_began 1981))
+
+([signalchain_Class40038] of  60%27s+Guitarist
+
+	(band "Solo Artist")
+	(name "Stevie Ray Vaughan")
+	(uses
+		[signalchain_Class90002]
+		[signalchain_Class60008]
+		[signalchain_Class40000]
+		[signalchain_Class6]
+		[signalchain_Class100025]
+		[signalchain_Class100016]
+		[signalchain_Class30004]
+		[signalchain_Class60005])
+	(year_began 1965))
+
+([signalchain_Class40039] of  70%27s+Guitarist
+
+	(band "AC/DC")
+	(name "Angus Young")
+	(uses
+		[signalchain_Class100026]
+		[signalchain_Class60007]
+		[signalchain_Class10000])
+	(year_began 1970))
+
+([signalchain_Class40040] of  50%27s+Guitarist
+
+	(band "Led Zeppelin")
+	(name "Jimmy Page")
+	(uses
+		[signalchain_Class60001]
+		[signalchain_Class60003]
+		[signalchain_Class40000]
+		[signalchain_Class60004]
+		[signalchain_Class60002]
+		[signalchain_Class50001]
+		[signalchain_Class30000])
+	(year_began 1957))
+
+([signalchain_Class40041] of  60%27s+Guitarist
+
+	(band "The Jimmi Hendrix Experience")
+	(name "Jimmi Hendrix")
+	(uses
+		[signalchain_Class90002]
+		[signalchain_Class110010]
+		[signalchain_Class60008]
+		[signalchain_Class40000]
+		[signalchain_Class100016]
+		[signalchain_Class90004]
+		[signalchain_Class20000]
+		[signalchain_Class30004])
+	(year_began 1963))
+
+([signalchain_Class40042] of  Modern+Guitarist
+
+	(band "The White Stripes")
+	(name "Jack White")
+	(uses
+		[signalchain_Class90001]
+		[signalchain_Class90003]
+		[signalchain_Class90002]
+		[signalchain_Class60008]
+		[signalchain_Class60000]
+		[signalchain_Class90004]
+		[signalchain_Class70000]
+		[signalchain_Class30003])
+	(year_began 1990))
+
+([signalchain_Class40043] of  Modern+Guitarist
+
+	(band "John Mayer Trio")
+	(name "John Mayer")
+	(uses
+		[signalchain_Class100003]
+		[signalchain_Class80005]
+		[signalchain_Class90002]
+		[signalchain_Class60008]
+		[signalchain_Class100005]
+		[signalchain_Class20000]
+		[signalchain_Class30004])
+	(year_began 1998))
+
+([signalchain_Class5] of  Chorus+Pedal
+
+	(make_and_model "Hotone Choir")
+	(pedal_effects_loop FALSE)
+	(primary_control Pitch)
+	(signal_level Loop-Level)
+	(unique_features
+		"Compact minature pedal"
+		"Switchable depth filter")
+	(used_by [signalchain_Class11]))
+
+([signalchain_Class50000] of  Signal+Chain
+
+	(amplifier [signalchain_Class60007])
+	(cable [signalchain_Class20001])
+	(effects_pedals
+		[signalchain_Class60004]
+		[signalchain_Class20000]
+		[signalchain_Class30004])
+	(guitar [signalchain_Class60006])
+	(name "Sample Chain 1"))
+
+([signalchain_Class50001] of  Fixed+Bridge+Guitar
+
+	(body_cutaway Single)
+	(body_wood "Ash")
+	(fretboard_wood Maple)
+	(make_and_model "Fender American Standard Telecaster")
+	(pickup_configuration SS)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Fender Micro-Tilt neck angle adjustment"
+		"Fender Bi-Flex truss rod")
+	(used_by
+		[signalchain_Class40025]
+		[signalchain_Class40040]
+		[signalchain_Class40017]))
+
+([signalchain_Class6] of  Delay+Pedal
+
+	(make_and_model "Boss DD-7")
+	(pedal_effects_loop FALSE)
+	(signal_level Loop-Level)
+	(unique_features
+		"Boss expression pedal compatible"
+		"On board signal looping unit"
+		"Stereo output capabilities")
+	(used_by
+		[signalchain_Class40029]
+		[signalchain_Class40033]
+		[signalchain_Class10005]
+		[signalchain_Class11]
+		[signalchain_Class40038]))
+
+([signalchain_Class60000] of  Delay+Pedal
+
+	(make_and_model "TC Electronic Flashback")
+	(pedal_effects_loop FALSE)
+	(signal_level Loop-Level)
+	(unique_features
+		"Analog-dry-through circuitry"
+		"Built-in 40 second looper"
+		"Digital delay with 10 different modes"
+		"Up to 6 seconds delay time"
+		"TC Electronic TonePrint capable")
+	(used_by
+		[signalchain_Class40016]
+		[signalchain_Class40042]
+		[signalchain_Class40037]
+		[signalchain_Class100012]
+		[signalchain_Class40008]))
+
+([signalchain_Class60001] of  Tube+Amplifier
+
+	(cabinet_type 2x12)
+	(make_and_model "Orange AD-30HTC")
+	(number_of_channels 2)
+	(on_board_effects FALSE)
+	(power_rating_%28watts%29 30)
+	(speaker_name "Orange Voice of the World")
+	(unique_features
+		"Three band equalisation"
+		"One GZ34 and four EL84 power tubes")
+	(used_by [signalchain_Class40040]))
+
+([signalchain_Class60002] of  Phaser+Pedal
+
+	(make_and_model "MXR M-101 Phase 90")
+	(pedal_effects_loop FALSE)
+	(primary_control Speed)
+	(signal_level Loop-Level)
+	(unique_features "Simple, one-knob operation")
+	(used_by
+		[signalchain_Class40040]
+		[signalchain_Class40017]
+		[signalchain_Class40027]))
+
+([signalchain_Class60003] of  Fuzz+Pedal
+
+	(distortion_level Low)
+	(make_and_model "MXR M-103 Blue Box")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Two octave tone drop"
+		"Unique gritty low end presence")
+	(used_by
+		[signalchain_Class40040]
+		[signalchain_Class40026]))
+
+([signalchain_Class60004] of  Delay+Pedal
+
+	(make_and_model "MXR Carbon Copy")
+	(pedal_effects_loop FALSE)
+	(signal_level Loop-Level)
+	(unique_features
+		"Analog delay"
+		"Switchable modulation filter")
+	(used_by
+		[signalchain_Class40032]
+		[signalchain_Class100013]
+		[signalchain_Class40040]
+		[signalchain_Class100012]
+		[signalchain_Class40017]
+		[signalchain_Class40035]
+		[signalchain_Class40028]))
+
+([signalchain_Class60005] of  Fixed+Bridge+Guitar
+
+	(body_cutaway Single)
+	(body_wood "Ash")
+	(fretboard_wood Maple)
+	(make_and_model "Fender '59 Esquire")
+	(pickup_configuration S)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Adjustable tone filters via pickup selector"
+		"Bone nut")
+	(used_by
+		[signalchain_Class40025]
+		[signalchain_Class100013]
+		[signalchain_Class40035]
+		[signalchain_Class40038]))
+
+([signalchain_Class60006] of  Non-locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Maple with Basswood bracing")
+	(bridge_type Bigsby)
+	(fretboard_wood Rosewood)
+	(make_and_model "Epiphone Casino")
+	(pickup_configuration P90s)
+	(scale_length_%28inches%29 24.75)
+	(unique_features "Hollow body")
+	(used_by [signalchain_Class40035]))
+
+([signalchain_Class60007] of  Solid+State+Amplifier
+
+	(make_and_model "Vox AC-30")
+	(number_of_channels 2)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 30)
+	(speaker_name "Celestion VX12")
+	(unique_features
+		"On board reverberation"
+		"12AX7 Valve Reactor Technology")
+	(used_by
+		[signalchain_Class40039]
+		[signalchain_Class40029]
+		[signalchain_Class40035]))
+
+([signalchain_Class60008] of  Tube+Amplifier
+
+	(cabinet_type 2x12)
+	(make_and_model "Fender '65 Twin Reverb")
+	(number_of_channels 2)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 85)
+	(speaker_name "Jenson CK12")
+	(unique_features
+		"Stereo inputs"
+		"Normal and reverberation channels"
+		"Four 6L6 power tubes")
+	(used_by
+		[signalchain_Class40032]
+		[signalchain_Class40018]
+		[signalchain_Class40042]
+		[signalchain_Class100013]
+		[signalchain_Class40041]
+		[signalchain_Class40043]
+		[signalchain_Class40017]
+		[signalchain_Class40035]
+		[signalchain_Class40038]))
+
+([signalchain_Class7] of  Talkbox
+
+	(make_and_model "Rocktron Banshee II")
+	(pedal_effects_loop TRUE)
+	(unique_features
+		"Switchable pedal effects loop"
+		"Amplifier mute switch")
+	(used_by [signalchain_Class11]))
+
+([signalchain_Class70000] of  Chorus+Pedal
+
+	(make_and_model "Boss CH-1")
+	(pedal_effects_loop FALSE)
+	(primary_control Pitch)
+	(signal_level Loop-Level)
+	(unique_features
+		"Dual outputs"
+		"Level, EQ, Rate, and Depth controls"
+		"Rugged metal casing")
+	(used_by
+		[signalchain_Class40032]
+		[signalchain_Class40029]
+		[signalchain_Class40042]
+		[signalchain_Class40033]
+		[signalchain_Class40019]))
+
+([signalchain_Class70001] of  Signal+Chain
+
+	(amplifier [signalchain_Class40005])
+	(cable [signalchain_Class20001])
+	(effects_pedals
+		[signalchain_Class40006]
+		[signalchain_Class30003]
+		[signalchain_Class40001])
+	(guitar [signalchain_Class40004])
+	(name "Sample Chain 3"))
+
+([signalchain_Class70004] of  Signal+Chain
+
+	(amplifier [signalchain_Class9])
+	(cable [signalchain_Class20001])
+	(effects_pedals
+		[signalchain_Class6]
+		[signalchain_Class5]
+		[signalchain_Class4]
+		[signalchain_Class1]
+		[signalchain_Class7])
+	(guitar [signalchain_Class10])
+	(name "Sample Chain 5"))
+
+([signalchain_Class70005] of  Signal+Chain
+
+	(amplifier [signalchain_Class10000])
+	(cable [signalchain_Class0])
+	(effects_pedals
+		[signalchain_Class6]
+		[signalchain_Class30002]
+		[signalchain_Class20000]
+		[signalchain_Class30005]
+		[signalchain_Class30004])
+	(guitar [signalchain_Class10002])
+	(name "Sample Chain 4"))
+
+([signalchain_Class8] of  Fixed+Bridge+Guitar
+
+	(body_cutaway Single)
+	(body_wood "Mahogany")
+	(fretboard_wood Rosewood)
+	(make_and_model "Gibson Les Paul Standard (2015)")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 24.75)
+	(unique_features
+		"Coil tapped humbuckers"
+		"GForce tuning system"
+		"Maple body cap"
+		"Peter Green phase switch")
+	(used_by [signalchain_Class11]))
+
+([signalchain_Class80000] of  Tube+Amplifier
+
+	(cabinet_type 2x12)
+	(make_and_model "Suhr PT-100")
+	(number_of_channels 3)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 100)
+	(speaker_name "Celestion G12H-75 Creamback")
+	(unique_features
+		"Crunch, clean, and lead channel"
+		"Four EL34 power tubes"
+		"Limited edition"
+		"Pete Thorn signature series")
+	(used_by [signalchain_Class40025]))
+
+([signalchain_Class80001] of  Chorus+Pedal
+
+	(make_and_model "TC Electronic Corona")
+	(pedal_effects_loop FALSE)
+	(primary_control Pitch)
+	(signal_level Loop-Level)
+	(unique_features
+		"Standard and Tri-Chorus modes"
+		"Stereo output capabilities"
+		"TC Electronic TonePrint capable"
+		"True bypass")
+	(used_by
+		[signalchain_Class100012]
+		[signalchain_Class40027]))
+
+([signalchain_Class80002] of  Flanger+Pedal
+
+	(make_and_model "TC Electronic Vortex")
+	(pedal_effects_loop FALSE)
+	(primary_control Depth)
+	(signal_level Loop-Level)
+	(unique_features
+		"Analog-dry-through circuitry"
+		"Flange and Tape Flange modes"
+		"Stereo output capabilities"
+		"TC Electronic TonePrint capable")
+	(used_by
+		[signalchain_Class100012]
+		[signalchain_Class40027]))
+
+([signalchain_Class80003] of  Phaser+Pedal
+
+	(make_and_model "MXR EVH-90 Phase 90")
+	(pedal_effects_loop FALSE)
+	(primary_control Speed)
+	(signal_level Loop-Level)
+	(unique_features
+		"Eddie Van Halen signature series"
+		"Modern and script modes"
+		"Simple, one-knob operation")
+	(used_by [signalchain_Class40016]))
+
+([signalchain_Class80004] of  Vibrato+Pedal
+
+	(make_and_model "TC Electronic Shaker")
+	(pedal_effects_loop FALSE)
+	(primary_control Rate)
+	(signal_level Loop-Level)
+	(unique_features
+		"Classic and latch vibrato"
+		"Stereo output capabilities"
+		"TC Electronic TonePrint capable"
+		"True bypass")
+	(used_by
+		[signalchain_Class40029]
+		[signalchain_Class40027]))
+
+([signalchain_Class80005] of  Overdrive+Pedal
+
+	(distortion_level Moderate)
+	(make_and_model "Ibanez TS-808")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Original 1970's circuitry"
+		"JRC4558D chip"
+		"Square footswitch")
+	(used_by
+		[signalchain_Class40043]
+		[signalchain_Class40019]))
+
+([signalchain_Class80006] of  Overdrive+Pedal
+
+	(distortion_level Moderate)
+	(make_and_model "Fulltone Fulldrive MOSFET")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Non-compressed overdrive"
+		"Switchable boost channel")
+	(used_by
+		[signalchain_Class40032]
+		[signalchain_Class40025]))
+
+([signalchain_Class9] of  Tube+Amplifier
+
+	(cabinet_type 1x12)
+	(make_and_model "Carvin V-3M")
+	(number_of_channels 3)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 50)
+	(speaker_name "Celestion Vintage 30")
+	(unique_features
+		"On board reverberation unit"
+		"Power switch: 5, 25, and 50 watt options"
+		"Two drive channels and one clean channel"
+		"Four EL84 power tubes")
+	(used_by [signalchain_Class11]))
+
+([signalchain_Class90000] of  Non-locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Mahogany")
+	(bridge_type Standard-Floating)
+	(fretboard_wood Rosewood)
+	(make_and_model "PRS SE Santana")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 24.5)
+	(unique_features
+		"Flamed maple top"
+		"PRS custom tremolo"
+		"PRS custom tuners"
+		"Santana signature series")
+	(used_by [signalchain_Class40032]))
+
+([signalchain_Class90001] of  Fixed+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Maple")
+	(fretboard_wood Rosewood)
+	(make_and_model "Airline JB Hutto (1964)")
+	(pickup_configuration HH)
+	(scale_length_%28inches%29 24.75)
+	(unique_features
+		"Resonator bridge"
+		"Out of market 1964 instrument")
+	(used_by [signalchain_Class40042]))
+
+([signalchain_Class90002] of  Non-locking+Bridge+Guitar
+
+	(body_cutaway Double)
+	(body_wood "Alder")
+	(bridge_type Standard-Floating)
+	(fretboard_wood Maple)
+	(make_and_model "Fender American Standard Stratocaster")
+	(pickup_configuration SSS)
+	(scale_length_%28inches%29 25.5)
+	(unique_features
+		"Classic Fender tremolo"
+		"Industry standard instrument"
+		"Fender Micro-Tilt neck angle adjustment")
+	(used_by
+		[signalchain_Class40042]
+		[signalchain_Class40043]
+		[signalchain_Class40019]
+		[signalchain_Class40029]
+		[signalchain_Class40018]
+		[signalchain_Class100013]
+		[signalchain_Class40041]
+		[signalchain_Class40017]
+		[signalchain_Class40028]
+		[signalchain_Class40038]))
+
+([signalchain_Class90003] of  Tube+Amplifier
+
+	(cabinet_type 1x12)
+	(make_and_model "Blackstar HT-5")
+	(number_of_channels 2)
+	(on_board_effects TRUE)
+	(power_rating_%28watts%29 5)
+	(speaker_name "Celestion Vintage 30")
+	(unique_features
+		"Infinite Shape Feature (ISF)"
+		"One ECC83 and one 12BH7 power tubes"
+		"Stereo digital reverb"
+		"Two footswitchable channels")
+	(used_by
+		[signalchain_Class40042]
+		[signalchain_Class40025]))
+
+([signalchain_Class90004] of  Fuzz+Pedal
+
+	(distortion_level Low)
+	(make_and_model "Electro Harmonix Big Muff")
+	(pedal_effects_loop FALSE)
+	(unique_features
+		"Volume, Tone, and Sustain controls"
+		"Made in New York City, USA")
+	(used_by
+		[signalchain_Class40029]
+		[signalchain_Class40042]
+		[signalchain_Class40041]
+		[signalchain_Class40028]))

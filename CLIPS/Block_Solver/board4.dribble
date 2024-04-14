@@ -1,0 +1,24 @@
+TRUE
+CLIPS> (reset)
+CLIPS> (run)
+Welcome to the ECE 4420 Takehome 1 Block Puzzle Solver!
+This program will solve all five required boards sequentially.
+The cell containing the block in each printout is designated with a 'B'.
+
+Moved block to starting position row 6 col 6 on board 4.
+
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxooBxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xoxoxoxoxox
+xExoxoxoxox
+xoxoxxxoxox
+
+There is no solution to board 4.
+
+CLIPS> (dribble-off)

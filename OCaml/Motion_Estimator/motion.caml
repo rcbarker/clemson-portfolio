@@ -1,0 +1,390 @@
+(* Ryan Barker
+   CPSC/ECE 3520 
+   Spring 2015
+   SDE2 - motion.caml *)
+
+(**
+Prototype:
+
+diffImRow(image1Row,image2Row)
+
+Inputs: 2 image rows
+Returned Value: image2Row - image1Row
+Side Effects: none
+Signature: int list * int list -> int list
+Notes: Subtracts each row element by element.
+*)
+let rec diffImRow = function (image1Row, image2Row) -> 
+  if(image1Row = [] && image2Row = []) then []
+  else ((List.hd image2Row) - (List.hd image1Row)) 
+       :: diffImRow (List.tl image1Row, List.tl image2Row);;
+
+
+
+(**
+Prototype:
+
+diffIm(image1,image2)
+
+Inputs: 2 images
+Returned Value: image2 - image1
+Side Effects: none
+Signature: diffIm: int list list * int list list -> int list list
+Notes: Recursively calls diffImRow for each row in both images to subtract image1 from image2.
+*)
+let rec diffIm = function (image1, image2) ->
+  if(image1 = [] && image2 = []) then []
+  else diffImRow(List.hd image1, List.hd image2) :: diffIm(List.tl image1, List.tl image2);;
+
+
+
+(**
+Prototype
+
+row_is_zeroes(imRow)
+
+Input: diffimage (difference image)
+Returned Value: true or false
+Side Effects: none
+Signature: int list -> bool
+Notes: Auxiliary function that checks if all members of a row in an image are zero. If so, 
+       returns true. Else, returns false. Called by noDiff.
+*)
+let rec row_is_zeroes = function (imRow) -> 
+  if(imRow = []) then true
+  else 
+    if(List.hd imRow = 0) then row_is_zeroes(List.tl imRow)
+    else false;;
+
+
+
+(**
+Prototype
+
+noDiff(diffimage)
+
+Input: diffimage (difference image)
+Returned Value: true or false
+Side Effects: none
+Signature: int list list -> bool
+Notes: Utilizes row_is_zeroes to recursively check if each row is all zeroes. If
+       every row is all zeroes, returns true. Else, returns false.
+*)
+let rec noDiff = function (diffimage) ->
+  if(diffimage = []) then true
+  else 
+    if(row_is_zeroes(List.hd diffimage)) then noDiff(List.tl diffimage)
+    else false;;
+
+
+
+(**
+Prototype:
+
+row_to_string ([]) | (h::t)
+
+Inputs: h::t (image row)
+Returned Value: string
+Side Effects: none
+Signature: int list -> string
+Notes: Auxiliary function that recursively converts every member of an integer list into 
+       a single string and appends a new line at the end. Called by image_to_string.
+*)
+let rec row_to_string = function 
+    ([]) -> "\n"
+  | (h::t) -> 
+     if(h < 0) then string_of_int h ^ " " ^ row_to_string(t)
+     else " " ^ string_of_int h ^ " " ^ row_to_string(t);;
+
+
+
+(**
+Prototype:
+
+image_to_string ([]) | (h::t)
+
+Inputs: h::t (image)
+Returned Value: string
+Side Effects: none
+Signature: int list list -> string
+Notes: Auxiliary function that recursively converts a list of integer lists to a string 
+       one row at a time by calling image_to_string. Called by pp_my_image.
+*)
+let rec image_to_string = function
+    ([]) -> ""
+  | (h::t) -> (row_to_string(h)) ^ (image_to_string(t));;
+
+
+
+(**
+Prototype:
+
+pp_my_image(s)
+
+Inputs: s (image)
+Returned Value: unit
+Side Effects: printing
+Signature: int list list -> unit
+Notes: Prints the image s by using image_to_string to convert it into a string and passing
+       it to print_string.
+*)
+let pp_my_image = function (s) ->
+ if(s = []) then ()
+ else 
+   print_string (image_to_string(s));;
+
+
+
+(**
+Prototype:
+
+rowmaskpos(image2row,diffrow)
+
+Inputs: 1 row of image2 and corresponding row of difference image
+Returned Value: masked row of image2
+Side Effects: none
+Signature: int list * int list -> int list
+Notes: Recursively masks each row of image2 by comparing each element to the element in
+       that position of the difference image. If diffrow(j) > 0, then the 
+       maskedrow(j) = image2row(j). Otherwise, maskedrow(j) = 0.
+*)
+let rec rowmaskpos = function (image2row, diffrow) ->
+  if(image2row = [] && diffrow = []) then []
+  else
+    if(List.hd diffrow > 0) then List.hd image2row :: 
+                                 rowmaskpos(List.tl image2row, List.tl diffrow)
+    else 0 :: rowmaskpos(List.tl image2row, List.tl diffrow);;
+
+
+
+(**
+Prototype:
+
+maskpos(image2,diffimage)
+
+Inputs: image2,diffimage
+Returned Value: masked image2
+Side Effects: none
+Signature: int list list * int list list -> int list list
+Notes: Recursively uses rowmaskpos to mask image2 row-by-row. Masking specifications are in
+       rowmaskpos notes section.
+*)
+let rec maskpos = function (image2, diffimage) ->
+  if(image2 = [] && diffimage = []) then []
+  else rowmaskpos(List.hd image2, List.hd diffimage) 
+       :: maskpos(List.tl image2, List.tl diffimage);;
+
+
+
+(**
+Prototype:
+
+rowmaskneg(image1row,diffrow)
+
+Inputs: 1 row of image1 and corresponding row of difference image
+Returned Value: masked row of image1
+Side Effects: none
+Signature: int list * int list -> int list
+Notes: Recursively masks each row of image1 by comparing each element to the element in
+       that position of the difference image. If diffrow(j) < 0, then the 
+       maskedrow(j) = image1row(j). Otherwise, maskedrow(j) = 0.
+*)
+let rec rowmaskneg = function (image1row, diffrow) ->
+  if(image1row = [] && diffrow = []) then []
+  else
+    if(List.hd diffrow < 0) then List.hd image1row :: 
+                                 rowmaskneg(List.tl image1row, List.tl diffrow)
+    else 0 :: rowmaskneg(List.tl image1row, List.tl diffrow);;
+
+
+
+(**
+Prototype:
+
+maskneg(image1,diffimage)
+
+Inputs: image1,diffimage
+Returned Value: masked image1
+Side Effects: none
+Signature: int list list * int list list -> int list list
+Notes: Recursively uses rowmaskneg to mask image1 row-by-row. Masking specifications are in 
+       rowmaskneg notes section.
+*)
+let rec maskneg = function (image1, diffimage) ->
+  if(image1 = [] && diffimage = []) then []
+  else rowmaskneg(List.hd image1, List.hd diffimage) 
+       :: maskneg(List.tl image1, List.tl diffimage);;
+
+
+
+(**
+Prototype:
+
+tupledifffloat((i1,j1),(i2,j2))
+
+Inputs: A tuple-of-tuples ((i1,j1),(i2,j2))
+        where (i1,j1) is masked centroid (row, col) location in masked image1
+        and (i2,j2) is masked centroid location in masked image2.
+Returned Value: tuple ((i2-i1),(j2-j1))
+Side Effects: none
+Signature: (float * float) * (float * float) -> float * float
+Notes: All quantities are floats.
+*)
+let tupledifffloat = function ((i1, j1), (i2, j2)) ->
+  ((i2 -. i1), (j2 -. j1));;
+
+
+
+(*
+Prototype:
+
+sumImRow(maskedrow)
+
+Inputs: maskedrow (row of a masked Image)
+Returns: integer sum of the (nonzero) elements.
+         Returns 0 if there are no nonzero elements in the row.
+Signature: int list -> int
+Side effects: none
+Notes: Recursively adds each element of masked row together. 
+*)
+let rec sumImRow = function (maskedrow) ->
+  if(maskedrow = []) then 0
+  else (List.hd maskedrow) + sumImRow(List.tl maskedrow);;
+
+
+
+(*
+Prototype:
+
+sumImage(maskedimage)
+
+Returns: sum of the elements of a masked image
+Signature: int list list -> int
+Side effects: none
+Notes: Recursively uses sumImRow on each row of maskedIm to find total image sum.
+       Note that this is not used (computed) if no image motion.
+*)
+let rec sumImage = function (maskedimage) ->
+  if(maskedimage = []) then 0
+  else sumImRow(List.hd maskedimage) + sumImage(List.tl maskedimage);;
+
+
+
+(*
+Prototype:
+
+centImRowbyRow(imagerow, j)
+
+Returned Value: sum(j*f(i,j)) for imagerow
+Side Effects: none
+Signature: int list * int -> int
+
+Notes: Recursively computes sum(j * f(i,j)) for imagerow.
+*)
+let rec centImRowbyRow = function (imagerow, j) ->
+  if(imagerow = []) then 0
+  else (j * List.hd imagerow) + centImRowbyRow(List.tl imagerow, j + 1);;
+
+
+
+(*
+Prototype:
+
+centImRow(image,start_j)
+
+Returned Value: M{0,1} of input image
+Side Effects: none
+Signature: int list list * int -> int
+
+Notes: Recursively computes sum(j * f(i,j)) for image row-by-row.
+*)
+let rec centImRow = function (image, start_j) ->
+  if(image = []) then 0
+  else centImRowbyRow(List.hd image, start_j) + centImRow(List.tl image, start_j);;
+
+
+
+(*
+
+centImColbyRow(imagerow,i)
+
+Inputs: imagerow (row to be summed)
+        i (row number of row)
+Returned Value: Returned Value: sum(i*f(i,j)) for imagerow
+Side Effects: none
+Signature: int list * int -> int 
+Notes: Recursively computes sum(i * f(i,j)) for imagerow.
+*)
+let rec centImColbyRow = function (imagerow, i) ->
+  if(imagerow = []) then 0
+  else (i * List.hd imagerow) + centImColbyRow(List.tl imagerow, i);;
+
+
+
+(*
+
+centImCol(image,start_i)
+
+Returned Value: Returned Value: M{1,0} of input image
+Side Effects: none
+Signature: int list list * int -> int 
+Notes: Recursively computes sum(i * f(i,j)) for image row-by-row.
+*)
+let rec centImCol = function (image, start_i) ->
+  if(image = []) then 0
+  else centImColbyRow(List.hd image, start_i) + centImCol(List.tl image, start_i + 1);;
+
+
+
+(**
+Prototype:
+
+icent(image)
+
+Inputs: image
+Returned Value: i-direction centroid of input image
+Side Effects: none
+Signature: int list list -> float
+Notes: Used with masked images in the overall algorithm.
+*)
+let icent = function (image) ->
+  float_of_int (centImCol(image, 1)) /. float_of_int (sumImage(image));;
+
+
+
+(**
+Prototype:
+
+jcent(image)
+
+Inputs: imageexception
+Returned Value: j-direction centroid of input image
+Side Effects: none
+Signature: int list list -> float
+Notes: Used with masked images in the overall algorithm.
+*)
+let jcent = function (image) ->
+  float_of_int (centImRow(image, 1)) /. float_of_int (sumImage(image));;
+
+
+
+(**
+Prototype:
+
+motion(image1,image2)
+
+Inputs: image1,image2
+Returned Value: tuple of centroid differences indicating (rowmotion,columnmotion)
+Side Effects: none
+Signature: int list list * int list list -> float*float
+Notes: Uses difference of centroid (tuples) on 2 masked images to
+estimate motion.
+*)
+let motion = function (image1, image2) ->
+  if(noDiff(diffIm(image1, image2))) then
+    failwith "there is no discernible motion"
+  else
+    tupledifffloat ( ( icent(maskneg(image1, diffIm(image1,image2))), 
+                       jcent(maskneg(image1, diffIm(image1,image2))) ), 
+                     ( icent(maskpos(image2, diffIm(image1,image2))),
+                       jcent(maskpos(image2, diffIm(image1,image2))) ) );;

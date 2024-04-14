@@ -1,0 +1,50 @@
+-- Ryan Barker --
+-- ECE 3270
+-- Dr. Smith
+-- d_ff_no_r_drv.vhdl
+--
+-- Purpose: File contains code that will generate a Data Latch with no reset pin.
+-- 
+-- The top level entity (d_ff_no_r_drv) tests the latch.
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+-- Delcare virtual latch --
+ENTITY d_ff_no_r IS 
+   PORT (d, clk : IN  std_logic;
+         q      : OUT std_logic );
+END d_ff_no_r;
+
+-- Architecture of basic data latch --
+ARCHITECTURE Dataflow OF d_ff_no_r IS
+BEGIN
+	flipflop: PROCESS (clk)
+		BEGIN
+			IF rising_edge(clk) 
+				THEN q <= d;
+			END IF;
+		END PROCESS flipflop;
+END Dataflow;
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+-- Delcare latch test driver --
+ENTITY d_ff_no_r_drv IS 
+   PORT (SW, KEY : IN  std_logic_vector(0 DOWNTO 0);
+         LEDR     : OUT std_logic_vector(0 DOWNTO 0));
+END d_ff_no_r_drv;
+
+-- Wrap virtual latch into physical ports on the board --
+ARCHITECTURE Dataflow OF d_ff_no_r_drv IS
+COMPONENT d_ff_no_r
+	PORT(d, clk : IN  std_logic;
+	     q      : OUT std_logic);
+END COMPONENT;
+
+BEGIN
+	d_ff_drv : d_ff_no_r
+		PORT MAP(d=>SW(0), clk=>KEY(0), q=>LEDR(0));
+END Dataflow;
