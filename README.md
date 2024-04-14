@@ -1,5 +1,6 @@
 # clemson-portfolio
 University programming projects
+
 Latest Revision: June 6th, 2016
 
 Introduction:
