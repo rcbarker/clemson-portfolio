@@ -1,5 +1,5 @@
 # clemson-portfolio
-University programming projects
+Undergraduate programming projects
 
 Latest Revision: June 6th, 2016
 
